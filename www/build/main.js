@@ -867,8 +867,9 @@ UserChatPage = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SOCKET_HOST; });
-var SOCKET_HOST = "http://localhost:3000";
-// export const SOCKET_HOST = "https://chat-gopage-server.herokuapp.com/";
+// export const SOCKET_HOST = "http://localhost:3000";
+// export const SOCKET_HOST = "http://localhost:3000";
+var SOCKET_HOST = "https://chat-gopage-server.herokuapp.com/";
 //# sourceMappingURL=constants.js.map
 
 /***/ }),
