@@ -1,0 +1,22 @@
+<ion-content padding>
+  <p class="title">
+    Edit User
+    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goBack()">
+  </p>
+
+  <form id="edit-form">
+    <label><input type="text" name="first_name" placeholder="First name" [(ngModel)]="posts.first_name" /></label>
+    <label><input type="text" name="last_name" placeholder="Last name" [(ngModel)]="posts.last_name" /></label>
+    <label><input type="number" name="number" placeholder="Mobile number" [(ngModel)]="posts.number" /><span class="text-validate"></span></label>
+    <label><input type="text" name="email" placeholder="E-mail address" [(ngModel)]="posts.email" /><span class="text-validate"></span></label>
+    <button id="save-user" class="btn btn-green" type="submit" (click)="saveUser()">Save</button>
+  </form>
+</ion-content>
+
+<div id="edit-modal" class="confirmation-modal">
+  <div class="confirmation-modal-overlay"></div>
+  <div class="confirmation-modal-content">
+    Account has been successfully updated.
+    <button class="btn btn-green btn-okay" (click)="goBack()">Okay</button>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <img class="header-logo" src="assets/images/logo-min.png" alt="">
+    <div class="holder-menu" (click)="showMenu()">Menu</div>
+    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /><span class="count-msg">1</span></a>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content padding>
+  <!-- <p class="title" (click)="goBack()">
+    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" />
+    Back to Deals
+  </p> -->
+
+  <div>
+    <p class="title-deal"></p>
+		<form>
+			<label>
+        <ion-input type="number" name="quantity" placeholder="Enter Quantity" [(ngModel)]="quantity" [ngModelOptions]="{standalone: true}" value="1"></ion-input>
+        <span class="text-validate"></span>
+      </label>
+			<button id="btn-submit" (click)="Submit()" class="btn btn-green">Submit</button>
+		</form>
+	</div>
+</ion-content>
+
+<div id="complete-modal" class="confirmation-modal">
+  <div class="confirmation-modal-overlay"></div>
+  <div class="confirmation-modal-content">
+    <span class="fa fa-check"></span>
+    CONGRATULATIONS<br />
+    YOU'VE EARNED <span class="free-pcs"></span> FREE <span class="free-prod"></span>
+    <button class="btn btn-green" (click)="goScanner()">Complete</button>
+  </div>
+</div>
+
+<div id="added-modal" class="confirmation-modal">
+  <div class="confirmation-modal-overlay"></div>
+  <div class="confirmation-modal-content">
+    <span class="fa fa-check"></span>
+    DONE<br />
+    YOU'VE GIVEN <span class="stamps-added"></span> TO <br />
+    <span class="customer-name"></span>
+    <button class="btn btn-green" (click)="goScanner()">Complete</button>
+  </div>
+</div>

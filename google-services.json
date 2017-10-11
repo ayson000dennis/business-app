@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "63439294778",
+    "project_id": "firebase-gopage"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63439294778:android:10108f71563b8fcf",
+        "android_client_info": {
+          "package_name": "com.gopage.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63439294778-4neac2b6leus4331p4sjira0ibn36n4u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gopage.app",
+            "certificate_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+          }
+        },
+        {
+          "client_id": "63439294778-8l2ggm3tl0mksvdv0058c166l13c2rnt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWSrXenO7PFLlcj7pznkeiLgnu_qBn1Y4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

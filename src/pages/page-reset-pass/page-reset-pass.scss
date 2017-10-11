@@ -1,0 +1,15 @@
+page-reset-pass {
+  form {
+    padding-top: 14px;
+  }
+
+  .description {
+    margin-top: 35px;
+
+    @media (max-width: 575px) {
+      margin-top: 30px;
+
+      font-size: 18px;
+    }
+  }
+}

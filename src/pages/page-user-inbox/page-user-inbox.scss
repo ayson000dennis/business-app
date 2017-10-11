@@ -1,0 +1,93 @@
+page-user-inbox {
+
+  ion-header + ion-content > div.scroll-content {
+    padding: 0px !important;
+
+    background-color: transparent !important;
+  }
+
+
+  #inbox-list {
+
+    .item:first-child {
+      text-align: left;
+    }
+
+    .item-inner .label ion-icon {
+      float: right;
+      font-size: 28px;
+      margin-right: 10px;
+      margin-top: -5px;
+    }
+
+    .item-inner .label {
+      font-size: 11px;
+      margin: 0 0 0 10px;
+    }
+
+    .list .item{
+      margin-bottom: 3px;
+    }
+
+    .item {
+      display: block;
+      width: 100%;
+      background-color: white;
+      border-bottom: 1px #d6d6d6 solid !important;
+      padding: 15px;
+    }
+
+    p {
+      width: 200px;
+      overflow: hidden;
+      font-size: 13px;
+      text-transform: capitalize;
+      margin-top: 10px;
+      color: grey;
+    }
+
+    .date-time {
+      font-size: 10px;
+      right: 13px;
+      float: right;
+      color: grey;
+    }
+
+    .name {
+      font-size: 15px;
+      text-transform: capitalize;
+      color: grey;
+    }
+
+    .date-time-new {
+      font-size: 10px;
+      right: 13px;
+      color: grey;
+      float: right;
+      color: black;
+
+    }
+
+    .name-new {
+      font-size: 15px;
+      text-transform: capitalize;
+      color: black;
+    }
+
+    .message-new {
+      color: black;
+    }
+
+    #btn-message {
+      display: block;
+      float: right;
+      margin-right: 10px;
+      background-color: #A3C64F;
+
+      .button-inner {
+        display: inline;
+      }
+    }
+  }
+
+}

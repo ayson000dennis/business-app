@@ -1,0 +1,19 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header> -->
+<ion-content padding>
+  <p class="title">
+    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" (click)="goBack()">
+    Reset Password
+  </p>
+  <form class="form-reset">
+    <label><input type="email" name="email" placeholder="Email address or Mobile number" [(ngModel)]="posts.email" /><span class="text-validate">Email address is required.</span></label>
+    <button class="btn-green" type="submit" (click)="resetMe()">Send</button>
+  </form>
+  <p class="description text-center">We'll email or text your new generated password.<p>
+</ion-content>

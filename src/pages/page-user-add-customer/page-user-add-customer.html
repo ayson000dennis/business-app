@@ -1,0 +1,23 @@
+<ion-content padding>
+  <p class="title">
+    Add New User
+    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goBack()">
+  </p>
+
+  <form>
+    <label><input type="text" name="first_name" placeholder="First name" [(ngModel)]="posts.first_name" /><span class="text-validate"></span></label>
+    <label><input type="text" name="last_name" placeholder="Last name" [(ngModel)]="posts.last_name" /><span class="text-validate"></span></label>
+    <label><input type="number" name="number" placeholder="Mobile number" [(ngModel)]="posts.phone" /><span class="text-validate"></span></label>
+    <label><input type="text" name="email" placeholder="E-mail address" [(ngModel)]="posts.email" /><span class="text-validate"></span></label>
+    <label><input type="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" [(ngModel)]="posts.password" /><span class="btn-show">SHOW</span><span class="text-validate"></span></label>
+    <button id="add-user" class="btn btn-green" type="submit" (click)="addUser()">Save</button>
+  </form>
+</ion-content>
+
+<div id="added-modal" class="confirmation-modal">
+  <div class="confirmation-modal-overlay"></div>
+  <div class="confirmation-modal-content">
+    Account has been successfully added.
+    <button class="btn btn-green btn-okay" (click)="goBack()">Okay</button>
+  </div>
+</div>

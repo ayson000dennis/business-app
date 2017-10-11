@@ -1,0 +1,27 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <img class="header-logo" src="assets/images/logo-min.png" alt="">
+    <div class="holder-menu" (click)="showMenu()">Menu</div>
+    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /><span class="count-msg">1</span></a>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content padding>
+  <p class="title" (click)="goScanner()">
+    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" />
+    Back to Scanner
+  </p>
+
+  <form>
+    <label>
+      <input type="text" name="first_name" placeholder="First name" [(ngModel)]="posts.first_name" />
+      <span class="text-validate"></span>
+    </label>
+    <label>
+      <input type="text" name="last_name" placeholder="Last name" [(ngModel)]="posts.last_name" />
+      <span class="text-validate"></span>
+    </label>
+    <button class="btn btn-gray" type="submit" (click)="skipMe()">Skip</button>
+    <button class="btn btn-green" type="submit" (click)="registerMe()">Submit</button>
+  </form>
+</ion-content>

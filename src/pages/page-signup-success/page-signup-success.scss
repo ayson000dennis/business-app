@@ -1,0 +1,13 @@
+page-signup-success {
+  .description {
+    margin-top: 80px;
+
+    @media (max-width: 575px) {
+      margin-top: 50px;
+    }
+  }
+
+  .btn-green {
+    margin-top: 50px;
+  }
+}

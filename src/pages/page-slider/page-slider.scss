@@ -1,0 +1,108 @@
+page-slider {
+  .slide-zoom {
+    height: 100%;
+  }
+
+  .scroll-content {
+    padding-top: 8vh !important;
+    margin-top: 0 !important;
+  }
+
+  .logo {
+    display: block;
+    margin: 0 auto;
+    margin-top: 2px;
+    width: auto;
+    height: 4.484vh;
+  }
+
+  .main-title {
+    font-family: "Raleway Medium";
+    font-size: 15px;
+    line-height: 1.5;
+    color: #818181;
+
+    br {
+      display: block !important;
+    }
+  }
+
+
+  .subtitle {
+    margin: .5vh 0;
+
+    font-family: "Raleway Medium";
+    font-size: 2.08vh;
+    line-height: 1.5;
+    color: #818181;
+
+    br {
+      display: block !important;
+    }
+  }
+
+  ion-slides {
+    height: 80vh;
+
+    ion-slide {
+      .main-image {
+        margin-bottom: 40px;
+        max-width: 77%;
+        height: auto;
+      }
+
+      &:first-child {
+        .main-title {
+          &:last-child {
+            margin-top: 5px;
+          }
+        }
+      }
+
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4) {
+        .slider-img {
+          margin: 8vh 0 4.8vh;
+          height: 42.8vh;
+        }
+      }
+    }
+  }
+
+  .slider-img {
+    margin-top: 10vh;
+    max-width: 63%;
+    height: 44.838vh;
+  }
+
+  .swiper-slide:last-child {
+    display: none;
+  }
+
+  .swiper-pagination-bullet {
+    background-color: #c6c5c5;
+
+    &.swiper-pagination-bullet-active {
+      width: 9px;
+      height: 9px;
+
+      background-color: #f6901f;
+    }
+
+    &:last-child {
+      display: none;
+    }
+  }
+
+  .btn-slider {
+    margin: 8px 8px 0;
+    padding: 11px 5px 8px;
+    width: 125px;
+
+    font-size: 15px;
+    letter-spacing: .6px;
+
+    border: 1px solid #a4c73a;
+  }
+}

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <img class="header-logo" src="assets/images/logo-min.png" alt="">
+    <div class="holder-menu" (click)="showMenu()">Menu</div>
+    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /><span class="count-msg">1</span></a>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <a class="btn btn-green" (click)="scanCode()">Scan QR Code</a>
+  <span>{{message}}</span>
+  <div class="divider">
+    <span>or</span>
+  </div>
+  <form class="form-mobile">
+    <label>
+      <input type="number" [(ngModel)]="phone" name="number" placeholder="Mobile number" />
+      <span class="text-validate"></span>
+
+    </label>
+    <button class="btn btn-orange" (click)="SubmitNumber()" type="submit">Submit</button>
+  </form>
+
+</ion-content>

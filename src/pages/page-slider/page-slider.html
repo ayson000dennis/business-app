@@ -1,0 +1,47 @@
+<!-- <ion-header no-shadow>
+  <ion-navbar>
+    <button class="btn-green" (click)="signUp()">Get Started</button>
+    <button class="btn-green-out" (click)="signIn()">Sign In</button>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content no-bounce class="page-slider text-center">
+  <ion-slides pager="true" (ionSlideNextStart)="onSlideNext($event)">
+    <ion-slide>
+      <img class="logo" src="assets/images/logo.png" alt="GoPage Logo">
+      <img class="slider-img main-image" src="assets/images/owner-main-image.png" alt="Business Owner Main Image">
+      <p class="main-title">Drive Traffic &amp; Engage Your <br>Customers With The GoPage <br>Platform</p>
+    </ion-slide>
+
+    <ion-slide>
+      <img class="logo" src="assets/images/logo.png" alt="GoPage Logo">
+
+      <img class="slider-img" src="assets/images/owner-iphone-messages.png" alt="">
+      <p class="subtitle">
+        Communicate in real time with your <br>customers. Target certain customers for <br>products or services you already know <br>they love.
+      </p>
+    </ion-slide>
+
+    <ion-slide>
+      <img class="logo" src="assets/images/logo.png" alt="GoPage Logo">
+
+      <img class="slider-img" src="assets/images/owner-iphone-qrcode.png" alt="">
+      <p class="subtitle">
+        Our digital punch card system allows you to <br>engage and reward your loyal customers, <br>directly impacting traffic, driving sales and <br>profitability.
+    </ion-slide>
+
+    <ion-slide>
+      <img class="logo" src="assets/images/logo.png" alt="GoPage Logo">
+
+      <img class="slider-img" src="assets/images/owner-iphone-deals.png" alt="">
+      <p class="subtitle">
+        GoPage technology allows you to <br>easily create and deliver deals and<br> specials to customers in your area.
+      </p>
+    </ion-slide>
+
+    <ion-slide>
+    </ion-slide>
+  </ion-slides>
+  <!-- <button class="btn-slider btn-green" (click)="signUp()">Get Started</button> -->
+  <button class="btn-slider btn-green-out" (click)="signIn()">Sign In</button>
+</ion-content>

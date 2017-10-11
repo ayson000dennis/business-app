@@ -1,0 +1,23 @@
+page-login {
+  form {
+    padding-top: 6px;
+  }
+
+  .forgot-pass {
+    display: block;
+    margin-top: 45px;
+
+    cursor: pointer;
+  }
+
+  .description a {
+    color: #f68f1f;
+    text-decoration: none;
+  }
+
+  @media (max-width: 575px) {
+    .forgot-pass {
+      margin-top: 25px;
+    }
+  }
+}

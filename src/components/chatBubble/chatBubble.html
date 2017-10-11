@@ -1,0 +1,8 @@
+<div>
+  <div class="chat-bubble {{chatMessage.type === 'message_by_business' ? 'right' : 'left'}}">
+    <div class="message">{{chatMessage.message}}</div>
+  </div>
+  <div class="message-detail {{chatMessage.type === 'message_by_business' ? 'right' : 'left'}}">
+    <span>{{formatEpoch(chatMessage.epoch)}}</span>
+  </div>
+</div>

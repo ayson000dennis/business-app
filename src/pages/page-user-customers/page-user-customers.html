@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <img class="header-logo" src="assets/images/logo-min.png" alt="">
+    <div class="holder-menu" (click)="showMenu()">Menu</div>
+    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /><span class="count-msg">1</span></a>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="page-user-customers">
+  <p class="title">
+    Customers
+    <a class="btn btn-green" href="#" (click)="goAddUser()">Add New</a>
+  </p>
+  <p class="description">
+    Show <input id="page_size" type="number" name="entry" [(ngModel)]="page_size"/> entries
+  </p>
+  <span class="fa fa-spinner fa-spin loader"></span>
+  <div class="holder-list" *ngIf="hasData">
+    <div class="holder-accordion" *ngFor="let customer of customersList">
+      <span class="dropdown" (click)="showDropdown($event)">
+        Actions <span class="fa fa-angle-down"></span>
+        <ul class="dropdown-menu">
+          <li (click)="goEditUser()">Edit</li>
+          <li (click)="updateModal('suspend')" *ngIf="customer.user_id[0].status !== '2'">Suspend</li>
+          <li (click)="updateModal('delete')" *ngIf="customer.user_id[0].status !== '0'">Delete</li>
+        </ul>
+      </span>
+      <div class="accordion-header" (click)="toggleAccordion($event)">
+        <span *ngIf="customer.user_id[0].first_name != ' '">{{customer.user_id[0].first_name}}</span> <span *ngIf="customer.user_id[0].last_name != ' '">{{customer.user_id[0].last_name}}</span>
+        <span *ngIf="customer.user_id[0].first_name == ' '"><span *ngIf="customer.user_id[0].last_name == ' '">{{customer.user_id[0].number}}</span></span>
+      </div>
+      <div class="accordion-body">
+        <span class="list-label">Role</span><span class="list-data">{{customer.user_id[0].permission === '1' ? 'Administrator' : customer.user_id[0].permission === '2' ? 'Ambassador' : 'Member'}}</span>
+        <span class="list-label">Account Type</span><span class="list-data">{{customer.user_id[0].account_type === '1' ? 'Member' : customer.user_id[0].account_type === '2' ? 'Business-Essentials' : 'Premium'}}</span>
+        <span class="list-label">Status</span><span class="list-data"><span *ngIf="customer.user_id[0].status == '1'">Active</span><span class="not-active" *ngIf="customer.user_id[0].status != '1'">{{customer.user_id[0].status === '0' ? 'Deleted' : 'Suspended'}}</span></span>
+        <span class="list-label">Registered Date</span><span class="list-data">{{dateFormat(customer.user_id[0].created_at)}}</span>
+        <span class="list-label">Last Login</span><span class="list-data">{{dateFormat(customer.user_id[0].last_login)}}</span>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<div id="suspend-modal" class="confirmation-modal">
+  <div class="confirmation-modal-overlay" (click)="closeModal()"></div>
+  <div class="confirmation-modal-content">
+    Are you sure you want to suspend <span class="name"></span> account?
+    <button id="btn-suspend" class="btn btn-green" (click)="updateThis('suspend')">Yes</button>
+    <button class="btn btn-gray" (click)="closeModal()">No</button>
+  </div>
+</div>
+
+<div id="delete-modal" class="confirmation-modal">
+  <div class="confirmation-modal-overlay" (click)="closeModal()"></div>
+  <div class="confirmation-modal-content">
+    Are you sure you want to delete <span class="name"></span> account?
+    <button id="btn-delete" class="btn btn-green" (click)="updateThis('delete')">Yes</button>
+    <button class="btn btn-gray" (click)="closeModal()">No</button>
+  </div>
+</div>
+
+<div id="success-modal" class="confirmation-modal">
+  <div class="confirmation-modal-overlay" (click)="closeModal()"></div>
+  <div class="confirmation-modal-content">
+    Account has been successfully <span class="success"></span>.
+
+    <button class="btn btn-green btn-okay" (click)="closeModal()">Okay</button>
+  </div>
+</div>

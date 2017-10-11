@@ -1,0 +1,62 @@
+page-user-redeem {
+  .title {
+    padding-left: 25px;
+
+    text-align: left;
+  }
+
+  .title-deal {
+    font-size: 22px;
+    color: #484848;
+    text-align: center;
+  }
+
+  br {
+    display: block !important;
+  }
+
+  .confirmation-modal {
+    .fa-check {
+      position: absolute;
+      top: -8.9375vw;
+      left: 50%;
+
+      padding: 3.503vw 0;
+      width: 17.875vw;
+
+      background: #a4c73a;
+      border: 2px solid #fff;
+      border-radius: 50%;
+
+      color: #fff;
+      font-size: 10vw;
+
+      -webkit-transform: translateX(-50%);
+      -mz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    .confirmation-modal-content {
+      padding: 12vw 5vw;
+      width: 80vw;
+      height: 65vw;
+
+      font-family: 'Raleway Regular';
+      font-size: 4.5vw;
+      line-height: 6vw;
+      color: #686868;
+      text-transform: uppercase;
+
+      .btn-green {
+        bottom: 5vw;
+
+        padding: 4vw 3vw !important;
+        width: 70vw;
+
+        font-size: 4vw;
+      }
+    }
+  }
+}

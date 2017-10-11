@@ -1,0 +1,20 @@
+page-user-register {
+  .title {
+    padding-left: 25px;
+
+    text-align: left;
+  }
+
+  form {
+    padding-top: 15px !important;
+
+    .btn {
+      display: inline-block;
+      width: 45%;
+
+      &:last-child {
+        float: right;
+      }
+    }
+  }
+}

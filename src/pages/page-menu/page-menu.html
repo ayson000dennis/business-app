@@ -1,0 +1,14 @@
+<ion-content padding class="content-page-menu">
+  <p class="title">
+    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goBack()">
+  </p>
+
+  <ion-list class="menu-list">
+    <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <span class="label-{{p.title}}">{{p.title}}</span>
+    </button>
+  </ion-list>
+
+  <hr class="divider" />
+  <a class="logout" href="#" (click)="logOut()">Logout</a>
+</ion-content>

@@ -1,0 +1,674 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+@font-face {
+  font-family: 'Raleway Semibold';
+  src: url('../assets/fonts/raleway-semibold.eot');
+  src: url('../assets/fonts/raleway-semibold.eot') format('embedded-opentype'), url('../assets/fonts/raleway-semibold.woff') format('woff'), url('../assets/fonts/raleway-semibold.ttf') format('truetype'), url('../assets/fonts/raleway-semibold.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway Medium';
+  src: url('../assets/fonts/raleway-medium.eot');
+  src: url('../assets/fonts/raleway-medium.eot') format('embedded-opentype'), url('../assets/fonts/raleway-medium.woff') format('woff'), url('../assets/fonts/raleway-medium.ttf') format('truetype'), url('../assets/onts/raleway-medium.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Raleway Semibold";
+
+  ion-nav {
+    & > * {
+      font-family: "Raleway Semibold";
+    }
+
+    ion-header + ion-content > .scroll-content {
+      padding: 3vh 16px 0 !important;
+
+      background-color: #fff !important;
+    }
+
+    ion-navbar.toolbar {
+      padding: 21px 15px 13px;
+      height: 62px;
+
+      border-bottom: 1px solid #f9f9f9;
+
+      .toolbar-background-ios {
+        background-color: #fff;
+      }
+
+      .header-logo {
+        width: 50px;
+      }
+
+      .inbox {
+        position: relative;
+        top: 7px;
+
+        float: right;
+        margin-right: 13px;
+
+        img {
+          width: 27px;
+        }
+
+        .count-msg {
+          position: absolute;
+          top: -8px;
+          right: -10px;
+
+          padding-top: 2px;
+          width: 18px;
+          height: 18px;
+          overflow: hidden;
+
+          font-family: 'Raleway Medium';
+          font-size: 10px;
+          font-weight: 600;
+          color: #fff;
+          text-align: center;
+
+          background-color: #f68f1f;
+          border: 1px solid #fff;
+          border-radius: 50%;
+        }
+      }
+
+      .holder-menu {
+        float: right;
+        padding: 7px 12px 5px;
+
+        font-family: 'Raleway Semibold';
+        font-size: 12px;
+
+        border: 1px solid #828282;
+        border-radius: 2px;
+      }
+    }
+
+    ion-list.list {
+      margin: 0;
+
+      .item {
+        display: inline-block;
+        padding: 6px 0;
+        width: auto;
+
+        background-color: #ebebeb;
+        border: none !important;
+
+        &:first-child {
+          width: 28%;
+
+          text-align: center;
+        }
+
+        &:nth-child(2) {
+          width: 26%;
+        }
+
+        &:nth-child(3) {
+          width: 28%;
+        }
+
+        &:last-child {
+          width: 18%;
+        }
+
+        .item-inner {
+          padding: 0;
+
+          background-image: none;
+          border: none;
+
+          .label {
+            margin-right: 0;
+            overflow: visible;
+
+            font-size: 4vw;
+            color: #474747;
+            text-transform: uppercase;
+
+            span {
+              position: relative;
+
+              display: inline-block;
+
+              &.active:after {
+                background-color: #a4c73a;
+              }
+
+              &:after {
+                content: '';
+
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+
+                width: 100%;
+                height: 2px;
+
+                background-color: transparent;
+
+                -webkit-transition: .2s ease;
+                -moz-transition: .2s ease;
+                -ms-transition: .2s ease;
+                -o-transition: .2s ease;
+                transition: .2s ease;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    ion-header + ion-content > .scroll-content {
+      background-color: #ebebeb;
+    }
+  }
+
+  .scroll-content {
+    padding: 30px 16px !important;
+    overflow-y: auto;
+  }
+
+  .title {
+    position: relative;
+
+    padding-top: 2px;
+    margin: 0 auto 30px;
+    width: 545px;
+    max-width: 100%;
+
+    font-size: 24px;
+    line-height: 1;
+    color: #878787;
+    text-align: center;
+  }
+
+  .description {
+    font-size: 20px;
+    letter-spacing: 1.2px;
+    color: #9f9f9f;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .btn,
+  .btn-green,
+  .btn-orange,
+  .btn-green-out {
+    -webkit-transition: .2s ease;
+    -moz-transition: .2s ease;
+    -ms-transition: .2s ease;
+    -o-transition: .2s ease;
+    transition: .2s ease;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    &:active,
+    &:focus {
+      -webkit-box-shadow: inset 0 0 15px 1px rgba(0,0,0,.3);
+      -moz-box-shadow: inset 0 0 15px 1px rgba(0,0,0,.3);
+      box-shadow: inset 0 0 15px 5px rgba(0,0,0,.3);
+    }
+
+    .fa-spin {
+      position: absolute !important;
+      left: initial !important;
+
+      margin-left: 5px;
+    }
+  }
+
+  .btn-green {
+    padding: 15px;
+    width: 100%;
+
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+
+    background-color: #a4c73a;
+    border-radius: 5px;
+  }
+
+  .btn-orange {
+    color: #fff;
+    text-decoration: none;
+
+    background-color: #f59022;
+    border-radius: 5px;
+  }
+
+  .btn-green-out {
+    color: #a4c73a;
+    text-decoration: none;
+
+    background-color: transparent;
+    border-radius: 5px;
+  }
+
+  .btn-nav {
+    position: absolute;
+    top: -9px;
+    left: 0;
+
+    padding: 10px;
+    height: 45px;
+
+    cursor: pointer;
+
+    &.to-right {
+      right: -10px;
+      left: initial;
+    }
+  }
+
+  .btn {
+    position: relative;
+
+    display: block;
+    padding: 20px 0;
+    margin: auto;
+    width: 545px;
+    max-width: 100%;
+
+    font-size: 24px;
+    letter-spacing: 1px;
+    color: #fff;
+
+    border-radius: 5px;
+
+    & ~ .btn {
+      margin-top: 15px;
+    }
+
+    &.login-fb {
+      padding-left: 32px;
+
+      background-color: #3b5998;
+    }
+
+    &.login-google {
+      padding-left: 5px;
+
+      background-color: #cf4332;
+    }
+
+    .fa {
+      position: absolute;
+      left: 60px;
+
+      font-size: 28px;
+      line-height: .85;
+    }
+  }
+
+  .divider {
+    position: relative;
+
+    margin: 25px auto;
+    width: 545px;
+    max-width: 100%;
+
+    font-size: 22px;
+    line-height: 1;
+    color: #9f9f9f;
+    text-align: center;
+
+    span {
+      position: relative;
+
+      padding: 0 10px;
+
+      background-color: #fff;
+    }
+
+    &:before {
+      content: '';
+
+      position: absolute;
+      top: 12px;
+      left: 0;
+
+      height: 1px;
+      width: 100%;
+
+      background-color: #9f9f9f;
+    }
+  }
+
+  form {
+    margin: auto;
+    width: 545px;
+    max-width: 100%;
+
+    label {
+      position: relative;
+
+      display: block;
+
+      & ~ input,
+      & ~ label,
+      & ~ button {
+        margin-top: 15px !important;
+      }
+
+      .btn-show {
+        position: absolute;
+        top: 16px;
+        right: 5px;
+
+        padding: 10px;
+
+        font-size: 15px;
+        letter-spacing: 1px;
+        color: #9f9f9f;
+        text-decoration: underline;
+      }
+
+      .text-validate {
+        position: relative;
+        top: 10px;
+
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+
+        color: #dd501e;
+
+        -webkit-transition: .2s ease;
+        -moz-transition: .2s ease;
+        -ms-transition: .2s ease;
+        -o-transition: .2s ease;
+        transition: .2s ease;
+      }
+    }
+
+    input {
+      display: block;
+      padding: 20px !important;
+      margin: 0 !important;
+      width: 100% !important;
+
+      font-size: 24px;
+
+      border: none;
+
+      -webkit-transition: .2s ease;
+      -moz-transition: .2s ease;
+      -ms-transition: .2s ease;
+      -o-transition: .2s ease;
+      transition: .2s ease;
+
+      & ~ input,
+      & ~ label {
+        margin-top: 15px;
+      }
+
+      &:not([type="submit"]) {
+        color:  #9f9f9f;
+
+        background-color: #f1f0eb;
+        border: 1px solid #f1f0eb;
+      }
+
+      &::placeholder {
+        color: #9f9f9f;
+      }
+
+      &.has-error {
+        background-color: #fff8f6;
+        border-color: #fc7848;
+        border-radius: 5px;
+
+        & ~ .text-validate {
+          max-height: 16px;
+        }
+      }
+
+      &[type="email"],
+      &[type="text"],
+      &[type="number"] {
+        font-family: 'Raleway Medium';
+      }
+
+      &[type="password"] {
+        padding: 17px 20px 15px !important;
+
+        font-family: "Roboto";
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: 2px;
+      }
+    }
+  }
+
+  hr.hr {
+    margin: 25px auto;
+    height: 1px;
+
+    background-color: #bbb;
+  }
+
+  .holder-deals {
+    padding: 0;
+    margin: 0 auto;
+    width: 86.5vw;
+
+    list-style: none;
+
+    .deal {
+      display: table;
+      width: 100%;
+
+      & ~ .deal {
+        margin-top: 6vw;
+      }
+
+      img {
+        display: table-cell;
+        width: 100%;
+        min-width: 30vw;
+      }
+
+      .deal-text {
+        display: table-cell;
+        padding: 0 6vw;
+        width: 65.5%;
+        vertical-align: middle;
+
+        .deal-title {
+          font-size: 4.1vw;
+          letter-spacing: -.04vw;
+          line-height: 1.1;
+        }
+
+        .deal-shop {
+          display: block;
+
+          font-family: "Raleway Medium";
+          font-size: 3.4vw;
+          line-height: 1.3;
+        }
+      }
+    }
+  }
+
+  .holder-map {
+    margin: -3vh 0 0 -16px;
+    width: 100vw;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .title {
+      margin-bottom: 30px;
+
+      font-size: 20px;
+    }
+
+    .description {
+      font-size: 14px !important;
+    }
+
+    br {
+      display: none;
+    }
+
+    .btn-nav {
+      left: -10px;
+
+      height: 40px;
+    }
+
+    .btn {
+      padding: 15px 10px 16px !important;
+
+      font-size: 16px;
+
+      .fa {
+        position: initial;
+
+        margin-right: 10px;
+
+        font-size: 20px;
+      }
+    }
+
+    .divider {
+      margin: 15px auto;
+
+      font-size: 18px;
+
+      &:before {
+        top: 9px;
+      }
+    }
+
+    form {
+      padding-top: 0 !important;
+
+      input {
+        padding: 15px !important;
+
+        font-size: 16px;
+
+        &[type="password"] {
+          padding: 14px 15px 11px !important;
+
+          font-size: 20px;
+        }
+      }
+
+      label {
+        .btn-show {
+          top: 9px;
+          right: 0;
+
+          padding: 10px;
+
+          font-size: 11px;
+        }
+
+        .text-validate {
+          top: 7px;
+
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .confirmation-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 15;
+
+    display: none;
+
+    .confirmation-modal-overlay {
+      width: 100%;
+      height: 100%;
+
+      background-color: rgba(0,0,0,.5);
+    }
+
+    .confirmation-modal-content {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      padding: 8vw 5vw;
+      margin: auto;
+      width: 90vw;
+      height: 50vw;
+
+      font-size: 5vw;
+      text-align: center;
+
+      background-color: #fff;
+      border-radius: 3px;
+
+      .name {
+        color: #a4c73a;
+      }
+
+      .btn {
+        position: absolute;
+        bottom: 8vw;
+
+        width: 42%;
+
+        &.btn-green:not(.btn-okay) {
+          left: 5vw;
+        }
+
+        &.btn-gray {
+          right: 5vw;
+        }
+
+        &.btn-okay {
+          right: 0;
+          left: 0;
+
+          margin: auto;
+        }
+      }
+    }
+  }
+}
