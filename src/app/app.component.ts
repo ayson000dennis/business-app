@@ -4,8 +4,8 @@ import { NavController } from 'ionic-angular';
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { SliderPage } from '../pages/page-slider/page-slider';
-// import { UserScannerPage } from '../pages/page-user-scanner/page-user-scanner';
-// import { UserCustomersPage } from '../pages/page-user-customers/page-user-customers';
+import { UserScannerPage } from '../pages/page-user-scanner/page-user-scanner';
+import { UserCustomersPage } from '../pages/page-user-customers/page-user-customers';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';

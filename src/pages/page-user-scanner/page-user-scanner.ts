@@ -89,6 +89,8 @@ export class UserScannerPage {
               var getFName = ' ',
                   getLName = ' ';
 
+              console.log(user.shop_id[0]);
+
               this.api.Business.register(this.phone, user.shop_id[0],getFName,getLName).then(customer => {
 
                 $('.btn-orange[type="submit"]').find('.fa-spinner').remove();
@@ -98,6 +100,7 @@ export class UserScannerPage {
                 });
               }).catch(err => {
                 $('.btn-orange[type="submit"]').find('.fa-spinner').remove();
+                $('input[name="number"]').addClass('has-error').siblings('.text-validate').text('Mobile number does not exist or invalid.');
                 console.log(err);
               });
             } else {
@@ -120,15 +123,14 @@ export class UserScannerPage {
       this.storage.get("user").then(user => {
         this.api.Business.scan_qr(this.createdCode.MembershipNumber,user._id,user.shop_id[0]).then(customer =>{
         this.navCtrl.setRoot(UserDealsPage, {business_id: user.shop_id[0], customer : customer}, {
-              animate: true,
-              direction: 'forward'
-            });
-      })
-      .catch(function(err){
+            animate: true,
+            direction: 'forward'
+          });
+        })
+        .catch(function(err){
           this.message = 'Invalid membership code'
+        })
       })
-      })
-
     });
   }
 }
