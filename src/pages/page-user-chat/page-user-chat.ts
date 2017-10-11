@@ -1,15 +1,18 @@
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams } from 'ionic-angular';
 import { LoginPage } from '../page-login/page-login';
 import { MenuPage } from '../page-menu/page-menu';
+
+import { Storage } from '@ionic/storage';
 
 //chat
 import {Component, EventEmitter, NgZone, ViewChild} from "@angular/core";
 import {ChatMessage, DatabaseService, SocketService, UtilService} from "../../providers";
-import * as _ from "lodash";
 
+import * as _ from "lodash";
 import * as $ from "jquery";
 
 import Config from '../../app/config';
+import { ApiService } from '../../service/api.service.component';
 
 @Component({
   selector: 'page-user-chat',
@@ -23,38 +26,57 @@ export class UserChatPage {
   messages: any[];
   chatBox: string;
   btnEmitter: EventEmitter<string>;
+  user: string[];
 
+  private memberDetail;
+  private businessDetail;
+  hasData : boolean = false;
 
   pages: Array<{title: string, component: any}>;
 
   constructor(
     public navCtrl: NavController,
+    public navParams: NavParams,
     public _zone: NgZone,
     public databaseService: DatabaseService,
-    public socketService: SocketService) {
+    public socketService: SocketService,
+    private storage: Storage,
+    public api: ApiService) {
+
+    this.memberDetail = this.navParams.get("memberDetail");
+    this.businessDetail = this.navParams.get("businessDetail");
+
+    console.log(this.businessDetail);
 
     this.btnEmitter = new EventEmitter<string>();
     this.messages = [];
     this.chatBox = "";
     this.init();
+
+    // console.log(this.memberDetail);
+    // console.log(this.businessDetail);
   }
 
   ionViewWillEnter() {
-    // Get all messages from database
-    // this.databaseService.getJson("messages")
-    //   .then(messages => {
-    //     if (messages) {
-    //       this.messages = this.messages.concat(_.sortBy(messages, ['epoch']));
-    //     }
-    //     this.scrollToBottom();
-    //   });
+    var room_id = this.memberDetail._id + this.businessDetail._id;
+
+    // GET ALL MESSAGES FROM DATABASE
+    this.api.Message.fetch_chats(room_id).then(chats => {
+      this.messages = chats;
+
+          this.hasData = true;
+          $('body').find('.fa.loader').remove();
+          this.scrollToBottom();
+        }).catch((error) => {
+            console.log(error);
+        });
 
     this.socketService.connect();
+    this.socketService.joinRoom(room_id);
   }
 
   init() {
-
-    // Get real time message response
+    // REAL TIME MESSAGE RESPONSE
     this.socketService.messages.subscribe((chatMessage: ChatMessage) => {
       this._zone.run(() => {
         this.messages.push(chatMessage);
@@ -72,11 +94,11 @@ export class UserChatPage {
   }
 
   send(message) {
-    //todo read email from database
-    let from = "van@business.ph";
-    let user_type = "business";
+    let user_id = this.memberDetail._id,
+    business_id = this.businessDetail._id,
+    company_name = this.businessDetail.company_name;
 
-    this.socketService.newRequest(UtilService.formatMessageRequest(message,from,user_type));
+    this.socketService.newRequest(UtilService.formatMessageRequest(user_id,business_id,company_name,message));
     this.chatBox = '';
     this.scrollToBottom();
   }

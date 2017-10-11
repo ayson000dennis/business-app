@@ -25,12 +25,14 @@ export class UtilService {
     });
   }
 
-  static formatMessageRequest(message: string, from: string, user_type: string): ChatMessage {
+  static formatMessageRequest(user_id: string, business_id: string,company_name: string, message: string): ChatMessage {
     return {
-      type: 'message_by_business',
-      from: from,
+      user_id: user_id,
+      business_id: business_id,
+      company_name: company_name,
       message: message,
-      user_type: user_type
+      message_by: "business",
+      is_read: false
     };
   }
 }

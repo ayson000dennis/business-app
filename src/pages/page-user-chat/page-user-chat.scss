@@ -5,7 +5,13 @@ page-user-chat {
 
     .title {
       font-size: 16px;
-color: #565252;
+      color: #565252;
+      text-transform: capitalize;
+    }
+
+    .toolbar-content {
+      text-align: center;
+      margin-right: 25px;
     }
   }
 
@@ -14,6 +20,16 @@ color: #565252;
   }
 
   #messages {
+
+    .loader {
+      position: absolute;
+      top: 30%;
+      left: 45vw;
+
+      font-size: 11vw;
+      color: #a4c73a;
+    }
+
 
     .list .item:first-child, .list .item {
       width: 100%;

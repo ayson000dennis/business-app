@@ -2,43 +2,40 @@
   <ion-navbar>
     <img class="header-logo" src="assets/images/logo-min.png" alt="">
     <div class="holder-menu" (click)="showMenu()">Menu</div>
-    <a class="inbox"><img src="assets/images/icon-mail.png" alt="" /><span class="count-msg">1</span></a>
+    <a class="inbox"><img src="assets/images/icon-mail.png" alt="" /><span *ngIf="hasNotify" class="count-msg">!</span></a>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <!-- <p class="title">
-    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goBack()">
-    Inbox Page
-  </p> -->
+  <!-- <span [ngClass]="[membersList ? 'hidden' : 'visible']"> Inbox is empty </span> -->
 
     <ion-list id="inbox-list">
-      <ion-item>
-        <span class="name"> Juan Dela Cruz </span>
-        <button id="btn-message" ion-button (click)="viewMessage()"> MESSAGE </button>
+
+      <ion-item *ngFor="let member of membersList;" tappable (click)="viewMessage(member.user_id[0],member.business_id[0])">
+
+        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && member.user_id[0].first_name"> {{member.user_id[0].first_name}} {{member.user_id[0].last_name}}</span>
+
+        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name && !member.user_id[0].last_name"> {{member.user_id[0].first_name}} </span>
+
+        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && !member.user_id[0].first_name"> {{member.user_id[0].last_name}} </span>
+
+        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name == ' ' && !member.user_id[0].last_name == ' ' "> {{ member.user_id[0].number }} </span>
+
+        <span class="name" *ngIf="member.user_id && member.user_id.length == 0"> No Member Data </span>
+
+        <!-- <button id="btn-message" ion-button [disabled]="member.user_id && member.user_id.length == 0" (click)="viewMessage(member.user_id[0],member.business_id[0])"> MESSAGE </button> -->
 
       </ion-item>
 
-      <ion-item>
-        <span class="name"> John Devera </span>
-
-        <span class="date-time"> 7:15am &nbsp;&nbsp; 10/29/17 </span>
-
-        <!-- <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon> -->
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget velit leo. Etiam a ipsum et elit maximus volutpat non quis leo. Morbi viverra auctor nibh egestas finibus. Maecenas egestas augue in posuere hendrerit. Cras posuere fermentum dui, nec posuere nisl facilisis ut. Duis aliquam, diam tristique faucibus venenatis, mi ante mollis elit, non pulvinar leo orci pharetra augue. Donec dignissim eu velit id imperdiet. Donec sit amet facilisis quam. Duis non risus sodales ante sollicitudin rhoncus et a nulla. </p>
-
-      </ion-item>
-
-      <ion-item>
+      <!-- <ion-item>
         <span class="name-new"> John Devera </span>
 
         <span class="date-time-new"> 7:12am &nbsp;&nbsp; 10/30/17 </span>
 
-        <!-- <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon> -->
         <p class="message-new">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget velit leo. Etiam a ipsum et elit maximus volutpat non quis leo. Morbi viverra auctor nibh egestas finibus. Maecenas egestas augue in posuere hendrerit. Cras posuere fermentum dui, nec posuere nisl facilisis ut. Duis aliquam, diam tristique faucibus venenatis, mi ante mollis elit, non pulvinar leo orci pharetra augue. Donec dignissim eu velit id imperdiet. Donec sit amet facilisis quam. Duis non risus sodales ante sollicitudin rhoncus et a nulla. </p>
 
-      </ion-item>
-
+      </ion-item> -->
+      <span class="fa fa-spinner fa-spin loader"></span>
     </ion-list>
 
 

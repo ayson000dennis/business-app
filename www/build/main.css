@@ -26091,10 +26091,24 @@ page-user-chat ion-navbar {
 page-user-chat ion-navbar .title {
   font-size: 16px;
   color: #565252;
+  text-transform: capitalize;
+}
+
+page-user-chat ion-navbar .toolbar-content {
+  text-align: center;
+  margin-right: 25px;
 }
 
 page-user-chat ion-header + ion-content > div.scroll-content {
   background-color: transparent !important;
+}
+
+page-user-chat #messages .loader {
+  position: absolute;
+  top: 30%;
+  left: 45vw;
+  font-size: 11vw;
+  color: #a4c73a;
 }
 
 page-user-chat #messages .list .item:first-child, page-user-chat #messages .list .item {
@@ -26393,6 +26407,14 @@ page-user-edit-customer form input[type="number"] {
 page-user-inbox ion-header + ion-content > div.scroll-content {
   padding: 0px !important;
   background-color: transparent !important;
+}
+
+page-user-inbox .loader {
+  position: absolute;
+  top: 30%;
+  left: 45vw;
+  font-size: 11vw;
+  color: #a4c73a;
 }
 
 page-user-inbox #inbox-list .item:first-child {

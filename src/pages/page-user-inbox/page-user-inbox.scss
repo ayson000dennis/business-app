@@ -6,6 +6,14 @@ page-user-inbox {
     background-color: transparent !important;
   }
 
+  .loader {
+    position: absolute;
+    top: 30%;
+    left: 45vw;
+
+    font-size: 11vw;
+    color: #a4c73a;
+  }
 
   #inbox-list {
 

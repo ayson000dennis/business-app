@@ -94,4 +94,16 @@ export class ApiService {
       }).toPromise();
     }
   }
+  Message = {
+    member_list: (shop_id: string) => {
+      return this.http.get(Config.baseUrl + "api/business_owners/list/" + shop_id, {}).map(response => {
+        return response.json();
+      }).toPromise();
+    },
+    fetch_chats: (room_id: string) => {
+      return this.http.get(Config.ChatBaseUrl + "api/inbox/members/" + room_id ).map(response => {
+        return response.json();
+      }).toPromise();
+    }
+  }
 }

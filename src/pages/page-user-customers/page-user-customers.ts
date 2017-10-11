@@ -134,6 +134,10 @@ export class UserCustomersPage {
     var self = this,
       getInitial,
       getList = function(page, page_size) {
+        if(page_size == null || page_size == '0'){
+          page_size = '10'
+          $('#page_size').val(10);
+        }
       self.storage.get('user').then(user =>{
         self.user = user;
         self.api.BusinessOwner.list(user.shop_id[0], page, page_size).then(users => {

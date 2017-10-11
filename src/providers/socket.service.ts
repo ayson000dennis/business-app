@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import * as io from "socket.io-client";
-import {ChatMessage, MessageType} from "./model";
+import {ChatMessage, MessageType, ChatNotification} from "./model";
 import {SOCKET_HOST} from "./constants";
 import {UtilService} from "./util.service";
 import {DatabaseService} from "./database.service";
@@ -10,7 +10,10 @@ import Socket = SocketIOClient.Socket;
 @Injectable()
 export class SocketService {
   public messages: Observable<ChatMessage>;
+  public notify :  Observable<ChatNotification>;
   private socketObserver: any;
+  private socketObserverNotify: any;
+
   private socket: Socket;
 
   constructor(public databaseService: DatabaseService) {
@@ -19,12 +22,14 @@ export class SocketService {
       this.socketObserver = observer;
     });
 
-    this.init();
+    this.notify = Observable.create(observerNotify => {
+      this.socketObserverNotify = observerNotify;
+    });
 
+    this.init();
   }
 
   init() {
-
     this.socket = io(SOCKET_HOST, {autoConnect: true});
 
     this.socket.on("connect", () => {
@@ -44,64 +49,34 @@ export class SocketService {
     });
 
     // Get Message Response
-    this.socket.on('message_by_member', response => {
+    this.socket.on('message', response => {
 
       let chatMessage: ChatMessage = response;
-
-      if (typeof response === 'string') {
-        chatMessage = {
-          type: 'message_by_member',
-          from: chatMessage.from,
-          message: chatMessage.message,
-          user_type: chatMessage.user_type
-        };
-      }
 
       // console.log(chatMessage);
 
       chatMessage.epoch = UtilService.getEpoch();
       this.socketObserver.next(chatMessage);
-
-      // this.databaseService.getJson("messages")
-      //   .then(messages => {
-      //     if (messages === null) {
-      //       messages = [];
-      //     }
-      //     messages.push(chatMessage);
-      //     return this.databaseService.setJson("messages", messages);
-      //   })
-      //   .then(success => {
-      //     if (success) {
-      //       this.socketObserver.next(chatMessage);
-      //     }
-      //   });
     });
 
+
+    // Real time notification
+    this.socket.on('notify', response => {
+
+      let chatNofitication: ChatNotification = response;
+
+      // console.log(chatNofitication);
+
+      this.socketObserverNotify.next(chatNofitication);
+    });
   }
 
   newRequest(chatMessage: ChatMessage) {
-
     // Send message
     chatMessage.epoch = UtilService.getEpoch();
     this.socketObserver.next(chatMessage);
     this.socket.emit('message_send', chatMessage);
-
-    // this.databaseService.getJson("messages")
-    //   .then(messages => {
-    //     if (!messages) {
-    //       messages = [];
-    //     }
-    //     messages.push(chatMessage);
-    //     return this.databaseService.setJson("messages", messages);
-    //   })
-    //   .then(success => {
-    //     if (success) {
-    //       this.socketObserver.next(chatMessage);
-    //       this.socket.emit(MessageType.MSG_REQ, chatMessage);
-    //     }
-    //   });
   }
-
 
   disconnect() {
     this.socket.disconnect();
@@ -109,5 +84,9 @@ export class SocketService {
 
   connect() {
     this.socket.connect();
+  }
+
+  joinRoom(room_id){
+    this.socket.emit('joinroom',room_id);
   }
 }

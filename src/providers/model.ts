@@ -4,9 +4,16 @@ export class MessageType {
 }
 
 export interface ChatMessage {
-  type: string;
-  from: string;
-  epoch?:number;
+  user_id: string;
+  business_id: string;
+  company_name: string;
   message: any;
-  user_type: any;
+  epoch?:number;
+  message_by: string;
+  is_read: boolean;
+}
+
+export interface ChatNotification {
+  user_id: string;
+  business_id: string;
 }
