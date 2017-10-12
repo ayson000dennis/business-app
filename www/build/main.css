@@ -26299,6 +26299,30 @@ page-user-customers .holder-accordion .accordion-body > span.list-data .not-acti
   color: #ff6363;
 }
 
+page-user-customers .holder-pagination {
+  padding: 0;
+  margin-top: 20px;
+  list-style: none;
+  text-align: center;
+}
+
+page-user-customers .holder-pagination li {
+  display: inline-block;
+  padding: 10px 0;
+  min-width: 10vw;
+  font-size: 5vw;
+  color: #444;
+}
+
+page-user-customers .holder-pagination li.active {
+  color: #f59120;
+  pointer-events: none;
+}
+
+page-user-customers .holder-pagination li.hide {
+  display: none;
+}
+
 page-user-deals .scroll-content {
   padding: 30px 0 !important;
 }

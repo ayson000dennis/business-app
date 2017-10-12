@@ -27,7 +27,7 @@ export class MyApp {
   @ViewChild('nav') nav: NavController;
 
   // make SliderPage the root (or first) page
-  public rootPage: any = SliderPage;
+  public rootPage: any = UserCustomersPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(

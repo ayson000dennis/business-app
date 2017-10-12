@@ -138,7 +138,7 @@ export class UserCustomersPage {
           page_size = '10'
           $('#page_size').val(10);
         }
-      self.storage.get('user').then(user =>{
+      self.storage.get('user').then(user => {
         self.user = user;
         self.api.BusinessOwner.list(user.shop_id[0], page, page_size).then(users => {
           self.customersList = users.docs;
@@ -152,10 +152,20 @@ export class UserCustomersPage {
           if (pageCount > 1 && $('.holder-pagination').length == 0) {
             $('.page-user-customers .scroll-content').append('<ul class="holder-pagination"></ul>');
 
-            for(var x = 1; x <= pageCount; x++) {
+            for (var x = 1; x <= pageCount; x++) {
               $('.holder-pagination').append('<li class="pagination-count" data-page="' + x + '">' + x + '</li>');
             }
+
+            $('.pagination-count').eq(0).addClass('active');
+
+            if ($('.pagination-count').length > 9) {
+              $('.holder-pagination').append('<li class="dot-last">...</li><li class="clone-pagination">' + $('.pagination-count').length + '</li>');
+              $('.holder-pagination').prepend('<li class="clone-pagination hide" data-page="1">1</li><li class="dot-first hide">...</li>');
+              $('.pagination-count').eq(4).nextAll('.pagination-count').addClass('hide');
+            }
           }
+
+          $('.holder-pagination').show();
 
         }).catch(err => {
           $('body').find('.fa.loader').remove();
@@ -165,7 +175,7 @@ export class UserCustomersPage {
     }
 
     this.page = '1';
-    this.page_size = '10';
+    this.page_size = '5';
 
     getList(this.page, this.page_size);
 
@@ -187,8 +197,52 @@ export class UserCustomersPage {
       var getPage = $(this).data('page');
 
       self.hasData = false;
-      $('.page-user-customers .scroll-content .holder-pagination').prepend('<span class="fa fa-spinner fa-spin loader"></span>');
+      $('.pagination-count').not(this).removeClass('active');
+
+      if ($('.pagination-count').length > 9) {
+        $('.pagination-count').not(this).addClass('hide');
+        $(this).removeClass('hide');
+        if (getPage > 3 && getPage < $('.pagination-count').length - 2) {
+          for (var x = 1; x < 3; x++) {
+            $('.pagination-count[data-page="' + (getPage + x) + '"], .pagination-count[data-page="' + (getPage - x) + '"]').removeClass('hide');
+          }
+        } else if (getPage < 4) {
+          $('.pagination-count[data-page="' + getPage + '"]').prevAll('.pagination-count').removeClass('hide');
+          for (var x = 5 - getPage; x >= 1; x--) {
+            $('.pagination-count[data-page="' + (getPage + x) + '"]').removeClass('hide');
+          }
+        } else if (getPage > $('.pagination-count').length - 4) {
+          $('.pagination-count[data-page="' + getPage + '"]').nextAll('.pagination-count').removeClass('hide');
+          for (var x = getPage; x > $('.pagination-count').length - 4; x--) {
+            $('.pagination-count[data-page="' + (x - 1) + '"]').removeClass('hide');
+          }
+        }
+
+        if ($('.pagination-count[data-page="2"]').hasClass('hide')) {
+          $('.clone-pagination:eq(0), .dot-first').removeClass('hide')
+        } else {
+          $('.clone-pagination:eq(0), .dot-first').addClass('hide');
+        }
+
+        if ($('.pagination-count[data-page="' + ($('.pagination-count').length - 1) + '"]').hasClass('hide')) {
+          $('.clone-pagination:last-child, .dot-last').removeClass('hide')
+        } else {
+          $('.clone-pagination:last-child, .dot-last').addClass('hide');
+        }
+      }
+
+      $(this).addClass('active').closest('.holder-pagination').hide().closest('.scroll-content').prepend('<span class="fa fa-spinner fa-spin loader"></span>');
       getList(getPage, self.page_size);
+    });
+
+    $('body').on('click', '.clone-pagination' ,function() {
+      if ($(this).index() == 0) {
+        $('.pagination-count[data-page="1"]').trigger('click');
+      }
+      else {
+        var paginationCount = $('.pagination-count').length;
+        $('.pagination-count').eq(paginationCount - 1).trigger('click');
+      }
     });
   }
 

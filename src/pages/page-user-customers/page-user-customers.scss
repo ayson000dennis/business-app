@@ -172,4 +172,31 @@ page-user-customers {
       }
     }
   }
+
+  .holder-pagination {
+    padding: 0;
+    margin-top: 20px;
+    list-style: none;
+
+    text-align: center;
+
+    li {
+      display: inline-block;
+      padding: 10px 0;
+      min-width: 10vw;
+
+      font-size: 5vw;
+      color: #444;
+
+      &.active {
+        color: #f59120;
+
+        pointer-events: none;
+      }
+
+      &.hide {
+        display: none;
+      }
+    }
+  }
 }
