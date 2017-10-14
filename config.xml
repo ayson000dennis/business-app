@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.gopage.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>GoPage</name>
+<widget id="com.gopage.app.business" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>GoPage - Business</name>
     <description>Helping Members &amp; Small Business Win</description>
     <author email="jan@fullstack.ph" href="https://psdwizard.com/">Fullstack IT Solutions</author>
     <content src="index.html" />

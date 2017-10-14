@@ -175,7 +175,7 @@ export class UserCustomersPage {
     }
 
     this.page = '1';
-    this.page_size = '5';
+    this.page_size = '10';
 
     getList(this.page, this.page_size);
 
@@ -219,13 +219,13 @@ export class UserCustomersPage {
         }
 
         if ($('.pagination-count[data-page="2"]').hasClass('hide')) {
-          $('.clone-pagination:eq(0), .dot-first').removeClass('hide')
+          $('.clone-pagination:eq(0), .dot-first').removeClass('hide');
         } else {
           $('.clone-pagination:eq(0), .dot-first').addClass('hide');
         }
 
         if ($('.pagination-count[data-page="' + ($('.pagination-count').length - 1) + '"]').hasClass('hide')) {
-          $('.clone-pagination:last-child, .dot-last').removeClass('hide')
+          $('.clone-pagination:last-child, .dot-last').removeClass('hide');
         } else {
           $('.clone-pagination:last-child, .dot-last').addClass('hide');
         }
