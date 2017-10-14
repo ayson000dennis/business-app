@@ -60,7 +60,7 @@ export class UserScannerPage {
 
     if (this.phone) {
       if (mobileRegex.test(this.phone) == true) {
-        this.phone = "+" + this.phone;
+        this.phone = "+1" + this.phone;
 
         $('input[name="number"]').removeClass('has-error').siblings('.text-validate').text('');
         $('.btn-orange[type="submit"]').append('<span class="fa fa-spinner fa-spin"></span>');
@@ -68,7 +68,6 @@ export class UserScannerPage {
         this.storage.get('user').then(user => {
           this.user = user;
           this.api.Business.checker(this.phone, user._id).then(customer => {
-
             this.api.Users.user(customer.customer.user_id[0]).then(thisCustomer => {
               $('.btn-orange[type="submit"]').find('.fa-spinner').remove();
               if (thisCustomer.first_name == ' ' && thisCustomer.last_name == ' ') {
@@ -89,7 +88,7 @@ export class UserScannerPage {
               var getFName = ' ',
                   getLName = ' ';
 
-              console.log(user.shop_id[0]);
+              // console.log(user.shop_id[0]);
 
               this.api.Business.register(this.phone, user.shop_id[0],getFName,getLName).then(customer => {
 
@@ -122,15 +121,25 @@ export class UserScannerPage {
       this.createdCode = JSON.parse(barcodeData.text)
       this.storage.get("user").then(user => {
         this.api.Business.scan_qr(this.createdCode.MembershipNumber,user._id,user.shop_id[0]).then(customer =>{
-        this.navCtrl.setRoot(UserDealsPage, {business_id: user.shop_id[0], customer : customer}, {
-            animate: true,
-            direction: 'forward'
-          });
-        })
-        .catch(function(err){
-          this.message = 'Invalid membership code'
-        })
+        this.api.Users.user(customer.customer.user_id[0]).then(thisCustomer => {
+              $('.btn-orange[type="submit"]').find('.fa-spinner').remove();
+              if (thisCustomer.first_name == ' ' && thisCustomer.last_name == ' ') {
+                this.navCtrl.setRoot(UserRegisterPage, {customer : customer}, {
+                  animate: true,
+                  direction: 'forward'
+                });
+              } else {
+                this.navCtrl.setRoot(UserDealsPage, {business_id: user.shop_id[0],customer : customer.customer.user_id[0]}, {
+                  animate: true,
+                  direction: 'forward'
+                });
+              }
+            }).catch(function(err){
+             this.message = 'Invalid membership code'
+           })
+        
       })
     });
+    })
   }
 }
