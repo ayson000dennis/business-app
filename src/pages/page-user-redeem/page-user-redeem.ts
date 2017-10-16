@@ -109,9 +109,6 @@ export class UserRedeemPage {
           // $('.stamps-left').text(stampsLeft + ' stamp') :
           // $('.stamps-left').text(stampsLeft + ' stamps');
 
-          console.log(this.customer.first_name + ' ' + this.customer.last_name);
-          console.log(this.customer.number);
-
           if (this.customer.first_name != ' ' && this.customer.last_name != ' ') {
             $('.customer-name').text(this.customer.first_name + ' ' + this.customer.last_name);
           } else {

@@ -56,11 +56,15 @@ export class UserScannerPage {
   }
 
   SubmitNumber() {
-    var mobileRegex = /^[0-9]{3,14}$/;
+    var mobileRegex = /^[0-9]{10,12}$/;
 
     if (this.phone) {
       if (mobileRegex.test(this.phone) == true) {
-        this.phone = "+1" + this.phone;
+        if (this.phone.toString().length == 10) {
+          this.phone = "+1" + this.phone;
+        } else {
+          this.phone = "+" + this.phone;
+        }
 
         $('input[name="number"]').removeClass('has-error').siblings('.text-validate').text('');
         $('.btn-orange[type="submit"]').append('<span class="fa fa-spinner fa-spin"></span>');
@@ -83,15 +87,13 @@ export class UserScannerPage {
               }
             });
           }).catch(err => {
+            console.log(err);
             var exist = JSON.parse(err['_body']).exist;
             if (exist == 0) {
               var getFName = ' ',
                   getLName = ' ';
 
-              // console.log(user.shop_id[0]);
-
               this.api.Business.register(this.phone, user.shop_id[0],getFName,getLName).then(customer => {
-
                 $('.btn-orange[type="submit"]').find('.fa-spinner').remove();
                 this.navCtrl.setRoot(UserDealsPage, {business_id: user.shop_id[0],customer : customer.customer.user_id[0]}, {
                   animate: true,
@@ -100,7 +102,6 @@ export class UserScannerPage {
               }).catch(err => {
                 $('.btn-orange[type="submit"]').find('.fa-spinner').remove();
                 $('input[name="number"]').addClass('has-error').siblings('.text-validate').text('Mobile number does not exist or invalid.');
-                console.log(err);
               });
             } else {
               $('.btn-orange[type="submit"]').find('.fa-spinner').remove();
@@ -137,7 +138,7 @@ export class UserScannerPage {
             }).catch(function(err){
              this.message = 'Invalid membership code'
            })
-        
+
       })
     });
     })

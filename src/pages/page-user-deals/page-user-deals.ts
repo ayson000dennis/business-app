@@ -50,6 +50,7 @@ export class UserDealsPage {
   ionViewWillEnter() {
     console.log(this.customer)
     this.api.Loyalty.loyalty_list(this.business_id,this.customer).then(users => {
+      console.log(users);
       this.dealsList = users;
       this.hasData = true;
     });

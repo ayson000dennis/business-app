@@ -81,7 +81,7 @@ export class ApiService {
         business_id : businessId,
         customer_id : customerId,
         deals_id : dealId,
-        isStamp : isStamp
+        is_stamp : isStamp
       }).map(response => {
         return response.json();
       }).toPromise();

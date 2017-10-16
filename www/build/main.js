@@ -237,7 +237,7 @@ DatabaseService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service_component__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__page_user_scanner_page_user_scanner__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__page_user_redeem_page_user_redeem__ = __webpack_require__(419);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__page_user_redeem_page_user_redeem__ = __webpack_require__(416);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_jquery__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_moment__ = __webpack_require__(2);
@@ -282,6 +282,7 @@ var UserDealsPage = (function () {
         var _this = this;
         console.log(this.customer);
         this.api.Loyalty.loyalty_list(this.business_id, this.customer).then(function (users) {
+            console.log(users);
             _this.dealsList = users;
             _this.hasData = true;
         });
@@ -347,14 +348,12 @@ var UserDealsPage = (function () {
 }());
 UserDealsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-user-deals',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-deals/page-user-deals.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <img class="header-logo" src="assets/images/logo.png" alt="">\n    <div class="profile">\n      <img class="profile-img" src="assets/images/img-profile.png" alt="">\n      <span class="fa fa-angle-down"></span>\n    </div>\n    <span class="inbox fa fa-envelope-o"></span>\n  </ion-navbar>\n\n  <ion-list>\n    <button ion-item *ngFor="let p of pages" (click)="openPage(p)">\n      <span class="label-{{p.title}}">{{p.title}}</span>\n    </button>\n  </ion-list>\n</ion-header> -->\n\n<ion-content padding>\n  <p class="title" (click)="goScanner()">\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" />\n    Back to Scanner\n  </p>\n\n  <div class="holder-list" *ngIf="hasData">\n    <div class="holder-deal" *ngFor="let deals of dealsList">\n      <div class="deal-info">\n        <p class="deal-title">\n           {{deals.template}}\n        </p>\n        <p class="deal-stamp">\n          <span *ngIf="deals.is_stamp == \'1\'">{{deals.stamp}} of {{deals.buy_pcs}}</span>\n        </p>\n        <p class="deal-expire">\n          Expires {{dateFormat(deals.end_date)}}\n        </p>\n      </div>\n      <button (click)="Stamp(deals)" class="btn btn-green" *ngIf="deals.is_stamp == \'1\'">Stamp</button>\n      <button (click)="Redeem(deals, $event)" class="btn btn-green btn-redeem" *ngIf="deals.is_stamp == \'0\'">Redeem</button>\n    </div>\n  </div>\n</ion-content>\n\n<div id="redeem-modal" class="confirmation-modal">\n  <div class="confirmation-modal-overlay"></div>\n  <div class="confirmation-modal-content">\n    <span class="fa fa-check"></span>\n    DONE<br />\n    YOUR TOTAL CHECK-INS: <span class="checkins-count"></span><br />\n    THANK YOU! <span class="customer-name"></span>\n    <button class="btn btn-green" (click)="goScanner()">Complete</button>\n  </div>\n</div>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-deals/page-user-deals.html"*/
+        selector: 'page-user-deals',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-deals\page-user-deals.html"*/'<!-- <ion-header>\n\n  <ion-navbar>\n\n    <img class="header-logo" src="assets/images/logo.png" alt="">\n\n    <div class="profile">\n\n      <img class="profile-img" src="assets/images/img-profile.png" alt="">\n\n      <span class="fa fa-angle-down"></span>\n\n    </div>\n\n    <span class="inbox fa fa-envelope-o"></span>\n\n  </ion-navbar>\n\n\n\n  <ion-list>\n\n    <button ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n      <span class="label-{{p.title}}">{{p.title}}</span>\n\n    </button>\n\n  </ion-list>\n\n</ion-header> -->\n\n\n\n<ion-content padding>\n\n  <p class="title" (click)="goScanner()">\n\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" />\n\n    Back to Scanner\n\n  </p>\n\n\n\n  <div class="holder-list" *ngIf="hasData">\n\n    <div class="holder-deal" *ngFor="let deals of dealsList">\n\n      <div class="deal-info">\n\n        <p class="deal-title">\n\n           {{deals.template}}\n\n        </p>\n\n        <p class="deal-stamp">\n\n          <span *ngIf="deals.is_stamp == \'1\'">{{deals.stamp}} of {{deals.buy_pcs}}</span>\n\n        </p>\n\n        <p class="deal-expire">\n\n          Expires {{dateFormat(deals.end_date)}}\n\n        </p>\n\n      </div>\n\n      <button (click)="Stamp(deals)" class="btn btn-green" *ngIf="deals.is_stamp == \'1\'">Stamp</button>\n\n      <button (click)="Redeem(deals, $event)" class="btn btn-green btn-redeem" *ngIf="deals.is_stamp == \'0\'">Redeem</button>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n\n\n<div id="redeem-modal" class="confirmation-modal">\n\n  <div class="confirmation-modal-overlay"></div>\n\n  <div class="confirmation-modal-content">\n\n    <span class="fa fa-check"></span>\n\n    DONE<br />\n\n    YOUR TOTAL CHECK-INS: <span class="checkins-count"></span><br />\n\n    THANK YOU! <span class="customer-name"></span>\n\n    <button class="btn btn-green" (click)="goScanner()">Complete</button>\n\n  </div>\n\n</div>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-deals\page-user-deals.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2__service_api_service_component__["a" /* ApiService */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service_component__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_api_service_component__["a" /* ApiService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _d || Object])
 ], UserDealsPage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=page-user-deals.js.map
 
 /***/ }),
@@ -367,7 +366,7 @@ UserDealsPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__page_login_page_login__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__page_reset_pass_success_page_reset_pass_success__ = __webpack_require__(421);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__page_reset_pass_success_page_reset_pass_success__ = __webpack_require__(418);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
@@ -436,7 +435,7 @@ var ResetPassPage = (function () {
 }());
 ResetPassPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-reset-pass',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-reset-pass/page-reset-pass.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Login</ion-title>\n  </ion-navbar>\n</ion-header> -->\n<ion-content padding>\n  <p class="title">\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" (click)="goBack()">\n    Reset Password\n  </p>\n  <form class="form-reset">\n    <label><input type="email" name="email" placeholder="Email address or Mobile number" [(ngModel)]="posts.email" /><span class="text-validate">Email address is required.</span></label>\n    <button class="btn-green" type="submit" (click)="resetMe()">Send</button>\n  </form>\n  <p class="description text-center">We\'ll email or text your new generated password.<p>\n</ion-content>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-reset-pass/page-reset-pass.html"*/
+        selector: 'page-reset-pass',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-reset-pass\page-reset-pass.html"*/'<!-- <ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Login</ion-title>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n<ion-content padding>\n\n  <p class="title">\n\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" (click)="goBack()">\n\n    Reset Password\n\n  </p>\n\n  <form class="form-reset">\n\n    <label><input type="email" name="email" placeholder="Email address or Mobile number" [(ngModel)]="posts.email" /><span class="text-validate">Email address is required.</span></label>\n\n    <button class="btn-green" type="submit" (click)="resetMe()">Send</button>\n\n  </form>\n\n  <p class="description text-center">We\'ll email or text your new generated password.<p>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-reset-pass\page-reset-pass.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Http */]])
@@ -522,7 +521,7 @@ var SignupSuccessPage = (function () {
 }());
 SignupSuccessPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-signup-success',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-signup-success/page-signup-success.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Login</ion-title>\n  </ion-navbar>\n</ion-header> -->\n<ion-content padding>\n  <p class="title">\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" (click)="goBack()">\n    Sign Up Success\n  </p>\n  <p class="description text-center">We’ve just emailed you a link. <br>Please check your inbox and confirm your email<p>\n  <a class="btn btn-green text-center" (click)="goLogin()">Okay</a>\n</ion-content>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-signup-success/page-signup-success.html"*/
+        selector: 'page-signup-success',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-signup-success\page-signup-success.html"*/'<!-- <ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Login</ion-title>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n<ion-content padding>\n\n  <p class="title">\n\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" (click)="goBack()">\n\n    Sign Up Success\n\n  </p>\n\n  <p class="description text-center">We’ve just emailed you a link. <br>Please check your inbox and confirm your email<p>\n\n  <a class="btn btn-green text-center" (click)="goLogin()">Okay</a>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-signup-success\page-signup-success.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
 ], SignupSuccessPage);
@@ -541,8 +540,8 @@ SignupSuccessPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__page_menu_page_menu__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__page_user_inbox_page_user_inbox__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__page_user_add_customer_page_user_add_customer__ = __webpack_require__(416);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__page_user_edit_customer_page_user_edit_customer__ = __webpack_require__(417);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__page_user_add_customer_page_user_add_customer__ = __webpack_require__(413);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__page_user_edit_customer_page_user_edit_customer__ = __webpack_require__(414);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_jquery__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(28);
@@ -767,7 +766,7 @@ var UserCustomersPage = (function () {
 }());
 UserCustomersPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-user-customers',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-customers/page-user-customers.html"*/'<ion-header>\n  <ion-navbar>\n    <img class="header-logo" src="assets/images/logo-min.png" alt="">\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /></a>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding class="page-user-customers">\n  <p class="title">\n    Customers\n    <a class="btn btn-green" href="#" (click)="goAddUser()">Add New</a>\n  </p>\n  <p class="description">\n    Show <input id="page_size" type="number" name="entry" [(ngModel)]="page_size"/> entries\n  </p>\n  <span class="fa fa-spinner fa-spin loader"></span>\n  <div class="holder-list" *ngIf="hasData">\n    <div class="holder-accordion" *ngFor="let customer of customersList">\n      <span class="dropdown" (click)="showDropdown($event)">\n        Actions <span class="fa fa-angle-down"></span>\n        <ul class="dropdown-menu">\n          <li (click)="goEditUser()">Edit</li>\n          <li (click)="updateModal(\'suspend\')" *ngIf="customer.user_id[0].status !== \'2\'">Suspend</li>\n          <li (click)="updateModal(\'delete\')" *ngIf="customer.user_id[0].status !== \'0\'">Delete</li>\n        </ul>\n      </span>\n      <div class="accordion-header" (click)="toggleAccordion($event)">\n        <span *ngIf="customer.user_id[0].first_name != \' \'">{{customer.user_id[0].first_name}}</span> <span *ngIf="customer.user_id[0].last_name != \' \'">{{customer.user_id[0].last_name}}</span>\n        <span *ngIf="customer.user_id[0].first_name == \' \'"><span *ngIf="customer.user_id[0].last_name == \' \'">{{customer.user_id[0].number}}</span></span>\n      </div>\n      <div class="accordion-body">\n        <span class="list-label">Role</span><span class="list-data">{{customer.user_id[0].permission === \'1\' ? \'Administrator\' : customer.user_id[0].permission === \'2\' ? \'Ambassador\' : \'Member\'}}</span>\n        <span class="list-label">Account Type</span><span class="list-data">{{customer.user_id[0].account_type === \'1\' ? \'Member\' : customer.user_id[0].account_type === \'2\' ? \'Business-Essentials\' : \'Premium\'}}</span>\n        <span class="list-label">Status</span><span class="list-data"><span *ngIf="customer.user_id[0].status == \'1\'">Active</span><span class="not-active" *ngIf="customer.user_id[0].status != \'1\'">{{customer.user_id[0].status === \'0\' ? \'Deleted\' : \'Suspended\'}}</span></span>\n        <span class="list-label">Registered Date</span><span class="list-data">{{dateFormat(customer.user_id[0].created_at)}}</span>\n        <span class="list-label">Last Login</span><span class="list-data">{{dateFormat(customer.user_id[0].last_login)}}</span>\n      </div>\n    </div>\n  </div>\n</ion-content>\n\n<div id="suspend-modal" class="confirmation-modal">\n  <div class="confirmation-modal-overlay" (click)="closeModal()"></div>\n  <div class="confirmation-modal-content">\n    Are you sure you want to suspend <span class="name"></span> account?\n    <button id="btn-suspend" class="btn btn-green" (click)="updateThis(\'suspend\')">Yes</button>\n    <button class="btn btn-gray" (click)="closeModal()">No</button>\n  </div>\n</div>\n\n<div id="delete-modal" class="confirmation-modal">\n  <div class="confirmation-modal-overlay" (click)="closeModal()"></div>\n  <div class="confirmation-modal-content">\n    Are you sure you want to delete <span class="name"></span> account?\n    <button id="btn-delete" class="btn btn-green" (click)="updateThis(\'delete\')">Yes</button>\n    <button class="btn btn-gray" (click)="closeModal()">No</button>\n  </div>\n</div>\n\n<div id="success-modal" class="confirmation-modal">\n  <div class="confirmation-modal-overlay" (click)="closeModal()"></div>\n  <div class="confirmation-modal-content">\n    Account has been successfully <span class="success"></span>.\n\n    <button class="btn btn-green btn-okay" (click)="closeModal()">Okay</button>\n  </div>\n</div>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-customers/page-user-customers.html"*/
+        selector: 'page-user-customers',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-customers\page-user-customers.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <img class="header-logo" src="assets/images/logo-min.png" alt="">\n\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n\n    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /></a>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="page-user-customers">\n\n  <p class="title">\n\n    Customers\n\n    <a class="btn btn-green" href="#" (click)="goAddUser()">Add New</a>\n\n  </p>\n\n  <p class="description">\n\n    Show <input id="page_size" type="number" name="entry" [(ngModel)]="page_size"/> entries\n\n  </p>\n\n  <span class="fa fa-spinner fa-spin loader"></span>\n\n  <div class="holder-list" *ngIf="hasData">\n\n    <div class="holder-accordion" *ngFor="let customer of customersList">\n\n      <span class="dropdown" (click)="showDropdown($event)">\n\n        Actions <span class="fa fa-angle-down"></span>\n\n        <ul class="dropdown-menu">\n\n          <li (click)="goEditUser()">Edit</li>\n\n          <li (click)="updateModal(\'suspend\')" *ngIf="customer.user_id[0].status !== \'2\'">Suspend</li>\n\n          <li (click)="updateModal(\'delete\')" *ngIf="customer.user_id[0].status !== \'0\'">Delete</li>\n\n        </ul>\n\n      </span>\n\n      <div class="accordion-header" (click)="toggleAccordion($event)">\n\n        <span *ngIf="customer.user_id[0].first_name != \' \'">{{customer.user_id[0].first_name}}</span> <span *ngIf="customer.user_id[0].last_name != \' \'">{{customer.user_id[0].last_name}}</span>\n\n        <span *ngIf="customer.user_id[0].first_name == \' \'"><span *ngIf="customer.user_id[0].last_name == \' \'">{{customer.user_id[0].number}}</span></span>\n\n      </div>\n\n      <div class="accordion-body">\n\n        <span class="list-label">Role</span><span class="list-data">{{customer.user_id[0].permission === \'1\' ? \'Administrator\' : customer.user_id[0].permission === \'2\' ? \'Ambassador\' : \'Member\'}}</span>\n\n        <span class="list-label">Account Type</span><span class="list-data">{{customer.user_id[0].account_type === \'1\' ? \'Member\' : customer.user_id[0].account_type === \'2\' ? \'Business-Essentials\' : \'Premium\'}}</span>\n\n        <span class="list-label">Status</span><span class="list-data"><span *ngIf="customer.user_id[0].status == \'1\'">Active</span><span class="not-active" *ngIf="customer.user_id[0].status != \'1\'">{{customer.user_id[0].status === \'0\' ? \'Deleted\' : \'Suspended\'}}</span></span>\n\n        <span class="list-label">Registered Date</span><span class="list-data">{{dateFormat(customer.user_id[0].created_at)}}</span>\n\n        <span class="list-label">Last Login</span><span class="list-data">{{dateFormat(customer.user_id[0].last_login)}}</span>\n\n      </div>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n\n\n<div id="suspend-modal" class="confirmation-modal">\n\n  <div class="confirmation-modal-overlay" (click)="closeModal()"></div>\n\n  <div class="confirmation-modal-content">\n\n    Are you sure you want to suspend <span class="name"></span> account?\n\n    <button id="btn-suspend" class="btn btn-green" (click)="updateThis(\'suspend\')">Yes</button>\n\n    <button class="btn btn-gray" (click)="closeModal()">No</button>\n\n  </div>\n\n</div>\n\n\n\n<div id="delete-modal" class="confirmation-modal">\n\n  <div class="confirmation-modal-overlay" (click)="closeModal()"></div>\n\n  <div class="confirmation-modal-content">\n\n    Are you sure you want to delete <span class="name"></span> account?\n\n    <button id="btn-delete" class="btn btn-green" (click)="updateThis(\'delete\')">Yes</button>\n\n    <button class="btn btn-gray" (click)="closeModal()">No</button>\n\n  </div>\n\n</div>\n\n\n\n<div id="success-modal" class="confirmation-modal">\n\n  <div class="confirmation-modal-overlay" (click)="closeModal()"></div>\n\n  <div class="confirmation-modal-content">\n\n    Account has been successfully <span class="success"></span>.\n\n\n\n    <button class="btn btn-green btn-okay" (click)="closeModal()">Okay</button>\n\n  </div>\n\n</div>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-customers\page-user-customers.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
@@ -897,7 +896,7 @@ __decorate([
 ], UserChatPage.prototype, "content", void 0);
 UserChatPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["n" /* Component */])({
-        selector: 'page-user-chat',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-chat/page-user-chat.html"*/'<ion-header>\n  <ion-navbar>\n    <!-- <img class="header-logo" src="assets/images/logo-min.png" alt="">\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n    <a class="inbox"><img src="assets/images/icon-mail.png" alt="" /></a> -->\n    <span class=\'title\' *ngIf="memberDetail.first_name && memberDetail.last_name">{{ memberDetail.first_name }} {{ memberDetail.last_name }}</span>\n\n    <span class=\'title\' *ngIf="!memberDetail.first_name && !memberDetail.last_name"> {{ memberDetail.number }}</span>\n  </ion-navbar>\n</ion-header>\n\n<ion-content id="messages" #content>\n  <div *ngIf="hasData">\n    <ion-list no-lines>\n\n      <ion-item *ngFor="let msg of messages">\n        <chat-bubble [chatMessage]="msg"></chat-bubble>\n      </ion-item>\n\n    </ion-list>\n  </div>\n\n  <span class="fa fa-spinner fa-spin loader"></span>\n</ion-content>\n\n<ion-footer *ngIf="hasData" no-border class="chatPageFooter" [keyboardAttach]="content" [btnClicked]="btnEmitter">\n  <ion-toolbar>\n\n    <ion-item no-lines >\n      <ion-label style="margin:0px;"></ion-label>\n      <div item-content style="width:100%;">\n        <elastic-textarea #txtChat placeholder="Send a message" lineHeight="20" maxExpand="5"></elastic-textarea>\n      </div>\n    </ion-item>\n\n    <ion-buttons right style="margin-left:10px">\n      <button ion-button icon-only\n              [disabled]="txtChat.content.trim().length<1"\n              (click)="sendMessage()">\n              SEND\n        <!-- <ion-icon name="md-send"></ion-icon> -->\n      </button>\n    </ion-buttons>\n\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-chat/page-user-chat.html"*/
+        selector: 'page-user-chat',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-chat\page-user-chat.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <!-- <img class="header-logo" src="assets/images/logo-min.png" alt="">\n\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n\n    <a class="inbox"><img src="assets/images/icon-mail.png" alt="" /></a> -->\n\n    <span class=\'title\' *ngIf="memberDetail.first_name && memberDetail.last_name">{{ memberDetail.first_name }} {{ memberDetail.last_name }}</span>\n\n\n\n    <span class=\'title\' *ngIf="!memberDetail.first_name && !memberDetail.last_name"> {{ memberDetail.number }}</span>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content id="messages" #content>\n\n  <div *ngIf="hasData">\n\n    <ion-list no-lines>\n\n\n\n      <ion-item *ngFor="let msg of messages">\n\n        <chat-bubble [chatMessage]="msg"></chat-bubble>\n\n      </ion-item>\n\n\n\n    </ion-list>\n\n  </div>\n\n\n\n  <span class="fa fa-spinner fa-spin loader"></span>\n\n</ion-content>\n\n\n\n<ion-footer *ngIf="hasData" no-border class="chatPageFooter" [keyboardAttach]="content" [btnClicked]="btnEmitter">\n\n  <ion-toolbar>\n\n\n\n    <ion-item no-lines >\n\n      <ion-label style="margin:0px;"></ion-label>\n\n      <div item-content style="width:100%;">\n\n        <elastic-textarea #txtChat placeholder="Send a message" lineHeight="20" maxExpand="5"></elastic-textarea>\n\n      </div>\n\n    </ion-item>\n\n\n\n    <ion-buttons right style="margin-left:10px">\n\n      <button ion-button icon-only\n\n              [disabled]="txtChat.content.trim().length<1"\n\n              (click)="sendMessage()">\n\n              SEND\n\n        <!-- <ion-icon name="md-send"></ion-icon> -->\n\n      </button>\n\n    </ion-buttons>\n\n\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-chat\page-user-chat.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["f" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["g" /* NavParams */],
@@ -989,7 +988,7 @@ UtilService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_config__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__(504);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__(502);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1080,7 +1079,7 @@ var ApiService = (function () {
                     business_id: businessId,
                     customer_id: customerId,
                     deals_id: dealId,
-                    isStamp: isStamp
+                    is_stamp: isStamp
                 }).map(function (response) {
                     return response.json();
                 }).toPromise();
@@ -1110,14 +1109,15 @@ var ApiService = (function () {
 }());
 ApiService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
 ], ApiService);
 
+var _a;
 //# sourceMappingURL=api.service.component.js.map
 
 /***/ }),
 
-/***/ 381:
+/***/ 378:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1125,7 +1125,7 @@ ApiService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_socket_io_client__ = __webpack_require__(484);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_socket_io_client__ = __webpack_require__(481);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_socket_io_client__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants__ = __webpack_require__(260);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_service__ = __webpack_require__(261);
@@ -1212,7 +1212,7 @@ SocketService = __decorate([
 
 /***/ }),
 
-/***/ 416:
+/***/ 413:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1284,7 +1284,7 @@ var UserAddCustomerPage = (function () {
 }());
 UserAddCustomerPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-user-add-customer',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-add-customer/page-user-add-customer.html"*/'<ion-content padding>\n  <p class="title">\n    Add New User\n    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goBack()">\n  </p>\n\n  <form>\n    <label><input type="text" name="first_name" placeholder="First name" [(ngModel)]="posts.first_name" /><span class="text-validate"></span></label>\n    <label><input type="text" name="last_name" placeholder="Last name" [(ngModel)]="posts.last_name" /><span class="text-validate"></span></label>\n    <label><input type="number" name="number" placeholder="Mobile number" [(ngModel)]="posts.phone" /><span class="text-validate"></span></label>\n    <label><input type="text" name="email" placeholder="E-mail address" [(ngModel)]="posts.email" /><span class="text-validate"></span></label>\n    <label><input type="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" [(ngModel)]="posts.password" /><span class="btn-show">SHOW</span><span class="text-validate"></span></label>\n    <button id="add-user" class="btn btn-green" type="submit" (click)="addUser()">Save</button>\n  </form>\n</ion-content>\n\n<div id="added-modal" class="confirmation-modal">\n  <div class="confirmation-modal-overlay"></div>\n  <div class="confirmation-modal-content">\n    Account has been successfully added.\n    <button class="btn btn-green btn-okay" (click)="goBack()">Okay</button>\n  </div>\n</div>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-add-customer/page-user-add-customer.html"*/
+        selector: 'page-user-add-customer',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-add-customer\page-user-add-customer.html"*/'<ion-content padding>\n\n  <p class="title">\n\n    Add New User\n\n    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goBack()">\n\n  </p>\n\n\n\n  <form>\n\n    <label><input type="text" name="first_name" placeholder="First name" [(ngModel)]="posts.first_name" /><span class="text-validate"></span></label>\n\n    <label><input type="text" name="last_name" placeholder="Last name" [(ngModel)]="posts.last_name" /><span class="text-validate"></span></label>\n\n    <label><input type="number" name="number" placeholder="Mobile number" [(ngModel)]="posts.phone" /><span class="text-validate"></span></label>\n\n    <label><input type="text" name="email" placeholder="E-mail address" [(ngModel)]="posts.email" /><span class="text-validate"></span></label>\n\n    <label><input type="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" [(ngModel)]="posts.password" /><span class="btn-show">SHOW</span><span class="text-validate"></span></label>\n\n    <button id="add-user" class="btn btn-green" type="submit" (click)="addUser()">Save</button>\n\n  </form>\n\n</ion-content>\n\n\n\n<div id="added-modal" class="confirmation-modal">\n\n  <div class="confirmation-modal-overlay"></div>\n\n  <div class="confirmation-modal-content">\n\n    Account has been successfully added.\n\n    <button class="btn btn-green btn-okay" (click)="goBack()">Okay</button>\n\n  </div>\n\n</div>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-add-customer\page-user-add-customer.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
@@ -1295,7 +1295,7 @@ UserAddCustomerPage = __decorate([
 
 /***/ }),
 
-/***/ 417:
+/***/ 414:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1441,7 +1441,7 @@ var UserEditCustomerPage = (function () {
 }());
 UserEditCustomerPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-user-edit-customer',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-edit-customer/page-user-edit-customer.html"*/'<ion-content padding>\n  <p class="title">\n    Edit User\n    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goBack()">\n  </p>\n\n  <form id="edit-form">\n    <label><input type="text" name="first_name" placeholder="First name" [(ngModel)]="posts.first_name" /></label>\n    <label><input type="text" name="last_name" placeholder="Last name" [(ngModel)]="posts.last_name" /></label>\n    <label><input type="number" name="number" placeholder="Mobile number" [(ngModel)]="posts.number" /><span class="text-validate"></span></label>\n    <label><input type="text" name="email" placeholder="E-mail address" [(ngModel)]="posts.email" /><span class="text-validate"></span></label>\n    <button id="save-user" class="btn btn-green" type="submit" (click)="saveUser()">Save</button>\n  </form>\n</ion-content>\n\n<div id="edit-modal" class="confirmation-modal">\n  <div class="confirmation-modal-overlay"></div>\n  <div class="confirmation-modal-content">\n    Account has been successfully updated.\n    <button class="btn btn-green btn-okay" (click)="goBack()">Okay</button>\n  </div>\n</div>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-edit-customer/page-user-edit-customer.html"*/
+        selector: 'page-user-edit-customer',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-edit-customer\page-user-edit-customer.html"*/'<ion-content padding>\n\n  <p class="title">\n\n    Edit User\n\n    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goBack()">\n\n  </p>\n\n\n\n  <form id="edit-form">\n\n    <label><input type="text" name="first_name" placeholder="First name" [(ngModel)]="posts.first_name" /></label>\n\n    <label><input type="text" name="last_name" placeholder="Last name" [(ngModel)]="posts.last_name" /></label>\n\n    <label><input type="number" name="number" placeholder="Mobile number" [(ngModel)]="posts.number" /><span class="text-validate"></span></label>\n\n    <label><input type="text" name="email" placeholder="E-mail address" [(ngModel)]="posts.email" /><span class="text-validate"></span></label>\n\n    <button id="save-user" class="btn btn-green" type="submit" (click)="saveUser()">Save</button>\n\n  </form>\n\n</ion-content>\n\n\n\n<div id="edit-modal" class="confirmation-modal">\n\n  <div class="confirmation-modal-overlay"></div>\n\n  <div class="confirmation-modal-content">\n\n    Account has been successfully updated.\n\n    <button class="btn btn-green btn-okay" (click)="goBack()">Okay</button>\n\n  </div>\n\n</div>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-edit-customer\page-user-edit-customer.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
@@ -1453,7 +1453,7 @@ UserEditCustomerPage = __decorate([
 
 /***/ }),
 
-/***/ 418:
+/***/ 415:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1576,7 +1576,7 @@ var UserRegisterPage = (function () {
 }());
 UserRegisterPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-user-register',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-register/page-user-register.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <img class="header-logo" src="assets/images/logo-min.png" alt="">\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /></a>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content padding>\n  <p class="title" (click)="goScanner()">\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" />\n    Back to Scanner\n  </p>\n\n  <form>\n    <label>\n      <input type="text" name="first_name" placeholder="First name" [(ngModel)]="posts.first_name" />\n      <span class="text-validate"></span>\n    </label>\n    <label>\n      <input type="text" name="last_name" placeholder="Last name" [(ngModel)]="posts.last_name" />\n      <span class="text-validate"></span>\n    </label>\n    <button class="btn btn-gray" type="submit" (click)="skipMe()">Skip</button>\n    <button class="btn btn-green" type="submit" (click)="registerMe()">Submit</button>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-register/page-user-register.html"*/
+        selector: 'page-user-register',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-register\page-user-register.html"*/'<!-- <ion-header>\n\n  <ion-navbar>\n\n    <img class="header-logo" src="assets/images/logo-min.png" alt="">\n\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n\n    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /></a>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n\n\n<ion-content padding>\n\n  <p class="title" (click)="goScanner()">\n\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" />\n\n    Back to Scanner\n\n  </p>\n\n\n\n  <form>\n\n    <label>\n\n      <input type="text" name="first_name" placeholder="First name" [(ngModel)]="posts.first_name" />\n\n      <span class="text-validate"></span>\n\n    </label>\n\n    <label>\n\n      <input type="text" name="last_name" placeholder="Last name" [(ngModel)]="posts.last_name" />\n\n      <span class="text-validate"></span>\n\n    </label>\n\n    <button class="btn btn-gray" type="submit" (click)="skipMe()">Skip</button>\n\n    <button class="btn btn-green" type="submit" (click)="registerMe()">Submit</button>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-register\page-user-register.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
@@ -1588,7 +1588,7 @@ UserRegisterPage = __decorate([
 
 /***/ }),
 
-/***/ 419:
+/***/ 416:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1691,8 +1691,6 @@ var UserRedeemPage = (function () {
                     // stampsLeft == 1 ?
                     // $('.stamps-left').text(stampsLeft + ' stamp') :
                     // $('.stamps-left').text(stampsLeft + ' stamps');
-                    console.log(_this.customer.first_name + ' ' + _this.customer.last_name);
-                    console.log(_this.customer.number);
                     if (_this.customer.first_name != ' ' && _this.customer.last_name != ' ') {
                         __WEBPACK_IMPORTED_MODULE_7_jquery__('.customer-name').text(_this.customer.first_name + ' ' + _this.customer.last_name);
                     }
@@ -1726,19 +1724,17 @@ var UserRedeemPage = (function () {
 }());
 UserRedeemPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-user-redeem',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-redeem/page-user-redeem.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <img class="header-logo" src="assets/images/logo-min.png" alt="">\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /></a>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content padding>\n  <!-- <p class="title" (click)="goBack()">\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" />\n    Back to Deals\n  </p> -->\n\n  <div>\n    <p class="title-deal"></p>\n		<form>\n			<label>\n        <ion-input type="number" name="quantity" placeholder="Enter Quantity" [(ngModel)]="quantity" [ngModelOptions]="{standalone: true}" value="1"></ion-input>\n        <span class="text-validate"></span>\n      </label>\n			<button id="btn-submit" (click)="Submit()" class="btn btn-green">Submit</button>\n		</form>\n	</div>\n</ion-content>\n\n<div id="complete-modal" class="confirmation-modal">\n  <div class="confirmation-modal-overlay"></div>\n  <div class="confirmation-modal-content">\n    <span class="fa fa-check"></span>\n    CONGRATULATIONS<br />\n    YOU\'VE EARNED <span class="free-pcs"></span> FREE <span class="free-prod"></span>\n    <button class="btn btn-green" (click)="goScanner()">Complete</button>\n  </div>\n</div>\n\n<div id="added-modal" class="confirmation-modal">\n  <div class="confirmation-modal-overlay"></div>\n  <div class="confirmation-modal-content">\n    <span class="fa fa-check"></span>\n    DONE<br />\n    YOU\'VE GIVEN <span class="stamps-added"></span> TO <br />\n    <span class="customer-name"></span>\n    <button class="btn btn-green" (click)="goScanner()">Complete</button>\n  </div>\n</div>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-redeem/page-user-redeem.html"*/
+        selector: 'page-user-redeem',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-redeem\page-user-redeem.html"*/'<!-- <ion-header>\n\n  <ion-navbar>\n\n    <img class="header-logo" src="assets/images/logo-min.png" alt="">\n\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n\n    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /></a>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n\n\n<ion-content padding>\n\n  <!-- <p class="title" (click)="goBack()">\n\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" />\n\n    Back to Deals\n\n  </p> -->\n\n\n\n  <div>\n\n    <p class="title-deal"></p>\n\n		<form>\n\n			<label>\n\n        <ion-input type="number" name="quantity" placeholder="Enter Quantity" [(ngModel)]="quantity" [ngModelOptions]="{standalone: true}" value="1"></ion-input>\n\n        <span class="text-validate"></span>\n\n      </label>\n\n			<button id="btn-submit" (click)="Submit()" class="btn btn-green">Submit</button>\n\n		</form>\n\n	</div>\n\n</ion-content>\n\n\n\n<div id="complete-modal" class="confirmation-modal">\n\n  <div class="confirmation-modal-overlay"></div>\n\n  <div class="confirmation-modal-content">\n\n    <span class="fa fa-check"></span>\n\n    CONGRATULATIONS<br />\n\n    YOU\'VE EARNED <span class="free-pcs"></span> FREE <span class="free-prod"></span>\n\n    <button class="btn btn-green" (click)="goScanner()">Complete</button>\n\n  </div>\n\n</div>\n\n\n\n<div id="added-modal" class="confirmation-modal">\n\n  <div class="confirmation-modal-overlay"></div>\n\n  <div class="confirmation-modal-content">\n\n    <span class="fa fa-check"></span>\n\n    DONE<br />\n\n    YOU\'VE GIVEN <span class="stamps-added"></span> TO <br />\n\n    <span class="customer-name"></span>\n\n    <button class="btn btn-green" (click)="goScanner()">Complete</button>\n\n  </div>\n\n</div>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-redeem\page-user-redeem.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2__service_api_service_component__["a" /* ApiService */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service_component__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_api_service_component__["a" /* ApiService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _d || Object])
 ], UserRedeemPage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=page-user-redeem.js.map
 
 /***/ }),
 
-/***/ 421:
+/***/ 418:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1780,7 +1776,7 @@ var ResetPassSuccessPage = (function () {
 }());
 ResetPassSuccessPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-reset-pass-success',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-reset-pass-success/page-reset-pass-success.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Login</ion-title>\n  </ion-navbar>\n</ion-header> -->\n<ion-content padding>\n  <p class="title">\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" (click)="goBack()">\n    Reset Password Success\n  </p>\n  <p class="description text-center">You should receive an email or text from us shortly. <br>We’ll meet you back here.<p>\n  <a class="btn btn-green text-center" (click)="goHome()">Back to Login</a>\n</ion-content>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-reset-pass-success/page-reset-pass-success.html"*/
+        selector: 'page-reset-pass-success',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-reset-pass-success\page-reset-pass-success.html"*/'<!-- <ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Login</ion-title>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n<ion-content padding>\n\n  <p class="title">\n\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" (click)="goBack()">\n\n    Reset Password Success\n\n  </p>\n\n  <p class="description text-center">You should receive an email or text from us shortly. <br>We’ll meet you back here.<p>\n\n  <a class="btn btn-green text-center" (click)="goHome()">Back to Login</a>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-reset-pass-success\page-reset-pass-success.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
 ], ResetPassSuccessPage);
@@ -1789,13 +1785,13 @@ ResetPassSuccessPage = __decorate([
 
 /***/ }),
 
-/***/ 430:
+/***/ 427:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(431);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(435);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(428);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(432);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1803,7 +1799,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 435:
+/***/ 432:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1812,36 +1808,36 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(472);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(469);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_facebook__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_google_plus__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_page_slider_page_slider__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_page_login_page_login__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_page_reset_pass_page_reset_pass__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_page_reset_pass_success_page_reset_pass_success__ = __webpack_require__(421);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_page_reset_pass_success_page_reset_pass_success__ = __webpack_require__(418);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_page_signup_page_signup__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_page_signup_success_page_signup_success__ = __webpack_require__(257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_page_menu_page_menu__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_page_user_scanner_page_user_scanner__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_page_user_register_page_user_register__ = __webpack_require__(418);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_page_user_register_page_user_register__ = __webpack_require__(415);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_page_user_customers_page_user_customers__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_page_user_inbox_page_user_inbox__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_page_user_deals_page_user_deals__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_page_user_redeem_page_user_redeem__ = __webpack_require__(419);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_page_user_add_customer_page_user_add_customer__ = __webpack_require__(416);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_page_user_edit_customer_page_user_edit_customer__ = __webpack_require__(417);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_status_bar__ = __webpack_require__(422);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ionic_native_splash_screen__ = __webpack_require__(423);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ionic_native_screen_orientation__ = __webpack_require__(424);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_ngx_qrcode2__ = __webpack_require__(768);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__ionic_native_barcode_scanner__ = __webpack_require__(420);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_page_user_redeem_page_user_redeem__ = __webpack_require__(416);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_page_user_add_customer_page_user_add_customer__ = __webpack_require__(413);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_page_user_edit_customer_page_user_edit_customer__ = __webpack_require__(414);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_status_bar__ = __webpack_require__(419);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ionic_native_splash_screen__ = __webpack_require__(420);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ionic_native_screen_orientation__ = __webpack_require__(421);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_ngx_qrcode2__ = __webpack_require__(766);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__ionic_native_barcode_scanner__ = __webpack_require__(417);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__service_api_service_component__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_storage__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_page_user_chat_page_user_chat__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__providers__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_elasticTextarea__ = __webpack_require__(788);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_chatBubble__ = __webpack_require__(790);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__directives__ = __webpack_require__(792);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_elasticTextarea__ = __webpack_require__(786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_chatBubble__ = __webpack_require__(788);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__directives__ = __webpack_require__(790);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1961,21 +1957,21 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 472:
+/***/ 469:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_page_slider_page_slider__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(422);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(423);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_screen_orientation__ = __webpack_require__(424);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_keyboard__ = __webpack_require__(425);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_page_user_scanner_page_user_scanner__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(419);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(420);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_screen_orientation__ = __webpack_require__(421);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_keyboard__ = __webpack_require__(422);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_database_service__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_sql__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_socket_service__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_socket_service__ = __webpack_require__(378);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2007,7 +2003,7 @@ var MyApp = (function () {
         this.screenOrientation = screenOrientation;
         this.keyboard = keyboard;
         // make SliderPage the root (or first) page
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_2__pages_page_slider_page_slider__["a" /* SliderPage */];
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_2__pages_page_user_scanner_page_user_scanner__["a" /* UserScannerPage */];
         platform.ready().then(function () {
             _this.screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
         });
@@ -2026,25 +2022,21 @@ var MyApp = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewChild */])('nav'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */])
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object)
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/app/app.html"*/'<ion-nav #nav [root]="rootPage"></ion-nav>\n\n<!-- <ion-menu [content]="nav">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Pages</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n</ion-menu> -->\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/app/app.html"*/,
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"E:\Projects\business-app\src\app\app.html"*/'<ion-nav #nav [root]="rootPage"></ion-nav>\n\n\n\n<!-- <ion-menu [content]="nav">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title>Pages</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{p.title}}\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu> -->\n\n'/*ion-inline-end:"E:\Projects\business-app\src\app\app.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_6__ionic_native_keyboard__["a" /* Keyboard */], __WEBPACK_IMPORTED_MODULE_7__providers_database_service__["a" /* DatabaseService */], __WEBPACK_IMPORTED_MODULE_8__providers_sql__["a" /* Sql */], __WEBPACK_IMPORTED_MODULE_9__providers_socket_service__["a" /* SocketService */]]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* MenuController */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */],
-        __WEBPACK_IMPORTED_MODULE_5__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
-        __WEBPACK_IMPORTED_MODULE_6__ionic_native_keyboard__["a" /* Keyboard */]])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_screen_orientation__["a" /* ScreenOrientation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_screen_orientation__["a" /* ScreenOrientation */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_native_keyboard__["a" /* Keyboard */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_native_keyboard__["a" /* Keyboard */]) === "function" && _g || Object])
 ], MyApp);
 
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
 
-/***/ 482:
+/***/ 479:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2061,7 +2053,7 @@ MessageType.MSG_RES = "message_response";
 
 /***/ }),
 
-/***/ 483:
+/***/ 480:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -2087,220 +2079,214 @@ var map = {
 	"./be.js": 272,
 	"./bg": 273,
 	"./bg.js": 273,
-	"./bm": 274,
-	"./bm.js": 274,
-	"./bn": 275,
-	"./bn.js": 275,
-	"./bo": 276,
-	"./bo.js": 276,
-	"./br": 277,
-	"./br.js": 277,
-	"./bs": 278,
-	"./bs.js": 278,
-	"./ca": 279,
-	"./ca.js": 279,
-	"./cs": 280,
-	"./cs.js": 280,
-	"./cv": 281,
-	"./cv.js": 281,
-	"./cy": 282,
-	"./cy.js": 282,
-	"./da": 283,
-	"./da.js": 283,
-	"./de": 284,
-	"./de-at": 285,
-	"./de-at.js": 285,
-	"./de-ch": 286,
-	"./de-ch.js": 286,
-	"./de.js": 284,
-	"./dv": 287,
-	"./dv.js": 287,
-	"./el": 288,
-	"./el.js": 288,
-	"./en-au": 289,
-	"./en-au.js": 289,
-	"./en-ca": 290,
-	"./en-ca.js": 290,
-	"./en-gb": 291,
-	"./en-gb.js": 291,
-	"./en-ie": 292,
-	"./en-ie.js": 292,
-	"./en-nz": 293,
-	"./en-nz.js": 293,
-	"./eo": 294,
-	"./eo.js": 294,
-	"./es": 295,
-	"./es-do": 296,
-	"./es-do.js": 296,
-	"./es-us": 297,
-	"./es-us.js": 297,
-	"./es.js": 295,
-	"./et": 298,
-	"./et.js": 298,
-	"./eu": 299,
-	"./eu.js": 299,
-	"./fa": 300,
-	"./fa.js": 300,
-	"./fi": 301,
-	"./fi.js": 301,
-	"./fo": 302,
-	"./fo.js": 302,
-	"./fr": 303,
-	"./fr-ca": 304,
-	"./fr-ca.js": 304,
-	"./fr-ch": 305,
-	"./fr-ch.js": 305,
-	"./fr.js": 303,
-	"./fy": 306,
-	"./fy.js": 306,
-	"./gd": 307,
-	"./gd.js": 307,
-	"./gl": 308,
-	"./gl.js": 308,
-	"./gom-latn": 309,
-	"./gom-latn.js": 309,
-	"./gu": 310,
-	"./gu.js": 310,
-	"./he": 311,
-	"./he.js": 311,
-	"./hi": 312,
-	"./hi.js": 312,
-	"./hr": 313,
-	"./hr.js": 313,
-	"./hu": 314,
-	"./hu.js": 314,
-	"./hy-am": 315,
-	"./hy-am.js": 315,
-	"./id": 316,
-	"./id.js": 316,
-	"./is": 317,
-	"./is.js": 317,
-	"./it": 318,
-	"./it.js": 318,
-	"./ja": 319,
-	"./ja.js": 319,
-	"./jv": 320,
-	"./jv.js": 320,
-	"./ka": 321,
-	"./ka.js": 321,
-	"./kk": 322,
-	"./kk.js": 322,
-	"./km": 323,
-	"./km.js": 323,
-	"./kn": 324,
-	"./kn.js": 324,
-	"./ko": 325,
-	"./ko.js": 325,
-	"./ky": 326,
-	"./ky.js": 326,
-	"./lb": 327,
-	"./lb.js": 327,
-	"./lo": 328,
-	"./lo.js": 328,
-	"./lt": 329,
-	"./lt.js": 329,
-	"./lv": 330,
-	"./lv.js": 330,
-	"./me": 331,
-	"./me.js": 331,
-	"./mi": 332,
-	"./mi.js": 332,
-	"./mk": 333,
-	"./mk.js": 333,
-	"./ml": 334,
-	"./ml.js": 334,
-	"./mr": 335,
-	"./mr.js": 335,
-	"./ms": 336,
-	"./ms-my": 337,
-	"./ms-my.js": 337,
-	"./ms.js": 336,
-	"./my": 338,
-	"./my.js": 338,
-	"./nb": 339,
-	"./nb.js": 339,
-	"./ne": 340,
-	"./ne.js": 340,
-	"./nl": 341,
-	"./nl-be": 342,
-	"./nl-be.js": 342,
-	"./nl.js": 341,
-	"./nn": 343,
-	"./nn.js": 343,
-	"./pa-in": 344,
-	"./pa-in.js": 344,
-	"./pl": 345,
-	"./pl.js": 345,
-	"./pt": 346,
-	"./pt-br": 347,
-	"./pt-br.js": 347,
-	"./pt.js": 346,
-	"./ro": 348,
-	"./ro.js": 348,
-	"./ru": 349,
-	"./ru.js": 349,
-	"./sd": 350,
-	"./sd.js": 350,
-	"./se": 351,
-	"./se.js": 351,
-	"./si": 352,
-	"./si.js": 352,
-	"./sk": 353,
-	"./sk.js": 353,
-	"./sl": 354,
-	"./sl.js": 354,
-	"./sq": 355,
-	"./sq.js": 355,
-	"./sr": 356,
-	"./sr-cyrl": 357,
-	"./sr-cyrl.js": 357,
-	"./sr.js": 356,
-	"./ss": 358,
-	"./ss.js": 358,
-	"./sv": 359,
-	"./sv.js": 359,
-	"./sw": 360,
-	"./sw.js": 360,
-	"./ta": 361,
-	"./ta.js": 361,
-	"./te": 362,
-	"./te.js": 362,
-	"./tet": 363,
-	"./tet.js": 363,
-	"./th": 364,
-	"./th.js": 364,
-	"./tl-ph": 365,
-	"./tl-ph.js": 365,
-	"./tlh": 366,
-	"./tlh.js": 366,
-	"./tr": 367,
-	"./tr.js": 367,
-	"./tzl": 368,
-	"./tzl.js": 368,
-	"./tzm": 369,
-	"./tzm-latn": 370,
-	"./tzm-latn.js": 370,
-	"./tzm.js": 369,
-	"./uk": 371,
-	"./uk.js": 371,
-	"./ur": 372,
-	"./ur.js": 372,
-	"./uz": 373,
-	"./uz-latn": 374,
-	"./uz-latn.js": 374,
-	"./uz.js": 373,
-	"./vi": 375,
-	"./vi.js": 375,
-	"./x-pseudo": 376,
-	"./x-pseudo.js": 376,
-	"./yo": 377,
-	"./yo.js": 377,
-	"./zh-cn": 378,
-	"./zh-cn.js": 378,
-	"./zh-hk": 379,
-	"./zh-hk.js": 379,
-	"./zh-tw": 380,
-	"./zh-tw.js": 380
+	"./bn": 274,
+	"./bn.js": 274,
+	"./bo": 275,
+	"./bo.js": 275,
+	"./br": 276,
+	"./br.js": 276,
+	"./bs": 277,
+	"./bs.js": 277,
+	"./ca": 278,
+	"./ca.js": 278,
+	"./cs": 279,
+	"./cs.js": 279,
+	"./cv": 280,
+	"./cv.js": 280,
+	"./cy": 281,
+	"./cy.js": 281,
+	"./da": 282,
+	"./da.js": 282,
+	"./de": 283,
+	"./de-at": 284,
+	"./de-at.js": 284,
+	"./de-ch": 285,
+	"./de-ch.js": 285,
+	"./de.js": 283,
+	"./dv": 286,
+	"./dv.js": 286,
+	"./el": 287,
+	"./el.js": 287,
+	"./en-au": 288,
+	"./en-au.js": 288,
+	"./en-ca": 289,
+	"./en-ca.js": 289,
+	"./en-gb": 290,
+	"./en-gb.js": 290,
+	"./en-ie": 291,
+	"./en-ie.js": 291,
+	"./en-nz": 292,
+	"./en-nz.js": 292,
+	"./eo": 293,
+	"./eo.js": 293,
+	"./es": 294,
+	"./es-do": 295,
+	"./es-do.js": 295,
+	"./es.js": 294,
+	"./et": 296,
+	"./et.js": 296,
+	"./eu": 297,
+	"./eu.js": 297,
+	"./fa": 298,
+	"./fa.js": 298,
+	"./fi": 299,
+	"./fi.js": 299,
+	"./fo": 300,
+	"./fo.js": 300,
+	"./fr": 301,
+	"./fr-ca": 302,
+	"./fr-ca.js": 302,
+	"./fr-ch": 303,
+	"./fr-ch.js": 303,
+	"./fr.js": 301,
+	"./fy": 304,
+	"./fy.js": 304,
+	"./gd": 305,
+	"./gd.js": 305,
+	"./gl": 306,
+	"./gl.js": 306,
+	"./gom-latn": 307,
+	"./gom-latn.js": 307,
+	"./he": 308,
+	"./he.js": 308,
+	"./hi": 309,
+	"./hi.js": 309,
+	"./hr": 310,
+	"./hr.js": 310,
+	"./hu": 311,
+	"./hu.js": 311,
+	"./hy-am": 312,
+	"./hy-am.js": 312,
+	"./id": 313,
+	"./id.js": 313,
+	"./is": 314,
+	"./is.js": 314,
+	"./it": 315,
+	"./it.js": 315,
+	"./ja": 316,
+	"./ja.js": 316,
+	"./jv": 317,
+	"./jv.js": 317,
+	"./ka": 318,
+	"./ka.js": 318,
+	"./kk": 319,
+	"./kk.js": 319,
+	"./km": 320,
+	"./km.js": 320,
+	"./kn": 321,
+	"./kn.js": 321,
+	"./ko": 322,
+	"./ko.js": 322,
+	"./ky": 323,
+	"./ky.js": 323,
+	"./lb": 324,
+	"./lb.js": 324,
+	"./lo": 325,
+	"./lo.js": 325,
+	"./lt": 326,
+	"./lt.js": 326,
+	"./lv": 327,
+	"./lv.js": 327,
+	"./me": 328,
+	"./me.js": 328,
+	"./mi": 329,
+	"./mi.js": 329,
+	"./mk": 330,
+	"./mk.js": 330,
+	"./ml": 331,
+	"./ml.js": 331,
+	"./mr": 332,
+	"./mr.js": 332,
+	"./ms": 333,
+	"./ms-my": 334,
+	"./ms-my.js": 334,
+	"./ms.js": 333,
+	"./my": 335,
+	"./my.js": 335,
+	"./nb": 336,
+	"./nb.js": 336,
+	"./ne": 337,
+	"./ne.js": 337,
+	"./nl": 338,
+	"./nl-be": 339,
+	"./nl-be.js": 339,
+	"./nl.js": 338,
+	"./nn": 340,
+	"./nn.js": 340,
+	"./pa-in": 341,
+	"./pa-in.js": 341,
+	"./pl": 342,
+	"./pl.js": 342,
+	"./pt": 343,
+	"./pt-br": 344,
+	"./pt-br.js": 344,
+	"./pt.js": 343,
+	"./ro": 345,
+	"./ro.js": 345,
+	"./ru": 346,
+	"./ru.js": 346,
+	"./sd": 347,
+	"./sd.js": 347,
+	"./se": 348,
+	"./se.js": 348,
+	"./si": 349,
+	"./si.js": 349,
+	"./sk": 350,
+	"./sk.js": 350,
+	"./sl": 351,
+	"./sl.js": 351,
+	"./sq": 352,
+	"./sq.js": 352,
+	"./sr": 353,
+	"./sr-cyrl": 354,
+	"./sr-cyrl.js": 354,
+	"./sr.js": 353,
+	"./ss": 355,
+	"./ss.js": 355,
+	"./sv": 356,
+	"./sv.js": 356,
+	"./sw": 357,
+	"./sw.js": 357,
+	"./ta": 358,
+	"./ta.js": 358,
+	"./te": 359,
+	"./te.js": 359,
+	"./tet": 360,
+	"./tet.js": 360,
+	"./th": 361,
+	"./th.js": 361,
+	"./tl-ph": 362,
+	"./tl-ph.js": 362,
+	"./tlh": 363,
+	"./tlh.js": 363,
+	"./tr": 364,
+	"./tr.js": 364,
+	"./tzl": 365,
+	"./tzl.js": 365,
+	"./tzm": 366,
+	"./tzm-latn": 367,
+	"./tzm-latn.js": 367,
+	"./tzm.js": 366,
+	"./uk": 368,
+	"./uk.js": 368,
+	"./ur": 369,
+	"./ur.js": 369,
+	"./uz": 370,
+	"./uz-latn": 371,
+	"./uz-latn.js": 371,
+	"./uz.js": 370,
+	"./vi": 372,
+	"./vi.js": 372,
+	"./x-pseudo": 373,
+	"./x-pseudo.js": 373,
+	"./yo": 374,
+	"./yo.js": 374,
+	"./zh-cn": 375,
+	"./zh-cn.js": 375,
+	"./zh-hk": 376,
+	"./zh-hk.js": 376,
+	"./zh-tw": 377,
+	"./zh-tw.js": 377
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -2316,7 +2302,7 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 483;
+webpackContext.id = 480;
 
 /***/ }),
 
@@ -2328,13 +2314,13 @@ webpackContext.id = 483;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__page_menu_page_menu__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__page_user_register_page_user_register__ = __webpack_require__(418);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__page_user_register_page_user_register__ = __webpack_require__(415);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__page_user_deals_page_user_deals__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__page_user_inbox_page_user_inbox__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_jquery__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__service_api_service_component__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_barcode_scanner__ = __webpack_require__(420);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_barcode_scanner__ = __webpack_require__(417);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_storage__ = __webpack_require__(28);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2388,10 +2374,15 @@ var UserScannerPage = (function () {
     };
     UserScannerPage.prototype.SubmitNumber = function () {
         var _this = this;
-        var mobileRegex = /^[0-9]{3,14}$/;
+        var mobileRegex = /^[0-9]{10,12}$/;
         if (this.phone) {
             if (mobileRegex.test(this.phone) == true) {
-                this.phone = "+1" + this.phone;
+                if (this.phone.toString().length == 10) {
+                    this.phone = "+1" + this.phone;
+                }
+                else {
+                    this.phone = "+" + this.phone;
+                }
                 __WEBPACK_IMPORTED_MODULE_6_jquery__('input[name="number"]').removeClass('has-error').siblings('.text-validate').text('');
                 __WEBPACK_IMPORTED_MODULE_6_jquery__('.btn-orange[type="submit"]').append('<span class="fa fa-spinner fa-spin"></span>');
                 this.storage.get('user').then(function (user) {
@@ -2413,10 +2404,10 @@ var UserScannerPage = (function () {
                             }
                         });
                     }).catch(function (err) {
+                        console.log(err);
                         var exist = JSON.parse(err['_body']).exist;
                         if (exist == 0) {
                             var getFName = ' ', getLName = ' ';
-                            // console.log(user.shop_id[0]);
                             _this.api.Business.register(_this.phone, user.shop_id[0], getFName, getLName).then(function (customer) {
                                 __WEBPACK_IMPORTED_MODULE_6_jquery__('.btn-orange[type="submit"]').find('.fa-spinner').remove();
                                 _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__page_user_deals_page_user_deals__["a" /* UserDealsPage */], { business_id: user.shop_id[0], customer: customer.customer.user_id[0] }, {
@@ -2426,7 +2417,6 @@ var UserScannerPage = (function () {
                             }).catch(function (err) {
                                 __WEBPACK_IMPORTED_MODULE_6_jquery__('.btn-orange[type="submit"]').find('.fa-spinner').remove();
                                 __WEBPACK_IMPORTED_MODULE_6_jquery__('input[name="number"]').addClass('has-error').siblings('.text-validate').text('Mobile number does not exist or invalid.');
-                                console.log(err);
                             });
                         }
                         else {
@@ -2475,7 +2465,7 @@ var UserScannerPage = (function () {
 }());
 UserScannerPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-user-scanner',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-scanner/page-user-scanner.html"*/'<ion-header>\n  <ion-navbar>\n    <img class="header-logo" src="assets/images/logo-min.png" alt="">\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /></a>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <a class="btn btn-green" (click)="scanCode()">Scan QR Code</a>\n  <span>{{message}}</span>\n  <div class="divider">\n    <span>or</span>\n  </div>\n  <form class="form-mobile">\n    <label>\n      <input type="number" [(ngModel)]="phone" name="number" placeholder="Mobile number" />\n      <span class="text-validate"></span>\n\n    </label>\n    <button class="btn btn-orange" (click)="SubmitNumber()" type="submit">Submit</button>\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-scanner/page-user-scanner.html"*/
+        selector: 'page-user-scanner',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-scanner\page-user-scanner.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <img class="header-logo" src="assets/images/logo-min.png" alt="">\n\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n\n    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /></a>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <a class="btn btn-green" (click)="scanCode()">Scan QR Code</a>\n\n  <span>{{message}}</span>\n\n  <div class="divider">\n\n    <span>or</span>\n\n  </div>\n\n  <form class="form-mobile">\n\n    <label>\n\n      <input type="number" [(ngModel)]="phone" name="number" placeholder="Mobile number" />\n\n      <span class="text-validate"></span>\n\n\n\n    </label>\n\n    <button class="btn btn-orange" (click)="SubmitNumber()" type="submit">Submit</button>\n\n  </form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-scanner\page-user-scanner.html"*/
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_8__ionic_native_barcode_scanner__["a" /* BarcodeScanner */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__ionic_native_barcode_scanner__["a" /* BarcodeScanner */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__service_api_service_component__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__service_api_service_component__["a" /* ApiService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_9__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__ionic_storage__["b" /* Storage */]) === "function" && _e || Object])
 ], UserScannerPage);
@@ -2485,7 +2475,7 @@ var _a, _b, _c, _d, _e;
 
 /***/ }),
 
-/***/ 501:
+/***/ 499:
 /***/ (function(module, exports) {
 
 /* (ignored) */
@@ -2647,7 +2637,7 @@ var LoginPage = (function () {
 }());
 LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-login',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-login/page-login.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n    <ion-title>Login</ion-title>\n  </ion-navbar>\n</ion-header> -->\n<ion-content padding>\n  <!-- <ion-card *ngIf="userData">\n    <ion-card-header>{{ userData.email }}</ion-card-header>\n  </ion-card> -->\n\n  <p class="title">\n    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goSlider()">\n    Welcome Back\n  </p>\n  <button class="btn login-fb" (click)="fbConnect()"><span class="fa fa-facebook"></span> Continue with Facebook</button>\n  <button class="btn login-google" (click)="gpConnect()"><span class="fa fa-google"></span> Continue with Google</button>\n  <div class="divider">\n    <span>or</span>\n  </div>\n  <form class="form-login">\n    <label><input type="email" name="username" placeholder="Email or Phone" [(ngModel)]="posts.username" /><span class="text-validate">Email address is required.</span></label>\n    <label><input type="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" [(ngModel)]="posts.password" /><span class="btn-show">SHOW</span><span class="text-validate">Password is required.</span></label>\n    <button class="btn-green" type="submit" (click)="logMeIn()">Log In</button>\n  </form>\n  <a class="description forgot-pass" (click)="goReset()">Forgot your password?</a>\n  <!-- <hr class="hr" />\n  <p class="description">Don\'t have an account? <a href="#" (click)="goSignup()">Sign Up</a></p> -->\n</ion-content>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-login/page-login.html"*/
+        selector: 'page-login',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-login\page-login.html"*/'<!-- <ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n\n\n    </button>\n\n    <ion-title>Login</ion-title>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n<ion-content padding>\n\n  <!-- <ion-card *ngIf="userData">\n\n    <ion-card-header>{{ userData.email }}</ion-card-header>\n\n  </ion-card> -->\n\n\n\n  <p class="title">\n\n    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goSlider()">\n\n    Welcome Back\n\n  </p>\n\n  <button class="btn login-fb" (click)="fbConnect()"><span class="fa fa-facebook"></span> Continue with Facebook</button>\n\n  <button class="btn login-google" (click)="gpConnect()"><span class="fa fa-google"></span> Continue with Google</button>\n\n  <div class="divider">\n\n    <span>or</span>\n\n  </div>\n\n  <form class="form-login">\n\n    <label><input type="email" name="username" placeholder="Email or Phone" [(ngModel)]="posts.username" /><span class="text-validate">Email address is required.</span></label>\n\n    <label><input type="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" [(ngModel)]="posts.password" /><span class="btn-show">SHOW</span><span class="text-validate">Password is required.</span></label>\n\n    <button class="btn-green" type="submit" (click)="logMeIn()">Log In</button>\n\n  </form>\n\n  <a class="description forgot-pass" (click)="goReset()">Forgot your password?</a>\n\n  <!-- <hr class="hr" />\n\n  <p class="description">Don\'t have an account? <a href="#" (click)="goSignup()">Sign Up</a></p> -->\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-login\page-login.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */],
@@ -2718,7 +2708,7 @@ var MenuPage = (function () {
 }());
 MenuPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-menu',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-menu/page-menu.html"*/'<ion-content padding class="content-page-menu">\n  <p class="title">\n    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goBack()">\n  </p>\n\n  <ion-list class="menu-list">\n    <button ion-item *ngFor="let p of pages" (click)="openPage(p)">\n      <span class="label-{{p.title}}">{{p.title}}</span>\n    </button>\n  </ion-list>\n\n  <hr class="divider" />\n  <a class="logout" href="#" (click)="logOut()">Logout</a>\n</ion-content>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-menu/page-menu.html"*/
+        selector: 'page-menu',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-menu\page-menu.html"*/'<ion-content padding class="content-page-menu">\n\n  <p class="title">\n\n    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goBack()">\n\n  </p>\n\n\n\n  <ion-list class="menu-list">\n\n    <button ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n      <span class="label-{{p.title}}">{{p.title}}</span>\n\n    </button>\n\n  </ion-list>\n\n\n\n  <hr class="divider" />\n\n  <a class="logout" href="#" (click)="logOut()">Logout</a>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-menu\page-menu.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
 ], MenuPage);
@@ -2825,7 +2815,7 @@ var UserInboxPage = (function () {
 }());
 UserInboxPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-user-inbox',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-inbox/page-user-inbox.html"*/'<ion-header>\n  <ion-navbar>\n    <img class="header-logo" src="assets/images/logo-min.png" alt="">\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n    <a class="inbox"><img src="assets/images/icon-mail.png" alt="" /><span *ngIf="hasNotify" class="count-msg">!</span></a>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <!-- <span [ngClass]="[membersList ? \'hidden\' : \'visible\']"> Inbox is empty </span> -->\n\n    <ion-list id="inbox-list">\n\n      <ion-item *ngFor="let member of membersList;" tappable (click)="viewMessage(member.user_id[0],member.business_id[0])">\n\n        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && member.user_id[0].first_name"> {{member.user_id[0].first_name}} {{member.user_id[0].last_name}}</span>\n\n        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name && !member.user_id[0].last_name"> {{member.user_id[0].first_name}} </span>\n\n        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && !member.user_id[0].first_name"> {{member.user_id[0].last_name}} </span>\n\n        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name == \' \' && !member.user_id[0].last_name == \' \' "> {{ member.user_id[0].number }} </span>\n\n        <span class="name" *ngIf="member.user_id && member.user_id.length == 0"> No Member Data </span>\n\n        <!-- <button id="btn-message" ion-button [disabled]="member.user_id && member.user_id.length == 0" (click)="viewMessage(member.user_id[0],member.business_id[0])"> MESSAGE </button> -->\n\n      </ion-item>\n\n      <!-- <ion-item>\n        <span class="name-new"> John Devera </span>\n\n        <span class="date-time-new"> 7:12am &nbsp;&nbsp; 10/30/17 </span>\n\n        <p class="message-new">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget velit leo. Etiam a ipsum et elit maximus volutpat non quis leo. Morbi viverra auctor nibh egestas finibus. Maecenas egestas augue in posuere hendrerit. Cras posuere fermentum dui, nec posuere nisl facilisis ut. Duis aliquam, diam tristique faucibus venenatis, mi ante mollis elit, non pulvinar leo orci pharetra augue. Donec dignissim eu velit id imperdiet. Donec sit amet facilisis quam. Duis non risus sodales ante sollicitudin rhoncus et a nulla. </p>\n\n      </ion-item> -->\n      <span class="fa fa-spinner fa-spin loader"></span>\n    </ion-list>\n\n\n</ion-content>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-user-inbox/page-user-inbox.html"*/
+        selector: 'page-user-inbox',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-inbox\page-user-inbox.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <img class="header-logo" src="assets/images/logo-min.png" alt="">\n\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n\n    <a class="inbox"><img src="assets/images/icon-mail.png" alt="" /><span *ngIf="hasNotify" class="count-msg">!</span></a>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <!-- <span [ngClass]="[membersList ? \'hidden\' : \'visible\']"> Inbox is empty </span> -->\n\n\n\n    <ion-list id="inbox-list">\n\n\n\n      <ion-item *ngFor="let member of membersList;" tappable (click)="viewMessage(member.user_id[0],member.business_id[0])">\n\n\n\n        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && member.user_id[0].first_name"> {{member.user_id[0].first_name}} {{member.user_id[0].last_name}}</span>\n\n\n\n        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name && !member.user_id[0].last_name"> {{member.user_id[0].first_name}} </span>\n\n\n\n        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && !member.user_id[0].first_name"> {{member.user_id[0].last_name}} </span>\n\n\n\n        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name == \' \' && !member.user_id[0].last_name == \' \' "> {{ member.user_id[0].number }} </span>\n\n\n\n        <span class="name" *ngIf="member.user_id && member.user_id.length == 0"> No Member Data </span>\n\n\n\n        <!-- <button id="btn-message" ion-button [disabled]="member.user_id && member.user_id.length == 0" (click)="viewMessage(member.user_id[0],member.business_id[0])"> MESSAGE </button> -->\n\n\n\n      </ion-item>\n\n\n\n      <!-- <ion-item>\n\n        <span class="name-new"> John Devera </span>\n\n\n\n        <span class="date-time-new"> 7:12am &nbsp;&nbsp; 10/30/17 </span>\n\n\n\n        <p class="message-new">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget velit leo. Etiam a ipsum et elit maximus volutpat non quis leo. Morbi viverra auctor nibh egestas finibus. Maecenas egestas augue in posuere hendrerit. Cras posuere fermentum dui, nec posuere nisl facilisis ut. Duis aliquam, diam tristique faucibus venenatis, mi ante mollis elit, non pulvinar leo orci pharetra augue. Donec dignissim eu velit id imperdiet. Donec sit amet facilisis quam. Duis non risus sodales ante sollicitudin rhoncus et a nulla. </p>\n\n\n\n      </ion-item> -->\n\n      <span class="fa fa-spinner fa-spin loader"></span>\n\n    </ion-list>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-inbox\page-user-inbox.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
@@ -2838,18 +2828,18 @@ UserInboxPage = __decorate([
 
 /***/ }),
 
-/***/ 788:
+/***/ 786:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__elasticTextarea__ = __webpack_require__(789);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__elasticTextarea__ = __webpack_require__(787);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__elasticTextarea__["a"]; });
 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 789:
+/***/ 787:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2903,7 +2893,7 @@ __decorate([
 ElasticTextarea = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'elastic-textarea',
-        inputs: ['placeholder', 'lineHeight', 'maxExpand'],template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/components/elasticTextarea/elasticTextarea.html"*/'<!--suppress ALL -->\n<ion-textarea #ionTxtArea\n              placeholder=\'{{ "Type your message..." }}\'\n              [(ngModel)]="content"\n              (ngModelChange)=\'onChange($event)\'>\n</ion-textarea>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/components/elasticTextarea/elasticTextarea.html"*/
+        inputs: ['placeholder', 'lineHeight', 'maxExpand'],template:/*ion-inline-start:"E:\Projects\business-app\src\components\elasticTextarea\elasticTextarea.html"*/'<!--suppress ALL -->\n\n<ion-textarea #ionTxtArea\n\n              placeholder=\'{{ "Type your message..." }}\'\n\n              [(ngModel)]="content"\n\n              (ngModelChange)=\'onChange($event)\'>\n\n</ion-textarea>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\components\elasticTextarea\elasticTextarea.html"*/
     }),
     __metadata("design:paramtypes", [])
 ], ElasticTextarea);
@@ -2912,18 +2902,18 @@ ElasticTextarea = __decorate([
 
 /***/ }),
 
-/***/ 790:
+/***/ 788:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__chatBubble__ = __webpack_require__(791);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__chatBubble__ = __webpack_require__(789);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__chatBubble__["a"]; });
 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 791:
+/***/ 789:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2953,7 +2943,7 @@ var ChatBubble = (function () {
 ChatBubble = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'chat-bubble',
-        inputs: ['chatMessage'],template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/components/chatBubble/chatBubble.html"*/'<div>\n  <div class="chat-bubble {{chatMessage.message_by == \'business\' ? \'right\' : \'left\'}}">\n    <div class="message">{{chatMessage.message}}</div>\n  </div>\n  <div class="message-detail {{chatMessage.message_by == \'business\' ? \'right\' : \'left\'}}">\n    <span>{{formatEpoch(chatMessage.epoch)}}</span>\n  </div>\n</div>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/components/chatBubble/chatBubble.html"*/
+        inputs: ['chatMessage'],template:/*ion-inline-start:"E:\Projects\business-app\src\components\chatBubble\chatBubble.html"*/'<div>\n\n  <div class="chat-bubble {{chatMessage.message_by == \'business\' ? \'right\' : \'left\'}}">\n\n    <div class="message">{{chatMessage.message}}</div>\n\n  </div>\n\n  <div class="message-detail {{chatMessage.message_by == \'business\' ? \'right\' : \'left\'}}">\n\n    <span>{{formatEpoch(chatMessage.epoch)}}</span>\n\n  </div>\n\n</div>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\components\chatBubble\chatBubble.html"*/
     }),
     __metadata("design:paramtypes", [])
 ], ChatBubble);
@@ -2962,24 +2952,24 @@ ChatBubble = __decorate([
 
 /***/ }),
 
-/***/ 792:
+/***/ 790:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__keyboard_attach_directive__ = __webpack_require__(793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__keyboard_attach_directive__ = __webpack_require__(791);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__keyboard_attach_directive__["a"]; });
 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 793:
+/***/ 791:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KeyboardAttachDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_keyboard__ = __webpack_require__(425);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_keyboard__ = __webpack_require__(422);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3141,7 +3131,7 @@ var SliderPage = (function () {
 }());
 SliderPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-slider',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-slider/page-slider.html"*/'<!-- <ion-header no-shadow>\n  <ion-navbar>\n    <button class="btn-green" (click)="signUp()">Get Started</button>\n    <button class="btn-green-out" (click)="signIn()">Sign In</button>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content no-bounce class="page-slider text-center">\n  <ion-slides pager="true" (ionSlideNextStart)="onSlideNext($event)">\n    <ion-slide>\n      <img class="logo" src="assets/images/logo.png" alt="GoPage Logo">\n      <img class="slider-img main-image" src="assets/images/owner-main-image.png" alt="Business Owner Main Image">\n      <p class="main-title">Drive Traffic &amp; Engage Your <br>Customers With The GoPage <br>Platform</p>\n    </ion-slide>\n\n    <ion-slide>\n      <img class="logo" src="assets/images/logo.png" alt="GoPage Logo">\n\n      <img class="slider-img" src="assets/images/owner-iphone-messages.png" alt="">\n      <p class="subtitle">\n        Communicate in real time with your <br>customers. Target certain customers for <br>products or services you already know <br>they love.\n      </p>\n    </ion-slide>\n\n    <ion-slide>\n      <img class="logo" src="assets/images/logo.png" alt="GoPage Logo">\n\n      <img class="slider-img" src="assets/images/owner-iphone-qrcode.png" alt="">\n      <p class="subtitle">\n        Our digital punch card system allows you to <br>engage and reward your loyal customers, <br>directly impacting traffic, driving sales and <br>profitability.\n    </ion-slide>\n\n    <ion-slide>\n      <img class="logo" src="assets/images/logo.png" alt="GoPage Logo">\n\n      <img class="slider-img" src="assets/images/owner-iphone-deals.png" alt="">\n      <p class="subtitle">\n        GoPage technology allows you to <br>easily create and deliver deals and<br> specials to customers in your area.\n      </p>\n    </ion-slide>\n\n    <ion-slide>\n    </ion-slide>\n  </ion-slides>\n  <!-- <button class="btn-slider btn-green" (click)="signUp()">Get Started</button> -->\n  <button class="btn-slider btn-green-out" (click)="signIn()">Sign In</button>\n</ion-content>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-slider/page-slider.html"*/
+        selector: 'page-slider',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-slider\page-slider.html"*/'<!-- <ion-header no-shadow>\n\n  <ion-navbar>\n\n    <button class="btn-green" (click)="signUp()">Get Started</button>\n\n    <button class="btn-green-out" (click)="signIn()">Sign In</button>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n\n\n<ion-content no-bounce class="page-slider text-center">\n\n  <ion-slides pager="true" (ionSlideNextStart)="onSlideNext($event)">\n\n    <ion-slide>\n\n      <img class="logo" src="assets/images/logo.png" alt="GoPage Logo">\n\n      <img class="slider-img main-image" src="assets/images/owner-main-image.png" alt="Business Owner Main Image">\n\n      <p class="main-title">Drive Traffic &amp; Engage Your <br>Customers With The GoPage <br>Platform</p>\n\n    </ion-slide>\n\n\n\n    <ion-slide>\n\n      <img class="logo" src="assets/images/logo.png" alt="GoPage Logo">\n\n\n\n      <img class="slider-img" src="assets/images/owner-iphone-messages.png" alt="">\n\n      <p class="subtitle">\n\n        Communicate in real time with your <br>customers. Target certain customers for <br>products or services you already know <br>they love.\n\n      </p>\n\n    </ion-slide>\n\n\n\n    <ion-slide>\n\n      <img class="logo" src="assets/images/logo.png" alt="GoPage Logo">\n\n\n\n      <img class="slider-img" src="assets/images/owner-iphone-qrcode.png" alt="">\n\n      <p class="subtitle">\n\n        Our digital punch card system allows you to <br>engage and reward your loyal customers, <br>directly impacting traffic, driving sales and <br>profitability.\n\n    </ion-slide>\n\n\n\n    <ion-slide>\n\n      <img class="logo" src="assets/images/logo.png" alt="GoPage Logo">\n\n\n\n      <img class="slider-img" src="assets/images/owner-iphone-deals.png" alt="">\n\n      <p class="subtitle">\n\n        GoPage technology allows you to <br>easily create and deliver deals and<br> specials to customers in your area.\n\n      </p>\n\n    </ion-slide>\n\n\n\n    <ion-slide>\n\n    </ion-slide>\n\n  </ion-slides>\n\n  <!-- <button class="btn-slider btn-green" (click)="signUp()">Get Started</button> -->\n\n  <button class="btn-slider btn-green-out" (click)="signIn()">Sign In</button>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-slider\page-slider.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
 ], SliderPage);
@@ -3327,7 +3317,7 @@ var SignupPage = (function () {
 }());
 SignupPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-signup',template:/*ion-inline-start:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-signup/page-signup.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Login</ion-title>\n  </ion-navbar>\n</ion-header> -->\n<ion-content padding>\n  <ion-card *ngIf="userData">\n    <ion-card-header>{{ userData.email }}</ion-card-header>\n  </ion-card>\n\n  <p class="title">\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" (click)="goBack()">Sign Up\n  </p>\n  <button class="btn login-fb" (click)="fbConnect()"><span class="fa fa-facebook"></span> Continue with Facebook</button>\n  <button class="btn login-google" (click)="gpConnect()"><span class="fa fa-google"></span> Continue with Google</button>\n  <div class="divider">\n    <span>Or sign up with email</span>\n  </div>\n  <form class="form-signup">\n    <label>\n      <input type="text" name="first_name" placeholder="First name" [(ngModel)]="posts.first_name" />\n      <span class="text-validate">First name is required.</span>\n    </label>\n    <label>\n      <input type="text" name="last_name" placeholder="Last name" [(ngModel)]="posts.last_name" />\n      <span class="text-validate">Last name is required.</span>\n    </label>\n    <label>\n      <input type="text" name="username" placeholder="Username" [(ngModel)]="posts.username" />\n      <span class="text-validate">Username is required.</span>\n    </label>\n    <label>\n      <input type="email" name="email" placeholder="Email address" [(ngModel)]="posts.email" />\n      <span class="text-validate">Email address is required.</span>\n    </label>\n    <label>\n      <input type="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" [(ngModel)]="posts.password" />\n      <span class="btn-show">SHOW</span><span class="text-validate">Password is required.</span>\n    </label>\n    <input class="btn-green" type="submit" value="Sign Up" (click)="signMeUp()" />\n  </form>\n  <p class="description">By signing up, you agree to GoPage\'s <br><a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a></p>\n</ion-content>\n'/*ion-inline-end:"/home/fullstack/Documents/node/gopage/merge/business-app/src/pages/page-signup/page-signup.html"*/
+        selector: 'page-signup',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-signup\page-signup.html"*/'<!-- <ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Login</ion-title>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n<ion-content padding>\n\n  <ion-card *ngIf="userData">\n\n    <ion-card-header>{{ userData.email }}</ion-card-header>\n\n  </ion-card>\n\n\n\n  <p class="title">\n\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" (click)="goBack()">Sign Up\n\n  </p>\n\n  <button class="btn login-fb" (click)="fbConnect()"><span class="fa fa-facebook"></span> Continue with Facebook</button>\n\n  <button class="btn login-google" (click)="gpConnect()"><span class="fa fa-google"></span> Continue with Google</button>\n\n  <div class="divider">\n\n    <span>Or sign up with email</span>\n\n  </div>\n\n  <form class="form-signup">\n\n    <label>\n\n      <input type="text" name="first_name" placeholder="First name" [(ngModel)]="posts.first_name" />\n\n      <span class="text-validate">First name is required.</span>\n\n    </label>\n\n    <label>\n\n      <input type="text" name="last_name" placeholder="Last name" [(ngModel)]="posts.last_name" />\n\n      <span class="text-validate">Last name is required.</span>\n\n    </label>\n\n    <label>\n\n      <input type="text" name="username" placeholder="Username" [(ngModel)]="posts.username" />\n\n      <span class="text-validate">Username is required.</span>\n\n    </label>\n\n    <label>\n\n      <input type="email" name="email" placeholder="Email address" [(ngModel)]="posts.email" />\n\n      <span class="text-validate">Email address is required.</span>\n\n    </label>\n\n    <label>\n\n      <input type="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" [(ngModel)]="posts.password" />\n\n      <span class="btn-show">SHOW</span><span class="text-validate">Password is required.</span>\n\n    </label>\n\n    <input class="btn-green" type="submit" value="Sign Up" (click)="signMeUp()" />\n\n  </form>\n\n  <p class="description">By signing up, you agree to GoPage\'s <br><a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a></p>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-signup\page-signup.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */],
@@ -3349,11 +3339,11 @@ SignupPage = __decorate([
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__database_service__ = __webpack_require__(149);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_2__database_service__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model__ = __webpack_require__(482);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model__ = __webpack_require__(479);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_3__model__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_service__ = __webpack_require__(261);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_4__util_service__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__socket_service__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__socket_service__ = __webpack_require__(378);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_5__socket_service__["a"]; });
 
 
@@ -3370,13 +3360,15 @@ SignupPage = __decorate([
 
 "use strict";
 var config = {
-    baseUrl: 'https://gopage-api.herokuapp.com/',
+    // baseUrl : 'https://gopage-api.herokuapp.com/',
     ChatBaseUrl: 'https://chat-gopage-server-api.herokuapp.com/',
+    // ChatBaseUrl : 'http://localhost:3001/',
+    baseUrl: 'http://localhost:5015/'
 };
 /* harmony default export */ __webpack_exports__["a"] = (config);
 //# sourceMappingURL=config.js.map
 
 /***/ })
 
-},[430]);
+},[427]);
 //# sourceMappingURL=main.js.map
