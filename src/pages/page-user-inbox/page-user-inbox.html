@@ -13,19 +13,30 @@
 
       <ion-item *ngFor="let member of membersList;" tappable (click)="viewMessage(member.user_id[0],member.business_id[0])">
 
-        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && member.user_id[0].first_name"> {{member.user_id[0].first_name}} {{member.user_id[0].last_name}}</span>
+        <span [ngClass]="[hasNewMsgUserId == member.business_id[0]._id ? 'name-new' : 'name']" *ngIf="member.user_id[0] && member.user_id[0].last_name && member.user_id[0].first_name"> {{member.user_id[0].first_name}} {{member.user_id[0].last_name}}</span>
 
-        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name && !member.user_id[0].last_name"> {{member.user_id[0].first_name}} </span>
+        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name && member.user_id[0].last_name == ' '"> {{member.user_id[0].first_name}} </span>
 
-        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && !member.user_id[0].first_name"> {{member.user_id[0].last_name}} </span>
+        <span class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && member.user_id[0].first_name == ' '"> {{member.user_id[0].last_name}} </span>
 
         <span class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name == ' ' && !member.user_id[0].last_name == ' ' "> {{ member.user_id[0].number }} </span>
 
         <span class="name" *ngIf="member.user_id && member.user_id.length == 0"> No Member Data </span>
+        
+        <!-- <div *ngFor="let message of messages;">
+
+          <p class="message" *ngIf="message"> {{ 'meron'  }}  </p>
+
+        </div> -->
 
         <!-- <button id="btn-message" ion-button [disabled]="member.user_id && member.user_id.length == 0" (click)="viewMessage(member.user_id[0],member.business_id[0])"> MESSAGE </button> -->
-
       </ion-item>
+
+      <!-- <div *ngFor="let message of messages;">
+
+        <p class="message" *ngIf="message"> {{ 'ewwwww'  }}  </p>
+
+      </div> -->
 
       <!-- <ion-item>
         <span class="name-new"> John Devera </span>

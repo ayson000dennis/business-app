@@ -30,7 +30,10 @@ export class UserChatPage {
 
   private memberDetail;
   private businessDetail;
+  // private chatList;
   hasData : boolean = false;
+  hasLeave : boolean = false;
+  hasNewMsg : boolean = false;
 
   pages: Array<{title: string, component: any}>;
 
@@ -45,8 +48,7 @@ export class UserChatPage {
 
     this.memberDetail = this.navParams.get("memberDetail");
     this.businessDetail = this.navParams.get("businessDetail");
-
-    console.log(this.businessDetail);
+    // this.chatList = this.navParams.get("chatList");
 
     this.btnEmitter = new EventEmitter<string>();
     this.messages = [];
@@ -60,27 +62,54 @@ export class UserChatPage {
   ionViewWillEnter() {
     var room_id = this.memberDetail._id + this.businessDetail._id;
 
-    // GET ALL MESSAGES FROM DATABASE
-    this.api.Message.fetch_chats(room_id).then(chats => {
-      this.messages = chats;
-
-          this.hasData = true;
-          $('body').find('.fa.loader').remove();
-          this.scrollToBottom();
-        }).catch((error) => {
-            console.log(error);
-        });
-
     this.socketService.connect();
     this.socketService.joinRoom(room_id);
+   }
+
+   ionViewDidLoad() {
+     this.fetchChats();
+   }
+
+  ionViewWillLeave() {
+    this.socketService.disconnect();
+    this.hasLeave = true;
   }
 
-  init() {
+  fetchChats() {
+    var room_id = this.memberDetail._id + this.businessDetail._id;
+
+    // GET ALL MESSAGES FROM DATABASE
+    this.api.Message.fetch_chats(room_id).then(chats => {
+      if(this.hasLeave){
+        return;
+      }
+
+      if(this.hasNewMsg && !this.hasData){
+        this.hasNewMsg = false;
+        return this.fetchChats();
+      }
+      console.log(chats);
+      this.messages = chats;
+      this.hasData = true;
+      console.log('Chats loaded')
+
+      $('body').find('.fa.loader').remove();
+      this.scrollToBottom();
+    }).catch((error) => {
+        console.log(error);
+    });
+
+  }
+
+  init(){
     // REAL TIME MESSAGE RESPONSE
     this.socketService.messages.subscribe((chatMessage: ChatMessage) => {
       this._zone.run(() => {
         this.messages.push(chatMessage);
       });
+
+      this.hasNewMsg = true;
+
      this.scrollToBottom();
     });
   }
@@ -101,10 +130,6 @@ export class UserChatPage {
     this.socketService.newRequest(UtilService.formatMessageRequest(user_id,business_id,company_name,message));
     this.chatBox = '';
     this.scrollToBottom();
-  }
-
-  ionViewWillLeave() {
-    this.socketService.disconnect();
   }
 
   scrollToBottom() {

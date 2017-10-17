@@ -2,10 +2,15 @@
   <ion-navbar>
     <!-- <img class="header-logo" src="assets/images/logo-min.png" alt="">
     <div class="holder-menu" (click)="showMenu()">Menu</div>
-    <a class="inbox"><img src="assets/images/icon-mail.png" alt="" /></a> -->
+    <a class="inbox"><img src="assets/images/icon-mail.png" alt="" /><span class="count-msg">1</span></a> -->
     <span class='title' *ngIf="memberDetail.first_name && memberDetail.last_name">{{ memberDetail.first_name }} {{ memberDetail.last_name }}</span>
 
-    <span class='title' *ngIf="!memberDetail.first_name && !memberDetail.last_name"> {{ memberDetail.number }}</span>
+    <span class='title' *ngIf="!memberDetail.first_name || memberDetail.first_name == ' ' && !memberDetail.last_name || memberDetail.last_name == ' ' "> {{ memberDetail.number }}</span>
+
+    <span class='title' *ngIf="!memberDetail.first_name || memberDetail.first_name == ' '"> {{ memberDetail.last_name }}</span>
+
+    <span class='title' *ngIf="!memberDetail.last_name || memberDetail.last_name == ' '"> {{ memberDetail.first_name }}</span>
+
   </ion-navbar>
 </ion-header>
 
@@ -23,7 +28,7 @@
   <span class="fa fa-spinner fa-spin loader"></span>
 </ion-content>
 
-<ion-footer *ngIf="hasData" no-border class="chatPageFooter" [keyboardAttach]="content" [btnClicked]="btnEmitter">
+<ion-footer no-border class="chatPageFooter" [keyboardAttach]="content" [btnClicked]="btnEmitter">
   <ion-toolbar>
 
     <ion-item no-lines >

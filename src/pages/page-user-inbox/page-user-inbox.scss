@@ -15,6 +15,13 @@ page-user-inbox {
     color: #a4c73a;
   }
 
+  .loader-chat {
+    position: absolute;
+
+    font-size: 11vw;
+    color: #a4c73a;
+  }
+
   #inbox-list {
 
     .item:first-child {
