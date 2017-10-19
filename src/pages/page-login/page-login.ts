@@ -90,9 +90,14 @@ export class LoginPage {
     }
 
     if (getUser && getPass) {
+      $('.form-login input').removeClass('has-error');
       this.http.post(baseUrl + 'api/users/login',this.posts).subscribe(res => {
         $('.btn-green[type="submit"]').find('.fa-spinner').remove();
-        this.getUser(res.json());
+        if (res.json().permission == '3') {
+          $('.form-login input[name="username"]').addClass('has-error').next('.text-validate').text('Invalid Email or Mobile number');
+        } else {
+          this.getUser(res.json());
+        }
       }, err => {
         $('.btn-green[type="submit"]').find('.fa-spinner').remove();
         $('.form-login label').each(function() {
@@ -132,13 +137,13 @@ export class LoginPage {
   }
 
   getUser(token){
-   this.api.Users.user(token.user_id).then(user =>{
+    this.api.Users.user(token.user_id).then(user =>{
       this.storage.set('user', user);
 
-       this.navCtrl.setRoot(UserScannerPage, {}, {
-            animate: true,
-            direction: 'forward'
-          });
+      this.navCtrl.setRoot(UserScannerPage, {}, {
+        animate: true,
+        direction: 'forward'
+      });
     })
   }
 }
