@@ -41,9 +41,7 @@ export class MyApp {
     public keyboard:Keyboard
   ) {
     platform.ready().then(() => {
-      if ($(window).width() < 768) {
-        this.screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
-      }
+      this.screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
     });
 
     this.initializeApp();
