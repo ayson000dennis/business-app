@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 
 import { MenuPage } from '../page-menu/page-menu';
+import { DashboardPage } from '../page-dashboard/page-dashboard';
 import { UserRegisterPage } from '../page-user-register/page-user-register';
 import { UserDealsPage } from '../page-user-deals/page-user-deals';
 import { UserInboxPage } from '../page-user-inbox/page-user-inbox';
@@ -24,20 +25,29 @@ export class UserScannerPage {
   phone : any;
   hasData : boolean = false;
   business : string[];
-  message :  string
+  message :  string;
+  areaCode : any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private barcodeScanner: BarcodeScanner,
     private api:ApiService,
-    private storage: Storage){
+    private storage: Storage,
+    public platform: Platform){
   }
 
   showMenu() {
     this.navCtrl.push(MenuPage, {
       animate: true,
       direction: 'forward'
+    });
+  }
+
+  goBack() {
+    this.navCtrl.setRoot(DashboardPage, {}, {
+      animate: true,
+      direction: 'back'
     });
   }
 
@@ -49,22 +59,45 @@ export class UserScannerPage {
   }
 
   ionViewWillEnter() {
+    this.areaCode = 1;
     this.storage.get('user').then(user => {
       this.user = user;
       this.hasData = true;
     });
   }
 
+  ionViewDidLoad() {
+    var self = this;
+    $('body').on('click', '.country-code, .country-dropdown-val', function() {
+      $(this).closest('.holder-country-code').toggleClass('showDropdown');
+      console.log('yes');
+
+      if ($(this).hasClass('country-dropdown-val')) {
+        var getImg = $(this).find('img').attr('src');
+        self.areaCode = $(this).data('area');
+
+        $(this).parent('.country-dropdown').siblings('.country-code').find('img').attr('src', getImg);
+      }
+    });
+  }
+
+  ionViewWillLeave() {
+    $('body').off('click', '.country-code, .country-dropdown-val');
+  }
+
   SubmitNumber() {
-    var mobileRegex = /^[0-9]{10,12}$/;
+    var mobileRegex = /^[0-9]{10}$/;
 
     if (this.phone) {
       if (mobileRegex.test(this.phone) == true) {
-        if (this.phone.toString().length == 10) {
-          this.phone = "+1" + this.phone;
-        } else {
-          this.phone = "+" + this.phone;
-        }
+        this.phone = "+" + this.areaCode + this.phone;
+
+        // console.log(this.phone);
+        // if (this.phone.toString().length == 10) {
+        //   this.phone = "+1" + this.phone;
+        // } else {
+        //   this.phone = "+" + this.phone;
+        // }
 
         $('input[name="number"]').removeClass('has-error').siblings('.text-validate').text('');
         $('.btn-orange[type="submit"]').append('<span class="fa fa-spinner fa-spin"></span>');

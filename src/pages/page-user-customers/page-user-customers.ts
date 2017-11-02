@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Http }  from '@angular/http'
 
 import { MenuPage } from '../page-menu/page-menu';
+import { DashboardPage } from '../page-dashboard/page-dashboard';
 import { UserInboxPage } from '../page-user-inbox/page-user-inbox';
 import { UserAddCustomerPage } from '../page-user-add-customer/page-user-add-customer';
 import { UserEditCustomerPage } from '../page-user-edit-customer/page-user-edit-customer';
@@ -28,6 +29,7 @@ export class UserCustomersPage {
   thisLName: any;
   page: any;
   page_size: any;
+  newCustomerList = [];
 
   constructor(
     public navCtrl: NavController,
@@ -42,6 +44,13 @@ export class UserCustomersPage {
     this.navCtrl.push(MenuPage, {
       animate: true,
       direction: 'forward'
+    });
+  }
+
+  goBack() {
+    this.navCtrl.setRoot(DashboardPage, {}, {
+      animate: true,
+      direction: 'back'
     });
   }
 
@@ -140,9 +149,14 @@ export class UserCustomersPage {
         }
       self.storage.get('user').then(user => {
         self.user = user;
+
         self.api.BusinessOwner.list(user.shop_id[0], page, page_size).then(users => {
+
           self.customersList = users.docs;
+          // self.newCustomerList.push(users.docs)
           self.hasData = true;
+
+          console.log(self.newCustomerList);
 
           $('body').find('.fa.loader').remove();
 

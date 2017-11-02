@@ -1,4 +1,47 @@
 page-user-customers {
+  ion-header {
+    ion-navbar {
+      .toolbar {
+        &.statusbar-padding {
+          &:first-child {
+            padding-top: 35px !important;
+          }
+        }
+      }
+
+      .back-button {
+        display: none !important;
+      }
+
+      i.fa {
+        position: absolute;
+        top: 20px;
+        font-size: 30px;
+        color: #b1b1b1 !important;
+
+        cursor: pointer;
+      }
+
+      .page-title {
+        display: flex;
+        justify-content: center;
+        margin-top: -5px;
+
+        font-family: "Raleway SemiBold";
+        font-size: 18px;
+        color: #757575;
+      }
+
+      &.toolbar-ios {
+        .toolbar-content-ios {
+          i {
+            top: 24px;
+          }
+        }
+      }
+    }
+  }
+
   .title {
     margin-bottom: 15px;
 

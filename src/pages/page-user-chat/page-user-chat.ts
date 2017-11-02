@@ -1,6 +1,7 @@
 import { NavController,NavParams } from 'ionic-angular';
 import { LoginPage } from '../page-login/page-login';
 import { MenuPage } from '../page-menu/page-menu';
+import { UserInboxPage } from '../page-user-inbox/page-user-inbox';
 
 import { Storage } from '@ionic/storage';
 
@@ -24,16 +25,18 @@ export class UserChatPage {
   @ViewChild('txtChat') txtChat: any;
   @ViewChild('content') content: any;
   messages: any[];
+  membersList: string[];
   chatBox: string;
+  room_id: string;
   btnEmitter: EventEmitter<string>;
   user: string[];
 
   private memberDetail;
   private businessDetail;
-  // private chatList;
   hasData : boolean = false;
   hasLeave : boolean = false;
-  hasNewMsg : boolean = false;
+  isRefetch : boolean = false;
+  message_by : string;
 
   pages: Array<{title: string, component: any}>;
 
@@ -53,64 +56,94 @@ export class UserChatPage {
     this.btnEmitter = new EventEmitter<string>();
     this.messages = [];
     this.chatBox = "";
+    this.room_id = this.memberDetail._id + this.businessDetail._id
     this.init();
 
     // console.log(this.memberDetail);
     // console.log(this.businessDetail);
   }
 
-  ionViewWillEnter() {
-    var room_id = this.memberDetail._id + this.businessDetail._id;
-
+   ionViewWillEnter() {
     this.socketService.connect();
-    this.socketService.joinRoom(room_id);
+    this.socketService.joinRoom(this.room_id);
+
+    this.fetchChats();
+    this.updateRead();
    }
 
    ionViewDidLoad() {
-     this.fetchChats();
+
    }
 
   ionViewWillLeave() {
     this.socketService.disconnect();
     this.hasLeave = true;
+    this.hasData = false;
   }
 
   fetchChats() {
-    var room_id = this.memberDetail._id + this.businessDetail._id;
 
     // GET ALL MESSAGES FROM DATABASE
-    this.api.Message.fetch_chats(room_id).then(chats => {
+    this.api.Message.fetch_chats(this.room_id).then(chats => {
+      console.log('fetching chats...');
+
       if(this.hasLeave){
         return;
       }
 
-      if(this.hasNewMsg && !this.hasData){
-        this.hasNewMsg = false;
-        return this.fetchChats();
-      }
-      console.log(chats);
-      this.messages = chats;
-      this.hasData = true;
-      console.log('Chats loaded')
+      // if(this.message_by === 'member' && !this.hasData) {
+      //   this.message_by = '';
+      //   console.log('load again')
+      //   return this.fetchChats();
+      // }
 
-      $('body').find('.fa.loader').remove();
-      this.scrollToBottom();
+      if(!this.isRefetch) {
+
+        this.isRefetch = true;
+
+        console.log('Refetching inbox data...');
+
+        return this.fetchChats();
+      } else {
+
+        this.messages = chats;
+
+        this.hasData = true;
+
+        this.scrollToBottom();
+
+        $('body').find('.fa.loader').remove();
+
+        console.log('Inbox data loaded');
+      }
+
     }).catch((error) => {
         console.log(error);
     });
+  }
 
+  updateRead(){
+    this.api.Message.update_read(this.room_id,'member').then(update => {
+      console.log('is_read updated');
+    });
   }
 
   init(){
     // REAL TIME MESSAGE RESPONSE
     this.socketService.messages.subscribe((chatMessage: ChatMessage) => {
+
+      this.message_by = chatMessage.message_by;
+
       this._zone.run(() => {
+
+        // this.fetchChats();
+
         this.messages.push(chatMessage);
+        this.scrollToBottom();
+        this.updateRead();
+
       });
 
-      this.hasNewMsg = true;
-
-     this.scrollToBottom();
     });
   }
 
@@ -140,10 +173,10 @@ export class UserChatPage {
     });
   }
 
-  showMenu() {
-    this.navCtrl.push(MenuPage, {
+  goToInbox() {
+    this.navCtrl.setRoot(UserInboxPage, {
       animate: true,
-      direction: 'forward'
+      direction: 'back'
     });
   }
 

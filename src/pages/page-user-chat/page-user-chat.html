@@ -1,5 +1,8 @@
 <ion-header>
   <ion-navbar>
+    <button class="back-btn-new" (click)="goToInbox()">
+       <i class="fa fa-angle-left" aria-hidden="true"></i>
+    </button>
     <!-- <img class="header-logo" src="assets/images/logo-min.png" alt="">
     <div class="holder-menu" (click)="showMenu()">Menu</div>
     <a class="inbox"><img src="assets/images/icon-mail.png" alt="" /><span class="count-msg">1</span></a> -->
@@ -28,7 +31,7 @@
   <span class="fa fa-spinner fa-spin loader"></span>
 </ion-content>
 
-<ion-footer no-border class="chatPageFooter" [keyboardAttach]="content" [btnClicked]="btnEmitter">
+<ion-footer *ngIf="hasData" no-border class="chatPageFooter" [keyboardAttach]="content" [btnClicked]="btnEmitter">
   <ion-toolbar>
 
     <ion-item no-lines >

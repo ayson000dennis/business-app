@@ -7,6 +7,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { SliderPage } from '../page-slider/page-slider';
 import { SignupPage } from '../page-signup/page-signup';
 import { ResetPassPage } from '../page-reset-pass/page-reset-pass';
+import { DashboardPage } from '../page-dashboard/page-dashboard';
 import { UserScannerPage } from '../page-user-scanner/page-user-scanner';
 import { ApiService } from '../../service/api.service.component';
 import { Storage } from '@ionic/storage';
@@ -140,7 +141,8 @@ export class LoginPage {
     this.api.Users.user(token.user_id).then(user =>{
       this.storage.set('user', user);
       console.log(user);
-      this.navCtrl.setRoot(UserScannerPage, {}, {
+      //this.navCtrl.setRoot(UserScannerPage, {}, {
+      this.navCtrl.setRoot(DashboardPage, {}, {
         animate: true,
         direction: 'forward'
       });

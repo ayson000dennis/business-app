@@ -8,6 +8,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
 
 import { SliderPage } from '../pages/page-slider/page-slider';
 import { LoginPage } from '../pages/page-login/page-login';
+import { DashboardPage } from '../pages/page-dashboard/page-dashboard';
+import { SettingsPage } from '../pages/page-settings/page-settings';
 import { ResetPassPage } from '../pages/page-reset-pass/page-reset-pass';
 import { ResetPassSuccessPage } from '../pages/page-reset-pass-success/page-reset-pass-success';
 import { SignupPage } from '../pages/page-signup/page-signup';
@@ -43,6 +45,8 @@ import {KeyboardAttachDirective} from "../directives";
     MyApp,
     SliderPage,
     LoginPage,
+    DashboardPage,
+    SettingsPage,
     ResetPassPage,
     ResetPassSuccessPage,
     SignupPage,
@@ -73,6 +77,8 @@ import {KeyboardAttachDirective} from "../directives";
     MyApp,
     SliderPage,
     LoginPage,
+    DashboardPage,
+    SettingsPage,
     ResetPassPage,
     ResetPassSuccessPage,
     SignupPage,

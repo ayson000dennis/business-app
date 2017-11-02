@@ -1,0 +1,135 @@
+page-dashboard {
+  ion-header + ion-content > div.scroll-content {
+    padding-top: 30px !important;
+    overflow: hidden;
+  }
+
+  ion-header {
+    ion-navbar {
+      .business-icon {
+        position: absolute;
+        top: 19px;
+        left: 73px;
+        height: 2.7vh !important;
+      }
+
+      .name {
+        display: flex;
+        align-items: center;
+
+        position: relative;
+        top: 0;
+        float: right;
+        margin-right: 13px;
+
+        font-family: "Raleway SemiBold";
+        font-size: 17px;
+        color: #444;
+        text-transform: capitalize;
+
+        .fa-stack {
+          display: flex;
+          align-items: center;
+
+          .fa-square {
+            font-size: 25px;
+          }
+
+          .fa-stack-1x {
+            font-family: 'Arial';
+            font-size: 13px;
+          }
+
+          &.has-notif {
+            .fa-square {
+              color: #f59120;
+            }
+
+            .fa-stack-1x {
+              color: #fff;
+            }
+          }
+
+          &.no-notif {
+            .fa-square {
+              color: #e0e0e0;
+            }
+
+            .fa-stack {
+              color: #444;
+            }
+          }
+        }
+      }
+
+      &.toolbar-ios {
+        .toolbar-content-ios {
+          .business-icon {
+            top: 30px;
+          }
+        }
+      }
+
+      &.toolbar-md {
+        .toolbar-content-md {
+          .business-icon {
+            top: 22px;
+          }
+        }
+      }
+    }
+
+    .toolbar {
+      &.statusbar-padding {
+        &:first-child {
+          padding-top: 35px !important;
+        }
+      }
+    }
+  }
+
+  .dashboard-menu {
+    .col {
+      display: inline-flex;
+      width: 50%;
+
+      ion-card {
+        &.card-md,
+        &.card-ios {
+          background-color: #fbfdfd;
+          border: 1px solid #dbdbdb;
+          box-shadow: none;
+          -webkit-box-shadow: none;
+          -moz-webkit-box-shadow: none;
+
+          cursor: pointer;
+
+          img {
+            margin: 25px auto;
+
+            height: 50px;
+            width: auto;
+          }
+
+          ion-card-content {
+            &.card-content-md,
+            &.card-content-ios {
+              padding: 5px;
+
+              background-color: #a4c73a;
+
+              ion-card-title {
+                &.card-title-ios,
+                &.card-title-md {
+                  font-size: 1.7rem;
+                  color: #fff;
+                  text-align: center;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

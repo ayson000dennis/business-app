@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar>
+    <img class="header-logo" src="assets/images/logo-min.png" alt="GoPage Logo">
+    <img class="business-icon" src="assets/icon/for-business.png" alt="For Business">
+    <span class="name">
+      <span class="fa-stack has-notif"  (click)="ToInbox()">
+        <i class="fa fa-square fa-stack-2x"></i>
+        <span class="fa fa-stack-1x" *ngIf="!hasNotify">0</span>
+        <span class="fa fa-stack-1x" *ngIf="hasNotify">{{ notifCount }}</span>
+      </span>
+      Hi, {{firstname}}
+    </span>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="container dashboard-menu">
+    <div class="row">
+      <div class="col">
+        <ion-card (click)="ToScanner()">
+          <img src="assets/icon/scanner.png"/>
+          <ion-card-content>
+            <ion-card-title>
+              Scanner
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <div class="col">
+        <ion-card (click)="ToCustomers()">
+          <img src="assets/icon/customers.png"/>
+          <ion-card-content>
+            <ion-card-title>
+              Customers
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <ion-card (click)="ToInbox()">
+          <img src="assets/icon/inbox.png"/>
+          <ion-card-content>
+            <ion-card-title>
+              Inbox
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <div class="col">
+        <ion-card (click)="ToSettings()">
+          <img src="assets/icon/settings.png"/>
+          <ion-card-content>
+            <ion-card-title>
+              Settings
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

@@ -27,8 +27,8 @@ export class ApiService {
           return response.json();
       }).toPromise();
     },
-    user_add: (firstName: string, lastName: string, phone: string, email: string, password: string, ownerId: string) => {
-      return this.http.post(Config.baseUrl + "api/users/add/", {first_name: firstName, last_name: lastName, number: phone, email: email, password: password, permission: '3', account_type: '1', status: '1', owner_id: ownerId}).map(response => {
+    user_add: (firstName: string, lastName: string, phone: string, email: string, password: string, ownerId: string,permission : string,business_id : string) => {
+      return this.http.post(Config.baseUrl + "api/users/add?permission=" + permission + '&business_id=' + business_id, {first_name: firstName, last_name: lastName, number: phone, email: email, password: password, permission: '3', account_type: '1', status: '1', owner_id: ownerId  }).map(response => {
           return response.json();
       }).toPromise();
     },
@@ -60,6 +60,7 @@ export class ApiService {
         return response.json();
       }).toPromise();
     }
+
   }
 
   Deals = {
@@ -92,6 +93,11 @@ export class ApiService {
       return this.http.get(Config.baseUrl + "api/business_owners/customer/list/" + businessId + "/?page=" + page + "&page_size=" + page_size).map(response => {
         return response.json();
       }).toPromise();
+    },
+    favorite_list: (business_id) => {
+      return this.http.get(Config.baseUrl + "api/favorites/list/" + business_id).map(response => {
+        return response.json();
+      }).toPromise();
     }
   }
   Message = {
@@ -100,8 +106,18 @@ export class ApiService {
         return response.json();
       }).toPromise();
     },
+    room_list: (shop_id: string) => {
+      return this.http.get(Config.baseUrl + "api/business_owners/rooms/" + shop_id, {}).map(response => {
+        return response.json();
+      }).toPromise();
+    },
+    update_read: (room_id: string, message_by: string) => {
+      return this.http.post(Config.ChatBaseUrl + "api/chats/update_read/" + room_id + "/" + message_by, {}).map(response => {
+        return response.json();
+      }).toPromise();
+    },
     fetch_chats: (room_id: string) => {
-      return this.http.get(Config.ChatBaseUrl + "api/inbox/members/" + room_id ).map(response => {
+      return this.http.get(Config.ChatBaseUrl + "api/chats/list/" + room_id ).map(response => {
         return response.json();
       }).toPromise();
     }

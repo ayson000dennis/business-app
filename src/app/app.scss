@@ -39,6 +39,12 @@ body {
       font-family: "Raleway Semibold";
     }
 
+    ion-header {
+      &.header-md::after {
+        background-image: none;
+      }
+    }
+
     ion-header + ion-content > .scroll-content {
       padding: 3vh 16px 0 !important;
 
@@ -49,10 +55,15 @@ body {
       padding: 21px 15px 13px;
       height: 62px;
 
-      border-bottom: 1px solid #f9f9f9;
+      // border-bottom: 1px solid #f9f9f9;
 
-      .toolbar-background-ios {
+      .toolbar-background-ios,
+      .toolbar-background-md {
         background-color: #fff;
+        border: none;
+        border-width: 0;
+        box-shadow: none;
+        -webkit-box-shadow: none;
       }
 
       .header-logo {
@@ -450,6 +461,16 @@ body {
         & ~ .text-validate {
           max-height: 16px;
         }
+      }
+
+      &[type="email"],
+      &[type="text"],
+      &[type="password"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        -webkit-focus-ring-color: none;
+        outline: none;
       }
 
       &[type="email"],

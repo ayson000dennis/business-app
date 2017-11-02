@@ -1,8 +1,7 @@
 <ion-header>
   <ion-navbar>
-    <img class="header-logo" src="assets/images/logo-min.png" alt="">
-    <div class="holder-menu" (click)="showMenu()">Menu</div>
-    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /></a>
+    <i class="fa fa-angle-left fa-lg" (click)="goBack()"></i>
+    <span class="page-title">Scanner</span>
   </ion-navbar>
 </ion-header>
 
@@ -14,9 +13,25 @@
   </div>
   <form class="form-mobile">
     <label>
+      <div class="holder-country-code">
+        <div class="country-code">
+          <img src="assets/images/icon-flag-us.jpg" alt=""/>
+          <span class="fa fa-caret-down"></span>
+        </div>
+        <ul class="country-dropdown">
+          <li class="country-dropdown-val" data-area="1">
+            <img src="assets/images/icon-flag-us.jpg" alt=""/><span class="country-name">U.S. </span><span class="country-area-code">(+1)</span>
+          </li>
+          <li class="country-dropdown-val" data-area="1">
+            <img src="assets/images/icon-flag-ca.jpg" alt=""/><span class="country-name">Canada </span><span class="country-area-code">(+1)</span>
+          </li>
+          <li class="country-dropdown-val" data-area="63">
+            <img src="assets/images/icon-flag-ph.jpg" alt=""/><span class="country-name">PH </span><span class="country-area-code">(+63)</span>
+          </li>
+        </ul>
+      </div>
       <input type="number" [(ngModel)]="phone" name="number" placeholder="Mobile number" />
       <span class="text-validate"></span>
-
     </label>
     <button class="btn btn-orange" (click)="SubmitNumber()" type="submit">Submit</button>
   </form>

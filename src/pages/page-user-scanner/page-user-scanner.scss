@@ -1,4 +1,47 @@
 page-user-scanner {
+  ion-header {
+    ion-navbar {
+      .toolbar {
+        &.statusbar-padding {
+          &:first-child {
+            padding-top: 35px !important;
+          }
+        }
+      }
+
+      .back-button {
+        display: none !important;
+      }
+
+      i.fa {
+        position: absolute;
+        top: 20px;
+        font-size: 30px;
+        color: #b1b1b1 !important;
+
+        cursor: pointer;
+      }
+
+      .page-title {
+        display: flex;
+        justify-content: center;
+        margin-top: -5px;
+
+        font-family: "Raleway SemiBold";
+        font-size: 18px;
+        color: #757575;
+      }
+
+      &.toolbar-ios {
+        .toolbar-content-ios {
+          i {
+            top: 24px;
+          }
+        }
+      }
+    }
+  }
+
   ion-header + ion-content > div.scroll-content {
     padding-top: 50px !important;
   }
@@ -13,5 +56,95 @@ page-user-scanner {
     margin-top: 15px;
 
     border-radius: 2px;
+  }
+
+  .holder-country-code {
+    position: relative;
+    z-index: 99999;
+
+    display: table;
+    width: 18%;
+    height: 51px;
+    overflow: hidden;
+
+    text-align: center;
+
+    &.showDropdown {
+      overflow: visible;
+
+      .country-code .fa {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
+    }
+
+    .country-code {
+      display: table-cell;
+      vertical-align: middle;
+
+      background-color: #d7d7d7;
+      border: 1px solid #d7d7d7;
+      border-radius: 3px 0 0 3px;
+
+      cursor: pointer;
+
+      .fa {
+        margin-left: 5px;
+      }
+    }
+
+    .country-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+
+      padding: 0;
+      margin: 0;
+      width: 125px;
+      list-style: none;
+
+      text-align: left;
+
+      background-color: #fff;
+      border: 1px solid #d7d7d7;
+
+      li {
+        padding: 10px;
+
+        font-size: 15px;
+        color: #484747;
+
+        cursor: pointer;
+
+        img {
+          margin-right: 5px;
+        }
+
+        .country-area-code {
+          color: #999;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: #c7e2f1;
+        }
+      }
+    }
+
+    & + input[name="number"] {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      width: 82.5% !important;
+
+      &.has-error {
+        border-radius: 0;
+      }
+    }
   }
 }

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, Slides } from 'ionic-angular';
 
 import { LoginPage } from '../page-login/page-login';
 import { SignupPage } from '../page-signup/page-signup';
@@ -12,8 +12,20 @@ import * as $ from 'jquery';
 })
 
 export class SliderPage {
+  swiper:any;
+  @ViewChild('slider') slider: Slides;
+  slidesOptions = { initialSlide: 0 }
+
   constructor(
     public navCtrl: NavController) {
+  }
+
+  slideNext(){
+    this.slider.slideNext();
+  }
+
+  slidePrev(){
+    this.slider.slidePrev();
   }
 
   signUp() {
@@ -32,7 +44,7 @@ export class SliderPage {
 
   onSlideNext(slider) {
     if (slider.isEnd()) {
-      $('.btn-green-out').trigger('click');
+      $('.btn-green').trigger('click');
     }
   }
 }

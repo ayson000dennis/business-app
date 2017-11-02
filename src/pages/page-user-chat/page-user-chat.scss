@@ -1,7 +1,5 @@
 page-user-chat {
 
-
-
   ion-navbar {
     border-bottom: 1px solid transparent;
 
@@ -14,7 +12,9 @@ page-user-chat {
     }
 
     .title {
-      font-size: 16px;
+      top: 11px;
+      left: 10px;
+      font-size: 14px;
       color: #565252;
       text-transform: capitalize;
     }
@@ -23,16 +23,32 @@ page-user-chat {
       text-align: center;
       margin-right: 25px;
     }
+
+    .show-back-button {
+      display: none !important;
+    }
+
+    .back-btn-new {
+      background-color: transparent;
+      float: left;
+      font-size: 32px;
+      color: #c8c7cc;
+      margin-left: -5px;
+      margin-bottom: 8px;
+    }
   }
 
   ion-header + ion-content > div.scroll-content {
     background-color: transparent !important;
+    padding-bottom: 60px !important;
   }
 
   #messages {
 
     .message {
       text-transform: none;
+      width: auto;
+      max-width: 150px;
     }
 
     .loader {
@@ -44,14 +60,13 @@ page-user-chat {
       color: #a4c73a;
     }
 
-
     .list .item:first-child, .list .item {
       width: 100%;
       text-align: left;
+      height: 100%;
     }
 
     ion-item {
-      height: 60px;
       background-color: transparent;
     }
   }
@@ -84,9 +99,5 @@ page-user-chat {
       letter-spacing: 1px;
     }
   }
-
-
-
-
 
 }

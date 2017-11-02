@@ -1,13 +1,14 @@
 import { Component,NgZone } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams } from 'ionic-angular';
 
 import { LoginPage } from '../page-login/page-login';
 import { MenuPage } from '../page-menu/page-menu';
-
+import { DashboardPage } from '../page-dashboard/page-dashboard';
 import { UserChatPage } from '../page-user-chat/page-user-chat';
+
 import { Storage } from '@ionic/storage';
 import { ApiService } from '../../service/api.service.component';
-
+import {UtilService} from "../../providers/util.service";
 // Chat
 import {SocketService} from "../../providers";
 
@@ -25,105 +26,161 @@ export class UserInboxPage {
   pages: Array<{title: string, component: any}>;
   membersList: string[];
   user: string[];
-  hasData: boolean = false;
   hasNotify : boolean = false;
-  hasLeave : boolean = false;
-  hasStartChatId : string;
-  hasNewMsgUserId : string;
+  hasNoData : boolean = false;
+  // hasNotify2 : boolean = false;
+  // hasNotifyDone : boolean = false;
+  isRefetch : boolean = false;
+  inInbox : boolean = true;
   messages : string[];
+  room_id : string;
+  msg_business_id : string;
 
   constructor(
     public navCtrl: NavController,
     private storage: Storage,
+    public navParams: NavParams,
     public api: ApiService,
     public _zone: NgZone,
     public socketService: SocketService) {
-    this.initNotification();
+    this.init();
   }
 
   ionViewWillEnter() {
     this.socketService.connect();
+    this.fetchInboxData();
   }
 
   ionViewDidLoad() {
-
-    // Display all members
-    this.storage.get('user').then(user =>{
-      this.user = user;
-
-      this.api.Message.member_list(user.shop_id[0]).then(members => {
-        this.membersList = members;
-        // console.log(members)
-
-        this.hasData = true;
-        this.socketService.connect();
-        $('body').find('.fa.loader').remove();
-
-        // members.forEach((member_each) => {
-        //
-        //   // console.log(member_each);
-        //
-        //   var room_id = member_each.user_id[0]._id + member_each.business_id[0]._id;
-        //   // console.log(room_id)
-        //
-        //   // GET ALL MESSAGES FROM DATABASE
-        //   this.api.Message.fetch_last_chat(room_id).then(chats => {
-        //     // if(this.hasLeave){
-        //     //   return;
-        //     // }
-        //
-        //     // this.messages.push(chats);
-        //
-        //     this.messages = chats;
-        //     // console.log(chats)
-        //
-        //   }).catch((error) => {
-        //       console.log(error);
-        //   });
-        //
-        //   if(member_each.user_id[0]._id || member_each.business[0]._id) {
-        //
-        //   } else {
-        //     console.log('Business owner Id '+ member_each._id + ' has no member/business data')
-        //   }
-        //
-        // });
-
-      }).catch((error) => {
-          console.log(error);
-      });
-
-    });
-
+    
   }
 
   ionViewWillLeave() {
     this.socketService.disconnect();
-    this.hasLeave = true;
-    this.hasData = false;
+    this.inInbox = false;
   }
 
-  initNotification() {
+fetchInboxData() {
+    // Display all members
+    this.storage.get('user').then(user =>{
+      this.user = user;
+
+      if(user.shop_id[0]) {
+        this.api.Message.room_list(user.shop_id[0]).then(members => {
+          console.log('Inbox data fetching....');
+
+          // console.log(members);
+
+          if(members.length) {
+            var withChats = [],
+              noChats = [];
+
+            for (var x = 0; x < members.length; x++) {
+              if (members[x].last_chat.length > 0) {
+                withChats.push(members[x]);
+              } else {
+                noChats.push(members[x]);
+              }
+            }
+
+            var chatsSort = withChats.sort(function(a, b){
+                return b.last_chat[0].epoch - a.last_chat[0].epoch;
+            });
+
+            var newChats = withChats;
+
+            noChats.forEach(function(res) {
+              newChats.push(res);
+            });
+
+            if(!this.isRefetch) {
+
+              this.isRefetch = true;
+
+              console.log('Refetching inbox data...');
+
+              return this.fetchInboxData();
+            } else {
+
+              this.membersList = newChats;
+
+              console.log(members)
+              $('body').find('.fa.loader').remove();
+
+              console.log('Inbox data loaded');
+            }
+          } else
+          {
+            this.hasNoData = true;
+            $('body').find('.fa.loader').remove();
+          }
+
+          // if(!this.hasNotify && this.hasNotify2 && !this.hasNotifyDone) {
+          //   this.hasNotify = true;
+          //   return this.fetchInboxData();
+          // }
+          //
+          // if(this.hasNotify && !this.hasNotify2) {
+          //   this.hasNotify = false;
+          //   this.hasNotify2 = true;
+          //   return this.fetchInboxData();
+          // }
+
+          // if(this.msg_business_id && !this.hasData && this.hasNotify) {
+          //   this.msg_business_id = '';
+          //   console.log('Refetching inbox data...');
+          //   return this.fetchInboxData();
+          // }
+
+        }).catch((error) => {
+            console.log(error);
+        });
+      } else {
+        this.hasNoData = true;
+        $('body').find('.fa.loader').remove();
+      }
+
+    });
+  }
+
+  init() {
     // Get real time message notification
     this.socketService.notify.subscribe((chatNotification) => {
-      // console.log(chatNotification)
       console.log('Notif from member');
 
-      this._zone.run(() => {
+      this.msg_business_id = chatNotification.business_id;
 
+      this._zone.run(() => {
         this.storage.get('user').then(user =>{
 
-          // if(chatNotification.business_id == user.shop_id[0]) {
-          //     this.hasNotify = true;
-          //     this.hasNewMsgUserId = chatNotification.user_id;
-          // }
+          if(chatNotification.business_id == user.shop_id[0]) {
+            this.hasNotify = true;
+          }
+
+          if(this.inInbox){
+             this.fetchInboxData();
+          }
 
         }).catch((error) => {
             console.log(error);
         });
 
       });
+
     });
+ }
+
+  formatEpoch(epoch) {
+    return UtilService.getCalendarDay(epoch);
+  }
+
+  viewMessage(memberDetail,businessDetail) {
+      this.navCtrl.push(UserChatPage, {
+        animate: true,
+        direction: 'forward',
+        "memberDetail": memberDetail,
+        "businessDetail" : businessDetail
+      });
   }
 
   showMenu() {
@@ -133,18 +190,41 @@ export class UserInboxPage {
     });
   }
 
-  viewMessage(memberDetail,businessDetail) {
 
-      this.navCtrl.push(UserChatPage, {
+    goBack() {
+      this.navCtrl.setRoot(DashboardPage, {}, {
         animate: true,
-        direction: 'forward',
-        "memberDetail": memberDetail,
-        "businessDetail" : businessDetail
+        direction: 'back'
       });
+    }
 
-  }
-
-  data(user_id,business_id){
-    console.log(user_id + business_id)
-  }
 }
+
+// FETCH DATA INBOX excess
+// console.log(room)
+// this.api.Message.members_room(room).then(members => {
+//   console.log(members)
+// }).catch((error) => {
+//     console.log(error);
+// });
+
+// members.forEach((member) => {
+//   var room_id = member.user_id[0]._id + member.business_id[0]._id;
+//
+//     this.api.Message.fetch_last_chat(room_id).then(last_msg => {
+//
+//       if(last_msg.length != 0){
+//         if(room_id == last_msg[0].room_id) {
+//           member.last_chat =last_msg[0]
+//         }
+//       }
+//     }).catch((error) => {
+//         console.log(error);
+//     });
+// })
+
+//   if(member_each.user_id[0]._id || member_each.business[0]._id) {
+//
+//   } else {
+//     console.log('Business owner Id '+ member_each._id + ' has no member/business data')
+//   }

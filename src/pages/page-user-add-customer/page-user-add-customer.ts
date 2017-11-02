@@ -23,6 +23,8 @@ export class UserAddCustomerPage {
     email: '',
     password : ''
   }
+  permission : any
+  business_id : any
 
   constructor(
     public navCtrl: NavController,
@@ -42,13 +44,15 @@ export class UserAddCustomerPage {
   ionViewWillEnter() {
     this.storage.get('user').then(user => {
       this.id = user._id;
+      this.business_id = user.shop_id[0]
+      this.permission = user.permission
     });
   }
 
   addUser() {
     $('#add-user').append('<span class="fa fa-spinner fa-spin"></span>');
 
-    this.api.Users.user_add(this.posts.first_name, this.posts.last_name, '+' + this.posts.phone, this.posts.email, this.posts.password, this.id).then(res => {
+    this.api.Users.user_add(this.posts.first_name, this.posts.last_name, '+' + this.posts.phone, this.posts.email, this.posts.password, this.id,this.permission,this.business_id).then(res => {
       $('#add-user').find('.fa-spin').remove();
       $('#added-modal').fadeIn('250');
 

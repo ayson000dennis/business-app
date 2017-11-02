@@ -25223,6 +25223,10 @@ body ion-nav > * {
   font-family: "Raleway Semibold";
 }
 
+body ion-nav ion-header.header-md::after {
+  background-image: none;
+}
+
 body ion-nav ion-header + ion-content > .scroll-content {
   padding: 3vh 16px 0 !important;
   background-color: #fff !important;
@@ -25231,11 +25235,15 @@ body ion-nav ion-header + ion-content > .scroll-content {
 body ion-nav ion-navbar.toolbar {
   padding: 21px 15px 13px;
   height: 62px;
-  border-bottom: 1px solid #f9f9f9;
 }
 
-body ion-nav ion-navbar.toolbar .toolbar-background-ios {
+body ion-nav ion-navbar.toolbar .toolbar-background-ios,
+body ion-nav ion-navbar.toolbar .toolbar-background-md {
   background-color: #fff;
+  border: none;
+  border-width: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
 }
 
 body ion-nav ion-navbar.toolbar .header-logo {
@@ -25589,6 +25597,14 @@ body form input.has-error ~ .text-validate {
   max-height: 16px;
 }
 
+body form input[type="email"], body form input[type="text"], body form input[type="password"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-focus-ring-color: none;
+  outline: none;
+}
+
 body form input[type="email"], body form input[type="text"], body form input[type="number"] {
   font-family: 'Raleway Medium';
 }
@@ -25793,6 +25809,7 @@ chat-bubble .chat-bubble {
   padding: 8px;
   margin: -10px 12px;
   max-width: 50%;
+  margin-bottom: 0px;
 }
 
 chat-bubble .chat-bubble:before {
@@ -25864,6 +25881,119 @@ elastic-textarea ion-textarea {
   padding-top: 3px;
   margin-top: 4px;
   color: grey;
+}
+
+page-dashboard ion-header + ion-content > div.scroll-content {
+  padding-top: 30px !important;
+  overflow: hidden;
+}
+
+page-dashboard ion-header ion-navbar .business-icon {
+  position: absolute;
+  top: 19px;
+  left: 73px;
+  height: 2.7vh !important;
+}
+
+page-dashboard ion-header ion-navbar .name {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  top: 0;
+  float: right;
+  margin-right: 13px;
+  font-family: "Raleway SemiBold";
+  font-size: 17px;
+  color: #444;
+  text-transform: capitalize;
+}
+
+page-dashboard ion-header ion-navbar .name .fa-stack {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+page-dashboard ion-header ion-navbar .name .fa-stack .fa-square {
+  font-size: 25px;
+}
+
+page-dashboard ion-header ion-navbar .name .fa-stack .fa-stack-1x {
+  font-family: 'Arial';
+  font-size: 13px;
+}
+
+page-dashboard ion-header ion-navbar .name .fa-stack.has-notif .fa-square {
+  color: #f59120;
+}
+
+page-dashboard ion-header ion-navbar .name .fa-stack.has-notif .fa-stack-1x {
+  color: #fff;
+}
+
+page-dashboard ion-header ion-navbar .name .fa-stack.no-notif .fa-square {
+  color: #e0e0e0;
+}
+
+page-dashboard ion-header ion-navbar .name .fa-stack.no-notif .fa-stack {
+  color: #444;
+}
+
+page-dashboard ion-header ion-navbar.toolbar-ios .toolbar-content-ios .business-icon {
+  top: 30px;
+}
+
+page-dashboard ion-header ion-navbar.toolbar-md .toolbar-content-md .business-icon {
+  top: 22px;
+}
+
+page-dashboard ion-header .toolbar.statusbar-padding:first-child {
+  padding-top: 35px !important;
+}
+
+page-dashboard .dashboard-menu .col {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 50%;
+}
+
+page-dashboard .dashboard-menu .col ion-card.card-md, page-dashboard .dashboard-menu .col ion-card.card-ios {
+  background-color: #fbfdfd;
+  border: 1px solid #dbdbdb;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-webkit-box-shadow: none;
+  cursor: pointer;
+}
+
+page-dashboard .dashboard-menu .col ion-card.card-md img, page-dashboard .dashboard-menu .col ion-card.card-ios img {
+  margin: 25px auto;
+  height: 50px;
+  width: auto;
+}
+
+page-dashboard .dashboard-menu .col ion-card.card-md ion-card-content.card-content-md, page-dashboard .dashboard-menu .col ion-card.card-md ion-card-content.card-content-ios, page-dashboard .dashboard-menu .col ion-card.card-ios ion-card-content.card-content-md, page-dashboard .dashboard-menu .col ion-card.card-ios ion-card-content.card-content-ios {
+  padding: 5px;
+  background-color: #a4c73a;
+}
+
+page-dashboard .dashboard-menu .col ion-card.card-md ion-card-content.card-content-md ion-card-title.card-title-ios, page-dashboard .dashboard-menu .col ion-card.card-md ion-card-content.card-content-md ion-card-title.card-title-md, page-dashboard .dashboard-menu .col ion-card.card-md ion-card-content.card-content-ios ion-card-title.card-title-ios, page-dashboard .dashboard-menu .col ion-card.card-md ion-card-content.card-content-ios ion-card-title.card-title-md, page-dashboard .dashboard-menu .col ion-card.card-ios ion-card-content.card-content-md ion-card-title.card-title-ios, page-dashboard .dashboard-menu .col ion-card.card-ios ion-card-content.card-content-md ion-card-title.card-title-md, page-dashboard .dashboard-menu .col ion-card.card-ios ion-card-content.card-content-ios ion-card-title.card-title-ios, page-dashboard .dashboard-menu .col ion-card.card-ios ion-card-content.card-content-ios ion-card-title.card-title-md {
+  font-size: 1.7rem;
+  color: #fff;
+  text-align: center;
 }
 
 page-login form {
@@ -25962,6 +26092,53 @@ page-reset-pass-success .btn-green {
   margin-top: 50px;
 }
 
+page-settings ion-header ion-navbar .toolbar.statusbar-padding:first-child {
+  padding-top: 35px !important;
+}
+
+page-settings ion-header ion-navbar .back-button {
+  display: none !important;
+}
+
+page-settings ion-header ion-navbar i.fa {
+  position: absolute;
+  top: 20px;
+  font-size: 30px;
+  color: #b1b1b1 !important;
+  cursor: pointer;
+}
+
+page-settings ion-header ion-navbar .page-title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-top: -5px;
+  font-family: "Raleway SemiBold";
+  font-size: 18px;
+  color: #757575;
+}
+
+page-settings ion-header ion-navbar.toolbar-ios .toolbar-content-ios i {
+  top: 24px;
+}
+
+page-settings ion-header + ion-content > div.scroll-content {
+  padding-top: 30px !important;
+  overflow: hidden;
+}
+
+page-settings .settings-menu a {
+  font-family: "Raleway SemiBold";
+  font-size: 20px;
+  color: #757575;
+  text-decoration: none;
+}
+
 page-signup form {
   padding-top: 6px;
 }
@@ -26003,7 +26180,7 @@ page-slider .logo {
   margin: 0 auto;
   margin-top: 2px;
   width: auto;
-  height: 4.484vh;
+  height: 5vh;
 }
 
 page-slider .main-title {
@@ -26017,11 +26194,19 @@ page-slider .main-title br {
   display: block !important;
 }
 
+page-slider .subheading {
+  margin-top: 3px;
+  margin-bottom: 0;
+  font-family: "Raleway SemiBold";
+  letter-spacing: 1px;
+  color: #a4c73a;
+}
+
 page-slider .subtitle {
-  margin: .5vh 0;
+  margin: 0.1vh 0;
   font-family: "Raleway Medium";
-  font-size: 2.08vh;
-  line-height: 1.5;
+  font-size: 2.3vh;
+  line-height: 1.4;
   color: #818181;
 }
 
@@ -26033,9 +26218,39 @@ page-slider ion-slides {
   height: 80vh;
 }
 
+page-slider ion-slides ion-slide {
+  position: relative;
+}
+
+page-slider ion-slides ion-slide .slide-nav {
+  position: absolute;
+  top: 40%;
+  color: #999;
+  cursor: pointer;
+}
+
+page-slider ion-slides ion-slide .slide-nav .fa {
+  font-size: 2.5em;
+}
+
+@media (min-width: 576px) {
+  page-slider ion-slides ion-slide .slide-nav .fa {
+    font-size: 4em;
+  }
+}
+
+page-slider ion-slides ion-slide .slide-nav.prev {
+  left: 0;
+}
+
+page-slider ion-slides ion-slide .slide-nav.next {
+  right: 0;
+}
+
 page-slider ion-slides ion-slide .main-image {
+  margin-top: 5vh;
   margin-bottom: 40px;
-  max-width: 77%;
+  max-width: 82%;
   height: auto;
 }
 
@@ -26044,12 +26259,12 @@ page-slider ion-slides ion-slide:first-child .main-title:last-child {
 }
 
 page-slider ion-slides ion-slide:nth-child(2) .slider-img, page-slider ion-slides ion-slide:nth-child(3) .slider-img, page-slider ion-slides ion-slide:nth-child(4) .slider-img {
-  margin: 8vh 0 4.8vh;
+  margin: 6vh 0 3.8vh;
   height: 42.8vh;
 }
 
 page-slider .slider-img {
-  margin-top: 10vh;
+  margin-top: 12vh;
   max-width: 63%;
   height: 44.838vh;
 }
@@ -26059,7 +26274,8 @@ page-slider .swiper-slide:last-child {
 }
 
 page-slider .swiper-pagination-bullet {
-  background-color: #c6c5c5;
+  background-color: #8c8c8c;
+  opacity: 1;
 }
 
 page-slider .swiper-pagination-bullet.swiper-pagination-bullet-active {
@@ -26073,10 +26289,10 @@ page-slider .swiper-pagination-bullet:last-child {
 }
 
 page-slider .btn-slider {
-  margin: 8px 8px 0;
-  padding: 11px 5px 8px;
-  width: 125px;
-  font-size: 15px;
+  margin: 4px 8px 0;
+  padding: 12px 5px;
+  width: 180px;
+  font-size: 17px;
   letter-spacing: .6px;
   border: 1px solid #a4c73a;
 }
@@ -26098,7 +26314,9 @@ page-user-chat ion-navbar .back-button-icon {
 }
 
 page-user-chat ion-navbar .title {
-  font-size: 16px;
+  top: 11px;
+  left: 10px;
+  font-size: 14px;
   color: #565252;
   text-transform: capitalize;
 }
@@ -26108,12 +26326,28 @@ page-user-chat ion-navbar .toolbar-content {
   margin-right: 25px;
 }
 
+page-user-chat ion-navbar .show-back-button {
+  display: none !important;
+}
+
+page-user-chat ion-navbar .back-btn-new {
+  background-color: transparent;
+  float: left;
+  font-size: 32px;
+  color: #c8c7cc;
+  margin-left: -5px;
+  margin-bottom: 8px;
+}
+
 page-user-chat ion-header + ion-content > div.scroll-content {
   background-color: transparent !important;
+  padding-bottom: 60px !important;
 }
 
 page-user-chat #messages .message {
   text-transform: none;
+  width: auto;
+  max-width: 150px;
 }
 
 page-user-chat #messages .loader {
@@ -26127,10 +26361,10 @@ page-user-chat #messages .loader {
 page-user-chat #messages .list .item:first-child, page-user-chat #messages .list .item {
   width: 100%;
   text-align: left;
+  height: 100%;
 }
 
 page-user-chat #messages ion-item {
-  height: 60px;
   background-color: transparent;
 }
 
@@ -26161,6 +26395,41 @@ page-user-chat ion-footer .bar-button {
   color: grey;
   font-size: 14px;
   letter-spacing: 1px;
+}
+
+page-user-customers ion-header ion-navbar .toolbar.statusbar-padding:first-child {
+  padding-top: 35px !important;
+}
+
+page-user-customers ion-header ion-navbar .back-button {
+  display: none !important;
+}
+
+page-user-customers ion-header ion-navbar i.fa {
+  position: absolute;
+  top: 20px;
+  font-size: 30px;
+  color: #b1b1b1 !important;
+  cursor: pointer;
+}
+
+page-user-customers ion-header ion-navbar .page-title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-top: -5px;
+  font-family: "Raleway SemiBold";
+  font-size: 18px;
+  color: #757575;
+}
+
+page-user-customers ion-header ion-navbar.toolbar-ios .toolbar-content-ios i {
+  top: 24px;
 }
 
 page-user-customers .title {
@@ -26446,6 +26715,10 @@ page-user-inbox ion-header + ion-content > div.scroll-content {
   background-color: transparent !important;
 }
 
+page-user-inbox .show-back-button {
+  display: none !important;
+}
+
 page-user-inbox .loader {
   position: absolute;
   top: 30%;
@@ -26454,10 +26727,46 @@ page-user-inbox .loader {
   color: #a4c73a;
 }
 
-page-user-inbox .loader-chat {
+page-user-inbox ion-navbar .back-btn-new {
+  background-color: transparent;
+  float: left;
+  margin-left: 15px;
+  font-size: 32px;
+  color: #c8c7cc;
+}
+
+page-user-inbox ion-navbar .page-title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-top: -5px;
+  font-family: "Raleway SemiBold";
+  font-size: 18px;
+  color: #757575;
+}
+
+page-user-inbox ion-navbar i.fa {
   position: absolute;
-  font-size: 11vw;
-  color: #a4c73a;
+  top: 20px;
+  font-size: 30px;
+  color: #b1b1b1 !important;
+  cursor: pointer;
+}
+
+page-user-inbox ion-content h5 {
+  color: #757575;
+  line-height: 1.5;
+  color: #b7b7b7;
+  text-align: center;
+}
+
+page-user-inbox #inbox-list .no_show {
+  display: none;
 }
 
 page-user-inbox #inbox-list .item:first-child {
@@ -26492,14 +26801,15 @@ page-user-inbox #inbox-list p {
   width: 200px;
   overflow: hidden;
   font-size: 13px;
-  text-transform: capitalize;
+  text-transform: none;
   margin-top: 10px;
   color: grey;
 }
 
 page-user-inbox #inbox-list .date-time {
   font-size: 10px;
-  right: 13px;
+  right: 15px;
+  top: -40px;
   float: right;
   color: grey;
 }
@@ -26508,23 +26818,17 @@ page-user-inbox #inbox-list .name {
   font-size: 15px;
   text-transform: capitalize;
   color: grey;
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-page-user-inbox #inbox-list .date-time-new {
-  font-size: 10px;
-  right: 13px;
+page-user-inbox #inbox-list .message {
+  font-size: 12px;
   color: grey;
-  float: right;
-  color: black;
 }
 
-page-user-inbox #inbox-list .name-new {
-  font-size: 15px;
-  text-transform: capitalize;
-  color: black;
-}
-
-page-user-inbox #inbox-list .message-new {
+page-user-inbox #inbox-list .new {
   color: black;
 }
 
@@ -26606,6 +26910,41 @@ page-user-register form .btn:last-child {
   float: right;
 }
 
+page-user-scanner ion-header ion-navbar .toolbar.statusbar-padding:first-child {
+  padding-top: 35px !important;
+}
+
+page-user-scanner ion-header ion-navbar .back-button {
+  display: none !important;
+}
+
+page-user-scanner ion-header ion-navbar i.fa {
+  position: absolute;
+  top: 20px;
+  font-size: 30px;
+  color: #b1b1b1 !important;
+  cursor: pointer;
+}
+
+page-user-scanner ion-header ion-navbar .page-title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-top: -5px;
+  font-family: "Raleway SemiBold";
+  font-size: 18px;
+  color: #757575;
+}
+
+page-user-scanner ion-header ion-navbar.toolbar-ios .toolbar-content-ios i {
+  top: 24px;
+}
+
 page-user-scanner ion-header + ion-content > div.scroll-content {
   padding-top: 50px !important;
 }
@@ -26618,4 +26957,79 @@ page-user-scanner .btn-green {
 page-user-scanner .btn-orange {
   margin-top: 15px;
   border-radius: 2px;
+}
+
+page-user-scanner .holder-country-code {
+  position: relative;
+  z-index: 99999;
+  display: table;
+  width: 18%;
+  height: 51px;
+  overflow: hidden;
+  text-align: center;
+}
+
+page-user-scanner .holder-country-code.showDropdown {
+  overflow: visible;
+}
+
+page-user-scanner .holder-country-code.showDropdown .country-code .fa {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+page-user-scanner .holder-country-code .country-code {
+  display: table-cell;
+  vertical-align: middle;
+  background-color: #d7d7d7;
+  border: 1px solid #d7d7d7;
+  border-radius: 3px 0 0 3px;
+  cursor: pointer;
+}
+
+page-user-scanner .holder-country-code .country-code .fa {
+  margin-left: 5px;
+}
+
+page-user-scanner .holder-country-code .country-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  width: 125px;
+  list-style: none;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #d7d7d7;
+}
+
+page-user-scanner .holder-country-code .country-dropdown li {
+  padding: 10px;
+  font-size: 15px;
+  color: #484747;
+  cursor: pointer;
+}
+
+page-user-scanner .holder-country-code .country-dropdown li img {
+  margin-right: 5px;
+}
+
+page-user-scanner .holder-country-code .country-dropdown li .country-area-code {
+  color: #999;
+}
+
+page-user-scanner .holder-country-code .country-dropdown li:hover, page-user-scanner .holder-country-code .country-dropdown li:focus, page-user-scanner .holder-country-code .country-dropdown li:active {
+  background-color: #c7e2f1;
+}
+
+page-user-scanner .holder-country-code + input[name="number"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 82.5% !important;
+}
+
+page-user-scanner .holder-country-code + input[name="number"].has-error {
+  border-radius: 0;
 }
