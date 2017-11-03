@@ -27,6 +27,7 @@ export class UserScannerPage {
   business : string[];
   message :  string;
   areaCode : any;
+  shop_id : any;
 
   constructor(
     public navCtrl: NavController,
@@ -59,10 +60,18 @@ export class UserScannerPage {
   }
 
   ionViewWillEnter() {
-    this.areaCode = 1;
-    this.storage.get('user').then(user => {
-      this.user = user;
-      this.hasData = true;
+    var self = this;
+
+    this.storage.get('shop_id').then(res => {
+      self.shop_id = res;
+
+      console.log(self.shop_id)
+
+      self.areaCode = 1;
+      self.storage.get('user').then(user => {
+        self.user = user;
+        self.hasData = true;
+      });
     });
   }
 
@@ -86,7 +95,8 @@ export class UserScannerPage {
   }
 
   SubmitNumber() {
-    var mobileRegex = /^[0-9]{10}$/;
+    var mobileRegex = /^[0-9]{10}$/,
+      self = this;
 
     if (this.phone) {
       if (mobileRegex.test(this.phone) == true) {
@@ -104,7 +114,7 @@ export class UserScannerPage {
 
         this.storage.get('user').then(user => {
           this.user = user;
-          this.api.Business.checker(this.phone, user._id).then(customer => {
+          this.api.Business.checker(this.phone, self.shop_id).then(customer => {
             this.api.Users.user(customer.customer.user_id[0]).then(thisCustomer => {
               $('.btn-orange[type="submit"]').find('.fa-spinner').remove();
               if (thisCustomer.first_name == ' ' && thisCustomer.last_name == ' ') {
@@ -113,7 +123,7 @@ export class UserScannerPage {
                   direction: 'forward'
                 });
               } else {
-                this.navCtrl.setRoot(UserDealsPage, {business_id: user.shop_id[0],customer : customer.customer.user_id[0]}, {
+                this.navCtrl.setRoot(UserDealsPage, {business_id: self.shop_id,customer : customer.customer.user_id[0]}, {
                   animate: true,
                   direction: 'forward'
                 });
@@ -126,9 +136,9 @@ export class UserScannerPage {
               var getFName = ' ',
                   getLName = ' ';
 
-              this.api.Business.register(this.phone, user.shop_id[0],getFName,getLName).then(customer => {
+              this.api.Business.register(this.phone, self.shop_id,getFName,getLName).then(customer => {
                 $('.btn-orange[type="submit"]').find('.fa-spinner').remove();
-                this.navCtrl.setRoot(UserDealsPage, {business_id: user.shop_id[0],customer : customer.customer.user_id[0]}, {
+                this.navCtrl.setRoot(UserDealsPage, {business_id: self.shop_id,customer : customer.customer.user_id[0]}, {
                   animate: true,
                   direction: 'forward'
                 });
@@ -150,11 +160,13 @@ export class UserScannerPage {
   }
 
   scanCode() {
+    var self = this;
+
     this.barcodeScanner.scan().then(barcodeData => {
       // this.createdCode = barcodeData
       this.createdCode = JSON.parse(barcodeData.text)
       this.storage.get("user").then(user => {
-        this.api.Business.scan_qr(this.createdCode.MembershipNumber,user._id,user.shop_id[0]).then(customer =>{
+        this.api.Business.scan_qr(this.createdCode.MembershipNumber,user._id,self.shop_id).then(customer =>{
         this.api.Users.user(customer.customer.user_id[0]).then(thisCustomer => {
               $('.btn-orange[type="submit"]').find('.fa-spinner').remove();
               if (thisCustomer.first_name == ' ' && thisCustomer.last_name == ' ') {
@@ -163,7 +175,7 @@ export class UserScannerPage {
                   direction: 'forward'
                 });
               } else {
-                this.navCtrl.setRoot(UserDealsPage, {business_id: user.shop_id[0],customer : customer.customer.user_id[0]}, {
+                this.navCtrl.setRoot(UserDealsPage, {business_id: self.shop_id,customer : customer.customer.user_id[0]}, {
                   animate: true,
                   direction: 'forward'
                 });

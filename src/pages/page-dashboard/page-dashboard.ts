@@ -1,5 +1,5 @@
-import { Component,NgZone } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, NgZone } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
 import { Http }  from '@angular/http';
 
 import { UserScannerPage } from '../page-user-scanner/page-user-scanner';
@@ -7,7 +7,7 @@ import { UserCustomersPage } from '../page-user-customers/page-user-customers';
 import { UserInboxPage } from '../page-user-inbox/page-user-inbox';
 import { SettingsPage } from '../page-settings/page-settings';
 
-import {SocketService} from "../../providers";
+import { SocketService } from "../../providers";
 import { ApiService } from '../../service/api.service.component';
 import { Storage } from '@ionic/storage';
 import * as $ from "jquery";
@@ -26,6 +26,9 @@ export class DashboardPage {
   hasNotify : boolean = false;
   firstname : string;
   notifCount = 0;
+  shop_id : any;
+  hasShopId : boolean = false;
+  shop_name : any;
 
   constructor(
     public navCtrl: NavController,
@@ -33,19 +36,50 @@ export class DashboardPage {
     private api:ApiService,
     private storage: Storage,
     public _zone: NgZone,
-    public socketService: SocketService) {
-    this.initInboxNotification();
+    public socketService: SocketService,
+    private navParams: NavParams) {
 
+    if (this.navParams.get('shop_id')) {
+      $('.company-name').text('');
+      this.hasShopId = true;
+      this.storage.set('shop_id', this.navParams.get('shop_id'));
+    }
   }
 
   ionViewWillEnter() {
-
     this.socketService.connect();
+
+    this.storage.get('shop_name').then(result => {
+      if (result != null) {
+        $('.company-name').text(result);
+      }
+    });
 
     this.storage.get('user').then(user => {
       this.user = user;
       this.firstname = user.first_name;
+
+      this.storage.get('shop_id').then(res => {
+        if (res == null) {
+          this.storage.set('shop_id', user.shop_id[0])
+          this.shop_id = user.shop_id[0];
+        } else {
+          this.shop_id = res;
+        }
+
+        this.storage.get('shop_name').then(result => {
+          if (result == null) {
+            this.api.Business.info(this.shop_id).then(data => {
+              $('.company-name').text(data.company_name);
+              this.storage.set('shop_name', data.company_name);
+            });
+          }
+        });
+      });
+
       this.hasData = true;
+
+      this.initInboxNotification();
     });
   }
 
@@ -56,7 +90,7 @@ export class DashboardPage {
       this._zone.run(() => {
         this.storage.get('user').then(user =>{
 
-          if(chatNotification.business_id == user.shop_id[0]) {
+          if(chatNotification.business_id == this.shop_id) {
             this.hasNotify = true;
             this.notifCount++;
           }
@@ -70,7 +104,7 @@ export class DashboardPage {
   }
 
   ToScanner() {
-    this.navCtrl.setRoot(UserScannerPage, {}, {
+    this.navCtrl.setRoot(UserScannerPage, {shop_id: this.shop_id}, {
       animate: true,
       direction: 'forward'
     });
@@ -91,7 +125,7 @@ export class DashboardPage {
   }
 
   ToSettings() {
-    this.navCtrl.setRoot(SettingsPage, {}, {
+    this.navCtrl.setRoot(SettingsPage, {shop_id: this.shop_id}, {
       animate: true,
       direction: 'forward'
     });

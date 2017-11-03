@@ -30,6 +30,8 @@ export class UserCustomersPage {
   page: any;
   page_size: any;
   newCustomerList = [];
+  shop_id: any;
+  hasNoCustomers: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -141,8 +143,13 @@ export class UserCustomersPage {
 
   ionViewWillEnter() {
     var self = this,
-      getInitial,
-      getList = function(page, page_size) {
+      getInitial;
+
+    this.storage.get('shop_id').then(res => {
+      self.shop_id = res;
+    });
+
+    var getList = function(page, page_size) {
         if(page_size == null || page_size == '0'){
           page_size = '10'
           $('#page_size').val(10);
@@ -150,13 +157,17 @@ export class UserCustomersPage {
       self.storage.get('user').then(user => {
         self.user = user;
 
-        self.api.BusinessOwner.list(user.shop_id[0], page, page_size).then(users => {
+        self.api.BusinessOwner.list(self.shop_id, page, page_size).then(users => {
+
+          console.log(users);
 
           self.customersList = users.docs;
           // self.newCustomerList.push(users.docs)
           self.hasData = true;
 
-          console.log(self.newCustomerList);
+          if (users.total == 0) {
+            self.hasNoCustomers = true;
+          }
 
           $('body').find('.fa.loader').remove();
 

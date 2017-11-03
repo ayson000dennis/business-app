@@ -27,18 +27,18 @@ export class ApiService {
           return response.json();
       }).toPromise();
     },
-    user_add: (firstName: string, lastName: string, phone: string, email: string, password: string, ownerId: string,permission : string,business_id : string) => {
-      return this.http.post(Config.baseUrl + "api/users/add?permission=" + permission + '&business_id=' + business_id, {first_name: firstName, last_name: lastName, number: phone, email: email, password: password, permission: '3', account_type: '1', status: '1', owner_id: ownerId  }).map(response => {
-          return response.json();
-      }).toPromise();
-    },
     user_name: (firstName: string, lastName: string, customerId: string) => {
-      return this.http.post(Config.baseUrl + "api/users/edit/" + customerId, {first_name: firstName, last_name: lastName}).map(response => {
+      return this.http.post(Config.baseUrl + "api/users/edit/" + customerId, {first_name: firstName, last_name: lastName, in_mobile: '1'}).map(response => {
           return response.json();
       }).toPromise();
     },
     user_edit: (firstName: string, lastName: string, phone: string, email: string, customerId: string) => {
       return this.http.post(Config.baseUrl + "api/users/edit/" + customerId, {first_name: firstName, last_name: lastName, number: phone, email: email}).map(response => {
+          return response.json();
+      }).toPromise();
+    },
+    user_add: (firstName: string, lastName: string, phone: string, email: string, password: string, ownerId: string,permission : string,business_id : string) => {
+      return this.http.post(Config.baseUrl + "api/users/add?permission=" + permission + '&business_id=' + business_id, {first_name: firstName, last_name: lastName, number: phone, email: email, password: password, permission: '3', account_type: '1', status: '1', owner_id: ownerId  }).map(response => {
           return response.json();
       }).toPromise();
     }
@@ -59,8 +59,17 @@ export class ApiService {
       return this.http.post(Config.baseUrl + "api/business/qr_scan/" + MembershipNumber + "/" + userId + "/" + businessId, {}).map(response => {
         return response.json();
       }).toPromise();
+    },
+    list : (userId,permission) => {
+      return this.http.post(Config.baseUrl + "api/business/init_list/" + userId + "/" + permission, {}).map(response => {
+        return response.json();
+      }).toPromise();
+    },
+    info : (businessId) => {
+      return this.http.get(Config.baseUrl + "api/business/view/" + businessId).map(response => {
+        return response.json();
+      }).toPromise();
     }
-
   }
 
   Deals = {

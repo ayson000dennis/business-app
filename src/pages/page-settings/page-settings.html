@@ -6,6 +6,14 @@
 </ion-header>
 
 <ion-content>
+  <div class="loader">Fetching your businesses... <span class="fa fa-spinner fa-spin"></span></div>  
+
+  <ion-list *ngIf=(hasData)>
+    <ion-list-header id="list-header">Switch Account</ion-list-header>
+    <ion-item-group>
+      <ion-item *ngFor="let business of businesses"><span class="{{business._id == shop_id ? 'active' : ''}}" (click)="goDashboard(business._id)">{{business.company_name}}</span></ion-item>
+    </ion-item-group>
+  </ion-list>
   <div class="container settings-menu">
     <a (click)="ComingSoon()">Notif<span></span>ication</a>
     <hr class="divider" />

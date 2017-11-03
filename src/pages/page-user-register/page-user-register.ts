@@ -72,13 +72,17 @@ export class UserRegisterPage {
         this.storage.get('user').then(user => {
           this.user = user;
 
+          console.log(this.customer);
+
           this.api.Users.user_name(this.posts.first_name, this.posts.last_name, this.customer.customer.user_id[0]).then(res => {
             $('.btn-green[type="submit"]').find('.fa-spinner').remove();
 
-            this.navCtrl.setRoot(UserDealsPage, {business_id: user.shop_id[0],customer : this.customer.customer.user_id[0]}, {
-              animate: true,
-              direction: 'forward'
-            });
+            console.log(res);
+
+            // this.navCtrl.setRoot(UserDealsPage, {business_id: user.shop_id[0],customer : this.customer.customer.user_id[0]}, {
+            //   animate: true,
+            //   direction: 'forward'
+            // });
           });
 
           // this.api.Business.register(this.phone, user.shop_id[0],getFName,getLName).then(customer => {

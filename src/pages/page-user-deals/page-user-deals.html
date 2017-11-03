@@ -22,6 +22,8 @@
   </p>
 
   <div class="holder-list" *ngIf="hasData">
+    <h4 class="no-results" *ngIf="hasNoDeals">You have no deals yet.</h4>
+
     <div class="holder-deal" *ngFor="let deals of dealsList">
       <div class="deal-info">
         <p class="deal-title">

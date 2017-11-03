@@ -25,6 +25,8 @@ export class UserDealsPage {
   customer_last_name: any;
   customer_number: any;
   backToScannerTimeout: any;
+  shop_id: any;
+  hasNoDeals: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -32,7 +34,6 @@ export class UserDealsPage {
     private api:ApiService,
     private storage: Storage){
 
-      this.business_id = navParams.get('business_id');
       this.customer = navParams.get('customer');
 
       var self = this;
@@ -49,23 +50,33 @@ export class UserDealsPage {
 
   ionViewWillEnter() {
     console.log(this.customer)
-    this.api.Loyalty.loyalty_list(this.business_id,this.customer).then(users => {
-      console.log(users);
-      this.dealsList = users;
-      this.hasData = true;
-    });
+    var self = this;
 
-    this.api.Users.user(this.customer).then(user => {
-      this.customer = user;
-      this.customer_first_name = user.first_name;
-      this.customer_last_name = user.last_name;
-      this.customer_number = user.number;
+    this.storage.get('shop_id').then(res => {
+      self.shop_id = res;
 
-      if (this.customer_first_name != ' ' && this.customer_last_name != ' ') {
-        $('.customer-name').text(this.customer_first_name + ' ' + this.customer_last_name);
-      } else {
-        $('.customer-name').text(this.customer_number);
-      }
+      this.api.Loyalty.loyalty_list(this.shop_id,this.customer).then(deals => {
+        console.log(deals);
+        this.dealsList = deals;
+        this.hasData = true;
+
+        if (this.dealsList.length == 0) {
+          this.hasNoDeals = true;
+        }
+      });
+
+      this.api.Users.user(this.customer).then(user => {
+        this.customer = user;
+        this.customer_first_name = user.first_name;
+        this.customer_last_name = user.last_name;
+        this.customer_number = user.number;
+
+        if (this.customer_first_name != ' ' && this.customer_last_name != ' ') {
+          $('.customer-name').text(this.customer_first_name + ' ' + this.customer_last_name);
+        } else {
+          $('.customer-name').text(this.customer_number);
+        }
+      });
     });
   }
 
@@ -89,7 +100,7 @@ export class UserDealsPage {
     console.log(deal);
     this.navCtrl.push(UserRedeemPage,{
       deal : deal,
-      business_id : this.business_id,
+      business_id : this.shop_id,
       customer_id : this.customer._id
     }, {
       animate: true,
@@ -100,7 +111,7 @@ export class UserDealsPage {
   Redeem(deal, $event) {
     this.deal = deal;
     $($event.currentTarget).append('<span class="fa fa-spinner fa-spin"></span>');
-    this.api.Loyalty.loyalty_add('0',this.business_id,this.deal._id,this.customer._id,this.deal.is_stamp)
+    this.api.Loyalty.loyalty_add('0',this.shop_id,this.deal._id,this.customer._id,this.deal.is_stamp)
     .then(data => {
       $('.btn-redeem').find('.fa').remove();
       $('.checkins-count').text(data.checkin);

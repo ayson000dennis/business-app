@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { MenuPage } from '../page-menu/page-menu';
 import { UserScannerPage } from '../page-user-scanner/page-user-scanner';
 import { UserInboxPage } from '../page-user-inbox/page-user-inbox';
+import { SocketService } from "../../providers";
 
 import * as $ from "jquery";
 import Config from '../../app/config';
@@ -28,10 +29,14 @@ export class UserRedeemPage {
     public navCtrl: NavController,
     public navParams : NavParams,
     private api:ApiService,
-    private storage: Storage) {
+    private storage: Storage,
+    public socketService: SocketService) {
   }
 
   ionViewWillEnter() {
+    // this.socketService.connect();
+    // console.log('entered')
+
     this.business_id = this.navParams.get('business_id');
     this.customer_id = this.navParams.get('customer_id');
     this.deal = this.navParams.get('deal');
@@ -43,6 +48,10 @@ export class UserRedeemPage {
       this.customer = user;
     });
   }
+
+  // ionViewWillLeave() {
+  //   this.socketService.disconnect();
+  // }
 
   ionViewDidEnter() {
     setTimeout(function() {

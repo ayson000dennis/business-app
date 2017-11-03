@@ -47,12 +47,81 @@ page-settings {
     overflow: hidden;
   }
 
+  .loader {
+    padding: 6px 0;
+    font-size: 4vw;
+    color: #757575;
+
+    border: 1px solid rgba(0,0,0,.12);
+    border-width: 1px 0;
+  }
+
+  .fa-spinner {
+    margin-left: 5px;
+
+    color: #a4c73a;
+  }
+
   .settings-menu {
+    margin-top: 45px;
+
     a {
       font-family: "Raleway SemiBold";
       font-size: 20px;
       color: #757575;
       text-decoration: none;
+    }
+  }
+
+  ion-list.list {
+    background-color: transparent;
+
+    ion-list-header.item {
+      border: 1px solid rgba(0,0,0,.12) !important;
+      border-width: 1px 0 !important;
+    }
+
+    .item {
+      width: 100% !important;
+      margin: 0 !important;
+      min-height: 0 !important;
+
+      text-align: left !important;
+
+      background-color: transparent !important;
+
+      .label {
+        margin: 0 !important;
+
+        color: #757575 !important;
+        text-transform: capitalize !important;
+      }
+    }
+
+    ion-item-group {
+
+      .item {
+        padding: 0 0 0 10px !important;
+
+        border-bottom: 1px solid rgba(0,0,0,.12) !important;
+
+        span {
+          display: block !important;
+          padding: 10px 0 12px;
+
+          font-size: 15px !important;
+
+          &.active {
+            color: #f59120;
+
+            pointer-events: none;
+          }
+
+          &:after {
+            display: none !important;
+          }
+        }
+      }
     }
   }
 }
