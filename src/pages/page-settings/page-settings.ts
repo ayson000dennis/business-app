@@ -81,9 +81,21 @@ export class SettingsPage {
 
   logOut() {
     this.storage.clear();
-    this.navCtrl.push(LoginPage, {}, {
-      animate: true,
-      direction: 'back'
+
+    this.storage.get('user').then(user => {
+      if (user == null) {
+        console.log('Storage data successfully cleared! You have been logout.');
+
+        this.navCtrl.push(LoginPage, {}, {
+          animate: true,
+          direction: 'back'
+        });
+      } else {
+        console.log('Storage data has not been cleared! Something went wrong.');
+      }
+    }).catch(err => {
+      console.log('Oops! Something went wrong.');
+      console.log('Error: ' + err);
     });
   }
 }

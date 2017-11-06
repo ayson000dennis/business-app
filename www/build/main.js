@@ -1383,10 +1383,22 @@ var SettingsPage = (function () {
         });
     };
     SettingsPage.prototype.logOut = function () {
+        var _this = this;
         this.storage.clear();
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__page_login_page_login__["a" /* LoginPage */], {}, {
-            animate: true,
-            direction: 'back'
+        this.storage.get('user').then(function (user) {
+            if (user == null) {
+                console.log('Storage data successfully cleared! You have been logout.');
+                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__page_login_page_login__["a" /* LoginPage */], {}, {
+                    animate: true,
+                    direction: 'back'
+                });
+            }
+            else {
+                console.log('Storage data has not been cleared! Something went wrong.');
+            }
+        }).catch(function (err) {
+            console.log('Oops! Something went wrong.');
+            console.log('Error: ' + err);
         });
     };
     return SettingsPage;
@@ -1395,13 +1407,10 @@ SettingsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-settings',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-settings\page-settings.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <i class="fa fa-angle-left fa-lg" (click)="goBack()"></i>\n\n    <span class="page-title">Settings</span>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <div class="loader">Fetching your businesses... <span class="fa fa-spinner fa-spin"></span></div>  \n\n\n\n  <ion-list *ngIf=(hasData)>\n\n    <ion-list-header id="list-header">Switch Account</ion-list-header>\n\n    <ion-item-group>\n\n      <ion-item *ngFor="let business of businesses"><span class="{{business._id == shop_id ? \'active\' : \'\'}}" (click)="goDashboard(business._id)">{{business.company_name}}</span></ion-item>\n\n    </ion-item-group>\n\n  </ion-list>\n\n  <div class="container settings-menu">\n\n    <a (click)="ComingSoon()">Notif<span></span>ication</a>\n\n    <hr class="divider" />\n\n    <a class="logout" (click)="logOut()">Logout</a>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-settings\page-settings.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_5__service_api_service_component__["a" /* ApiService */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__service_api_service_component__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__service_api_service_component__["a" /* ApiService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _e || Object])
 ], SettingsPage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=page-settings.js.map
 
 /***/ }),
@@ -1728,10 +1737,10 @@ var UserRegisterPage = (function () {
                     _this.api.Users.user_name(_this.posts.first_name, _this.posts.last_name, _this.customer.customer.user_id[0]).then(function (res) {
                         __WEBPACK_IMPORTED_MODULE_6_jquery__('.btn-green[type="submit"]').find('.fa-spinner').remove();
                         console.log(res);
-                        // this.navCtrl.setRoot(UserDealsPage, {business_id: user.shop_id[0],customer : this.customer.customer.user_id[0]}, {
-                        //   animate: true,
-                        //   direction: 'forward'
-                        // });
+                        _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__page_user_deals_page_user_deals__["a" /* UserDealsPage */], { business_id: user.shop_id[0], customer: _this.customer.customer.user_id[0] }, {
+                            animate: true,
+                            direction: 'forward'
+                        });
                     });
                     // this.api.Business.register(this.phone, user.shop_id[0],getFName,getLName).then(customer => {
                     //   $('.btn-green[type="submit"]').find('.fa-spinner').remove();
@@ -1776,12 +1785,10 @@ UserRegisterPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-user-register',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-register\page-user-register.html"*/'<!-- <ion-header>\n\n  <ion-navbar>\n\n    <img class="header-logo" src="assets/images/logo-min.png" alt="">\n\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n\n    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /></a>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n\n\n<ion-content padding>\n\n  <p class="title" (click)="goScanner()">\n\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" />\n\n    Back to Scanner\n\n  </p>\n\n\n\n  <form>\n\n    <label>\n\n      <input type="text" name="first_name" placeholder="First name" [(ngModel)]="posts.first_name" />\n\n      <span class="text-validate"></span>\n\n    </label>\n\n    <label>\n\n      <input type="text" name="last_name" placeholder="Last name" [(ngModel)]="posts.last_name" />\n\n      <span class="text-validate"></span>\n\n    </label>\n\n    <button class="btn btn-gray" type="submit" (click)="skipMe()">Skip</button>\n\n    <button class="btn btn-green" type="submit" (click)="registerMe()">Submit</button>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-register\page-user-register.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2__service_api_service_component__["a" /* ApiService */],
-        __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["b" /* Storage */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service_component__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_api_service_component__["a" /* ApiService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["b" /* Storage */]) === "function" && _d || Object])
 ], UserRegisterPage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=page-user-register.js.map
 
 /***/ }),
@@ -2809,7 +2816,8 @@ var LoginPage = (function () {
         this.api = api;
         this.posts = {
             username: '',
-            password: ''
+            password: '',
+            in_mobile: true
         };
     }
     LoginPage.prototype.goSlider = function () {
@@ -2829,7 +2837,7 @@ var LoginPage = (function () {
         var baseUrl = __WEBPACK_IMPORTED_MODULE_13__app_config__["a" /* default */].baseUrl;
         this.fb.login(['email', 'public_profile']).then(function (res) {
             _this.fb.api('me?fields=id,email', []).then(function (profile) {
-                _this.http.post(baseUrl + 'api/users/login', { email: profile['email'], is_social: '1', permission: '4' }).subscribe(function (res) {
+                _this.http.post(baseUrl + 'api/users/login', { email: profile['email'], is_social: '1', permission: '4', in_mobile: true }).subscribe(function (res) {
                     _this.getUser(res.json());
                 }, function (err) {
                     console.log(err);
@@ -2853,6 +2861,10 @@ var LoginPage = (function () {
     LoginPage.prototype.logMeIn = function () {
         var _this = this;
         var getUser = this.posts.username, getPass = this.posts.password, baseUrl = __WEBPACK_IMPORTED_MODULE_13__app_config__["a" /* default */].baseUrl;
+        var errorLogin = function () {
+            __WEBPACK_IMPORTED_MODULE_11_jquery__('.form-login input[name="username"]').addClass('has-error').siblings('.text-validate').text('Invalid Email or Mobile number.');
+            __WEBPACK_IMPORTED_MODULE_11_jquery__('.form-login input[name="password"]').addClass('has-error').siblings('.text-validate').text('Invalid Password.');
+        };
         if (__WEBPACK_IMPORTED_MODULE_11_jquery__('.btn-green[type="submit"]').find('.fa-spinner').length == 0) {
             __WEBPACK_IMPORTED_MODULE_11_jquery__('.btn-green[type="submit"]').append('<span class="fa fa-spinner fa-spin"></span>');
         }
@@ -2861,22 +2873,14 @@ var LoginPage = (function () {
             this.http.post(baseUrl + 'api/users/login', this.posts).subscribe(function (res) {
                 __WEBPACK_IMPORTED_MODULE_11_jquery__('.btn-green[type="submit"]').find('.fa-spinner').remove();
                 if (res.json().permission == '3') {
-                    __WEBPACK_IMPORTED_MODULE_11_jquery__('.form-login input[name="username"]').addClass('has-error').next('.text-validate').text('Invalid Email or Mobile number');
+                    errorLogin();
                 }
                 else {
                     _this.getUser(res.json());
                 }
             }, function (err) {
                 __WEBPACK_IMPORTED_MODULE_11_jquery__('.btn-green[type="submit"]').find('.fa-spinner').remove();
-                __WEBPACK_IMPORTED_MODULE_11_jquery__('.form-login label').each(function () {
-                    var thisInput = __WEBPACK_IMPORTED_MODULE_11_jquery__(this).find('input'), thisInputName = thisInput.attr('name'), thisPlaceholder = thisInput.attr('placeholder');
-                    if (thisInputName == 'username') {
-                        thisInput.addClass('has-error').siblings('.text-validate').text('Invalid ' + thisPlaceholder);
-                    }
-                    else if (thisInputName == 'password') {
-                        thisInput.addClass('has-error').siblings('.text-validate').text('Invalid Password.');
-                    }
-                });
+                errorLogin();
             });
         }
         else {
@@ -2920,14 +2924,10 @@ LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-login',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-login\page-login.html"*/'<!-- <ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n\n\n    </button>\n\n    <ion-title>Login</ion-title>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n<ion-content padding>\n\n  <!-- <ion-card *ngIf="userData">\n\n    <ion-card-header>{{ userData.email }}</ion-card-header>\n\n  </ion-card> -->\n\n\n\n  <p class="title">\n\n    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goSlider()">\n\n    Welcome Back\n\n  </p>\n\n  <!-- <button class="btn login-fb" (click)="fbConnect()"><span class="fa fa-facebook"></span> Continue with Facebook</button>\n\n  <button class="btn login-google" (click)="gpConnect()"><span class="fa fa-google"></span> Continue with Google</button>\n\n  <div class="divider">\n\n    <span>or</span>\n\n  </div> -->\n\n  <form class="form-login">\n\n    <label><input type="email" name="username" placeholder="Email or Mobile number" [(ngModel)]="posts.username" /><span class="text-validate">Email address is required.</span></label>\n\n    <label><input type="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" [(ngModel)]="posts.password" /><span class="btn-show">SHOW</span><span class="text-validate">Password is required.</span></label>\n\n    <button class="btn-green" type="submit" (click)="logMeIn()">Log In</button>\n\n  </form>\n\n  <a class="description forgot-pass" (click)="goReset()">Forgot your password?</a>\n\n  <!-- <hr class="hr" />\n\n  <p class="description">Don\'t have an account? <a href="#" (click)="goSignup()">Sign Up</a></p> -->\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-login\page-login.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__["a" /* GooglePlus */],
-        __WEBPACK_IMPORTED_MODULE_10__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_9__service_api_service_component__["a" /* ApiService */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__["a" /* GooglePlus */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__["a" /* GooglePlus */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_10__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_9__service_api_service_component__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__service_api_service_component__["a" /* ApiService */]) === "function" && _f || Object])
 ], LoginPage);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=page-login.js.map
 
 /***/ }),
@@ -3196,6 +3196,7 @@ var DashboardPage = (function () {
         this.hasNotify = false;
         this.notifCount = 0;
         this.hasShopId = false;
+        this.notifCountTotal = 0;
         if (this.navParams.get('shop_id')) {
             __WEBPACK_IMPORTED_MODULE_10_jquery__('.company-name').text('');
             this.hasShopId = true;
@@ -3205,6 +3206,7 @@ var DashboardPage = (function () {
     DashboardPage.prototype.ionViewWillEnter = function () {
         var _this = this;
         this.socketService.connect();
+        this.getNotificationCount();
         this.storage.get('shop_name').then(function (result) {
             if (result != null) {
                 __WEBPACK_IMPORTED_MODULE_10_jquery__('.company-name').text(result);
@@ -3234,6 +3236,30 @@ var DashboardPage = (function () {
             _this.initInboxNotification();
         });
     };
+    DashboardPage.prototype.getNotificationCount = function () {
+        var _this = this;
+        this.storage.get('user').then(function (user) {
+            _this.user = user;
+            if (user.shop_id[0]) {
+                _this.api.Message.room_list(user.shop_id[0]).then(function (members) {
+                    if (members.length) {
+                        var withChats = [];
+                        for (var x = 0; x < members.length; x++) {
+                            if (members[x].last_chat.length > 0 && members[x].last_chat[0].is_read === false && members[x].last_chat[0].message_by !== 'business') {
+                                withChats.push(members[x]);
+                            }
+                        }
+                        _this.notifCountTotal = withChats.length;
+                        console.log(_this.notifCountTotal);
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+            else {
+            }
+        });
+    };
     DashboardPage.prototype.initInboxNotification = function () {
         var _this = this;
         // Get real time message notification
@@ -3242,7 +3268,8 @@ var DashboardPage = (function () {
                 _this.storage.get('user').then(function (user) {
                     if (chatNotification.business_id == _this.shop_id) {
                         _this.hasNotify = true;
-                        _this.notifCount++;
+                        _this.getNotificationCount();
+                        // this.notifCount++;
                     }
                 }).catch(function (error) {
                     console.log(error);
@@ -3278,7 +3305,7 @@ var DashboardPage = (function () {
 }());
 DashboardPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-dashboard',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-dashboard\page-dashboard.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <img class="header-logo" src="assets/images/logo-min.png" alt="GoPage Logo">\n\n    <img class="business-icon" src="assets/icon/for-business.png" alt="For Business">\n\n    <span class="name">\n\n      <span class="fa-stack has-notif"  (click)="ToInbox()">\n\n        <i class="fa fa-square fa-stack-2x"></i>\n\n        <span class="fa fa-stack-1x" *ngIf="!hasNotify">0</span>\n\n        <span class="fa fa-stack-1x" *ngIf="hasNotify">{{ notifCount }}</span>\n\n      </span>\n\n      Hi, {{firstname}}\n\n    </span>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <div class="container dashboard-menu">\n\n    <h3 class="company-name"></h3>\n\n    <div class="row">\n\n      <div class="col">\n\n        <ion-card (click)="ToScanner()">\n\n          <img src="assets/icon/scanner.png"/>\n\n          <ion-card-content>\n\n            <ion-card-title>\n\n              Scanner\n\n            </ion-card-title>\n\n          </ion-card-content>\n\n        </ion-card>\n\n      </div>\n\n\n\n      <div class="col">\n\n        <ion-card (click)="ToCustomers()">\n\n          <img src="assets/icon/customers.png"/>\n\n          <ion-card-content>\n\n            <ion-card-title>\n\n              Customers\n\n            </ion-card-title>\n\n          </ion-card-content>\n\n        </ion-card>\n\n      </div>\n\n    </div>\n\n\n\n    <div class="row">\n\n      <div class="col">\n\n        <ion-card (click)="ToInbox()">\n\n          <img src="assets/icon/inbox.png"/>\n\n          <ion-card-content>\n\n            <ion-card-title>\n\n              Inbox\n\n            </ion-card-title>\n\n          </ion-card-content>\n\n        </ion-card>\n\n      </div>\n\n\n\n      <div class="col">\n\n        <ion-card (click)="ToSettings()">\n\n          <img src="assets/icon/settings.png"/>\n\n          <ion-card-content>\n\n            <ion-card-title>\n\n              Settings\n\n            </ion-card-title>\n\n          </ion-card-content>\n\n        </ion-card>\n\n      </div>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-dashboard\page-dashboard.html"*/
+        selector: 'page-dashboard',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-dashboard\page-dashboard.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <img class="header-logo" src="assets/images/logo-min.png" alt="GoPage Logo">\n\n    <img class="business-icon" src="assets/icon/for-business.png" alt="For Business">\n\n    <span class="name">\n\n      <span class="fa-stack has-notif"  (click)="ToInbox()">\n\n        <i class="fa fa-square fa-stack-2x"></i>\n\n        <!-- <span class="fa fa-stack-1x" *ngIf="!hasNotify">0</span> -->\n\n        <span class="fa fa-stack-1x" >{{ notifCountTotal }}</span>\n\n      </span>\n\n      Hi, {{firstname}}\n\n    </span>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <div class="container dashboard-menu">\n\n    <h3 class="company-name"></h3>\n\n    <div class="row">\n\n      <div class="col">\n\n        <ion-card (click)="ToScanner()">\n\n          <img src="assets/icon/scanner.png"/>\n\n          <ion-card-content>\n\n            <ion-card-title>\n\n              Scanner\n\n            </ion-card-title>\n\n          </ion-card-content>\n\n        </ion-card>\n\n      </div>\n\n\n\n      <div class="col">\n\n        <ion-card (click)="ToCustomers()">\n\n          <img src="assets/icon/customers.png"/>\n\n          <ion-card-content>\n\n            <ion-card-title>\n\n              Customers\n\n            </ion-card-title>\n\n          </ion-card-content>\n\n        </ion-card>\n\n      </div>\n\n    </div>\n\n\n\n    <div class="row">\n\n      <div class="col">\n\n        <ion-card (click)="ToInbox()">\n\n          <img src="assets/icon/inbox.png"/>\n\n          <ion-card-content>\n\n            <ion-card-title>\n\n              Inbox\n\n            </ion-card-title>\n\n          </ion-card-content>\n\n        </ion-card>\n\n      </div>\n\n\n\n      <div class="col">\n\n        <ion-card (click)="ToSettings()">\n\n          <img src="assets/icon/settings.png"/>\n\n          <ion-card-content>\n\n            <ion-card-title>\n\n              Settings\n\n            </ion-card-title>\n\n          </ion-card-content>\n\n        </ion-card>\n\n      </div>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-dashboard\page-dashboard.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */],

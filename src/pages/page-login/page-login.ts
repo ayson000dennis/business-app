@@ -24,9 +24,10 @@ import Config from '../../app/config';
 export class LoginPage {
   userData: any;
 
-  posts: {username: string, password: string} = {
+  posts: {username: string, password: string, in_mobile: boolean} = {
     username : '',
-    password : ''
+    password : '',
+    in_mobile : true
   }
 
   constructor(
@@ -57,7 +58,7 @@ export class LoginPage {
 
     this.fb.login(['email', 'public_profile']).then((res: FacebookLoginResponse) => {
       this.fb.api('me?fields=id,email', []).then(profile => {
-        this.http.post(baseUrl + 'api/users/login',{email: profile['email'], is_social: '1', permission: '4'}).subscribe(res => {
+        this.http.post(baseUrl + 'api/users/login',{email: profile['email'], is_social: '1', permission: '4', in_mobile: true}).subscribe(res => {
           this.getUser(res.json());
         }, err => {
           console.log(err);
@@ -86,6 +87,11 @@ export class LoginPage {
       getPass = this.posts.password,
       baseUrl = Config.baseUrl;
 
+    var errorLogin = function () {
+      $('.form-login input[name="username"]').addClass('has-error').siblings('.text-validate').text('Invalid Email or Mobile number.');
+      $('.form-login input[name="password"]').addClass('has-error').siblings('.text-validate').text('Invalid Password.');
+    }
+
     if ($('.btn-green[type="submit"]').find('.fa-spinner').length == 0) {
       $('.btn-green[type="submit"]').append('<span class="fa fa-spinner fa-spin"></span>');
     }
@@ -95,23 +101,13 @@ export class LoginPage {
       this.http.post(baseUrl + 'api/users/login',this.posts).subscribe(res => {
         $('.btn-green[type="submit"]').find('.fa-spinner').remove();
         if (res.json().permission == '3') {
-          $('.form-login input[name="username"]').addClass('has-error').next('.text-validate').text('Invalid Email or Mobile number');
+          errorLogin();
         } else {
           this.getUser(res.json());
         }
       }, err => {
         $('.btn-green[type="submit"]').find('.fa-spinner').remove();
-        $('.form-login label').each(function() {
-          var thisInput = $(this).find('input'),
-            thisInputName = thisInput.attr('name'),
-            thisPlaceholder = thisInput.attr('placeholder');
-
-          if (thisInputName == 'username') {
-            thisInput.addClass('has-error').siblings('.text-validate').text('Invalid ' + thisPlaceholder);
-          } else if (thisInputName == 'password') {
-            thisInput.addClass('has-error').siblings('.text-validate').text('Invalid Password.');
-          }
-        });
+        errorLogin();
       });
     } else {
       $('.btn-green[type="submit"]').find('.fa-spinner').remove();

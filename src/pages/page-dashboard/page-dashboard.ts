@@ -29,6 +29,7 @@ export class DashboardPage {
   shop_id : any;
   hasShopId : boolean = false;
   shop_name : any;
+  notifCountTotal = 0;
 
   constructor(
     public navCtrl: NavController,
@@ -48,6 +49,7 @@ export class DashboardPage {
 
   ionViewWillEnter() {
     this.socketService.connect();
+    this.getNotificationCount();
 
     this.storage.get('shop_name').then(result => {
       if (result != null) {
@@ -83,6 +85,38 @@ export class DashboardPage {
     });
   }
 
+  getNotificationCount() {
+
+    this.storage.get('user').then(user =>{
+      this.user = user;
+
+      if(user.shop_id[0]) {
+        this.api.Message.room_list(user.shop_id[0]).then(members => {
+
+          if(members.length) {
+            var withChats = [];
+
+            for (var x = 0; x < members.length; x++) {
+              if (members[x].last_chat.length >  0 && members[x].last_chat[0].is_read === false && members[x].last_chat[0].message_by !== 'business') {
+                withChats.push(members[x]);
+              }
+            }
+
+            this.notifCountTotal = withChats.length;
+            console.log(this.notifCountTotal);
+
+          }
+
+        }).catch((error) => {
+            console.log(error);
+        });
+      } else {
+
+      }
+
+    });
+  }
+
   initInboxNotification() {
     // Get real time message notification
     this.socketService.notify.subscribe((chatNotification) => {
@@ -92,7 +126,8 @@ export class DashboardPage {
 
           if(chatNotification.business_id == this.shop_id) {
             this.hasNotify = true;
-            this.notifCount++;
+            this.getNotificationCount();
+            // this.notifCount++;
           }
 
         }).catch((error) => {

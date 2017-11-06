@@ -79,10 +79,10 @@ export class UserRegisterPage {
 
             console.log(res);
 
-            // this.navCtrl.setRoot(UserDealsPage, {business_id: user.shop_id[0],customer : this.customer.customer.user_id[0]}, {
-            //   animate: true,
-            //   direction: 'forward'
-            // });
+            this.navCtrl.setRoot(UserDealsPage, {business_id: user.shop_id[0],customer : this.customer.customer.user_id[0]}, {
+              animate: true,
+              direction: 'forward'
+            });
           });
 
           // this.api.Business.register(this.phone, user.shop_id[0],getFName,getLName).then(customer => {

@@ -5,8 +5,8 @@
     <span class="name">
       <span class="fa-stack has-notif"  (click)="ToInbox()">
         <i class="fa fa-square fa-stack-2x"></i>
-        <span class="fa fa-stack-1x" *ngIf="!hasNotify">0</span>
-        <span class="fa fa-stack-1x" *ngIf="hasNotify">{{ notifCount }}</span>
+        <!-- <span class="fa fa-stack-1x" *ngIf="!hasNotify">0</span> -->
+        <span class="fa fa-stack-1x" >{{ notifCountTotal }}</span>
       </span>
       Hi, {{firstname}}
     </span>
