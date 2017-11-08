@@ -1106,7 +1106,7 @@ var UserChatPage = (function () {
             // }
             if (!_this.isRefetch) {
                 _this.isRefetch = true;
-                console.log('Refetching inbox data...');
+                console.log('Refetching chat data...');
                 return _this.fetchChats();
             }
             else {
@@ -1114,7 +1114,7 @@ var UserChatPage = (function () {
                 _this.hasData = true;
                 _this.scrollToBottom();
                 __WEBPACK_IMPORTED_MODULE_5_jquery__('body').find('.fa.loader').remove();
-                console.log('Inbox data loaded');
+                console.log('Chat data loaded');
             }
         }).catch(function (error) {
             console.log(error);
@@ -1177,7 +1177,7 @@ __decorate([
 ], UserChatPage.prototype, "content", void 0);
 UserChatPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["n" /* Component */])({
-        selector: 'page-user-chat',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-chat\page-user-chat.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button class="back-btn-new" (click)="goToInbox()">\n\n       <i class="fa fa-angle-left" aria-hidden="true"></i>\n\n    </button>\n\n    <!-- <img class="header-logo" src="assets/images/logo-min.png" alt="">\n\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n\n    <a class="inbox"><img src="assets/images/icon-mail.png" alt="" /><span class="count-msg">1</span></a> -->\n\n    <span class=\'title\' *ngIf="memberDetail.first_name && memberDetail.last_name">{{ memberDetail.first_name }} {{ memberDetail.last_name }}</span>\n\n\n\n    <span class=\'title\' *ngIf="!memberDetail.first_name || memberDetail.first_name == \' \' && !memberDetail.last_name || memberDetail.last_name == \' \' "> {{ memberDetail.number }}</span>\n\n\n\n    <span class=\'title\' *ngIf="!memberDetail.first_name || memberDetail.first_name == \' \'"> {{ memberDetail.last_name }}</span>\n\n\n\n    <span class=\'title\' *ngIf="!memberDetail.last_name || memberDetail.last_name == \' \'"> {{ memberDetail.first_name }}</span>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content id="messages" #content>\n\n  <div *ngIf="hasData">\n\n    <ion-list no-lines>\n\n\n\n      <ion-item *ngFor="let msg of messages">\n\n        <chat-bubble [chatMessage]="msg"></chat-bubble>\n\n      </ion-item>\n\n\n\n    </ion-list>\n\n  </div>\n\n\n\n  <span class="fa fa-spinner fa-spin loader"></span>\n\n</ion-content>\n\n\n\n<ion-footer *ngIf="hasData" no-border class="chatPageFooter" [keyboardAttach]="content" [btnClicked]="btnEmitter">\n\n  <ion-toolbar>\n\n\n\n    <ion-item no-lines >\n\n      <ion-label style="margin:0px;"></ion-label>\n\n      <div item-content style="width:100%;">\n\n        <elastic-textarea #txtChat placeholder="Send a message" lineHeight="20" maxExpand="5"></elastic-textarea>\n\n      </div>\n\n    </ion-item>\n\n\n\n    <ion-buttons right style="margin-left:10px">\n\n      <button ion-button icon-only\n\n              [disabled]="txtChat.content.trim().length<1"\n\n              (click)="sendMessage()">\n\n              SEND\n\n        <!-- <ion-icon name="md-send"></ion-icon> -->\n\n      </button>\n\n    </ion-buttons>\n\n\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-chat\page-user-chat.html"*/
+        selector: 'page-user-chat',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-chat\page-user-chat.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button class="back-btn-new" (click)="goToInbox()">\n\n       <i class="fa fa-angle-left" aria-hidden="true"></i>\n\n    </button>\n\n    <!-- <img class="header-logo" src="assets/images/logo-min.png" alt="">\n\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n\n    <a class="inbox"><img src="assets/images/icon-mail.png" alt="" /><span class="count-msg">1</span></a> -->\n\n    <span class=\'title\' *ngIf="memberDetail.first_name && memberDetail.last_name">{{ memberDetail.first_name }} {{ memberDetail.last_name }}</span>\n\n\n\n    <span class=\'title\' *ngIf="!memberDetail.first_name || memberDetail.first_name == \' \' && !memberDetail.last_name || memberDetail.last_name == \' \' "> {{ memberDetail.number }}</span>\n\n\n\n    <span class=\'title\' *ngIf="!memberDetail.first_name || memberDetail.first_name == \' \'"> {{ memberDetail.last_name }}</span>\n\n\n\n    <span class=\'title\' *ngIf="!memberDetail.last_name || memberDetail.last_name == \' \'"> {{ memberDetail.first_name }}</span>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content id="messages" #content>\n\n  <div *ngIf="hasData">\n\n    <ion-list no-lines>\n\n\n\n      <ion-item *ngFor="let msg of messages">\n\n        <chat-bubble [chatMessage]="msg"></chat-bubble>\n\n      </ion-item>\n\n\n\n    </ion-list>\n\n  </div>\n\n\n\n  <span class="fa fa-spinner fa-spin loader"></span>\n\n</ion-content>\n\n\n\n<ion-footer *ngIf="hasData" no-border class="chatPageFooter" [keyboardAttach]="content" [btnClicked]="btnEmitter">\n\n  <ion-toolbar position="bottom">\n\n\n\n    <ion-item no-lines >\n\n      <ion-label style="margin:0px;"></ion-label>\n\n      <div item-content style="width:100%;">\n\n        <elastic-textarea #txtChat placeholder="Send a message" lineHeight="20" maxExpand="5"></elastic-textarea>\n\n      </div>\n\n    </ion-item>\n\n\n\n    <ion-buttons right style="margin-left:10px">\n\n      <button ion-button icon-only\n\n              [disabled]="txtChat.content.trim().length<1"\n\n              (click)="sendMessage()">\n\n              SEND\n\n        <!-- <ion-icon name="md-send"></ion-icon> -->\n\n      </button>\n\n    </ion-buttons>\n\n\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-chat\page-user-chat.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["h" /* NavParams */],
@@ -1407,10 +1407,13 @@ SettingsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-settings',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-settings\page-settings.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <i class="fa fa-angle-left fa-lg" (click)="goBack()"></i>\n\n    <span class="page-title">Settings</span>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <div class="loader">Fetching your businesses... <span class="fa fa-spinner fa-spin"></span></div>  \n\n\n\n  <ion-list *ngIf=(hasData)>\n\n    <ion-list-header id="list-header">Switch Account</ion-list-header>\n\n    <ion-item-group>\n\n      <ion-item *ngFor="let business of businesses"><span class="{{business._id == shop_id ? \'active\' : \'\'}}" (click)="goDashboard(business._id)">{{business.company_name}}</span></ion-item>\n\n    </ion-item-group>\n\n  </ion-list>\n\n  <div class="container settings-menu">\n\n    <a (click)="ComingSoon()">Notif<span></span>ication</a>\n\n    <hr class="divider" />\n\n    <a class="logout" (click)="logOut()">Logout</a>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-settings\page-settings.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__service_api_service_component__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__service_api_service_component__["a" /* ApiService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
+        __WEBPACK_IMPORTED_MODULE_5__service_api_service_component__["a" /* ApiService */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
 ], SettingsPage);
 
-var _a, _b, _c, _d, _e;
 //# sourceMappingURL=page-settings.js.map
 
 /***/ }),
@@ -1785,10 +1788,12 @@ UserRegisterPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-user-register',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-register\page-user-register.html"*/'<!-- <ion-header>\n\n  <ion-navbar>\n\n    <img class="header-logo" src="assets/images/logo-min.png" alt="">\n\n    <div class="holder-menu" (click)="showMenu()">Menu</div>\n\n    <a class="inbox" (click)="goInbox()"><img src="assets/images/icon-mail.png" alt="" /></a>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n\n\n<ion-content padding>\n\n  <p class="title" (click)="goScanner()">\n\n    <img class="btn-nav" src="assets/icon/icon-back.png" alt="" />\n\n    Back to Scanner\n\n  </p>\n\n\n\n  <form>\n\n    <label>\n\n      <input type="text" name="first_name" placeholder="First name" [(ngModel)]="posts.first_name" />\n\n      <span class="text-validate"></span>\n\n    </label>\n\n    <label>\n\n      <input type="text" name="last_name" placeholder="Last name" [(ngModel)]="posts.last_name" />\n\n      <span class="text-validate"></span>\n\n    </label>\n\n    <button class="btn btn-gray" type="submit" (click)="skipMe()">Skip</button>\n\n    <button class="btn btn-green" type="submit" (click)="registerMe()">Submit</button>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-register\page-user-register.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service_component__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_api_service_component__["a" /* ApiService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["b" /* Storage */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__service_api_service_component__["a" /* ApiService */],
+        __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["b" /* Storage */]])
 ], UserRegisterPage);
 
-var _a, _b, _c, _d;
 //# sourceMappingURL=page-user-register.js.map
 
 /***/ }),
@@ -2132,7 +2137,16 @@ AppModule = __decorate([
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */]),
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {
+                platforms: {
+                    ios: {
+                        // These options are available in ionic-angular@2.0.0-beta.2 and up.
+                        scrollAssist: false,
+                        autoFocusAssist: false // Valid options appear to be ['instant', 'delay', false]
+                    }
+                    // http://ionicframework.com/docs/v2/api/config/Config/)
+                }
+            }),
             __WEBPACK_IMPORTED_MODULE_30__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_27_ngx_qrcode2__["a" /* NgxQRCodeModule */]
@@ -2227,8 +2241,6 @@ var UserInboxPage = (function () {
         this.socketService = socketService;
         this.hasNotify = false;
         this.hasNoData = false;
-        // hasNotify2 : boolean = false;
-        // hasNotifyDone : boolean = false;
         this.isRefetch = false;
         this.inInbox = true;
         this.init();
@@ -2236,8 +2248,6 @@ var UserInboxPage = (function () {
     UserInboxPage.prototype.ionViewWillEnter = function () {
         this.socketService.connect();
         this.fetchInboxData();
-    };
-    UserInboxPage.prototype.ionViewDidLoad = function () {
     };
     UserInboxPage.prototype.ionViewWillLeave = function () {
         this.socketService.disconnect();
@@ -2285,21 +2295,6 @@ var UserInboxPage = (function () {
                         _this.hasNoData = true;
                         __WEBPACK_IMPORTED_MODULE_9_jquery__('body').find('.fa.loader').remove();
                     }
-                    // if(!this.hasNotify && this.hasNotify2 && !this.hasNotifyDone) {
-                    //   this.hasNotify = true;
-                    //   return this.fetchInboxData();
-                    // }
-                    //
-                    // if(this.hasNotify && !this.hasNotify2) {
-                    //   this.hasNotify = false;
-                    //   this.hasNotify2 = true;
-                    //   return this.fetchInboxData();
-                    // }
-                    // if(this.msg_business_id && !this.hasData && this.hasNotify) {
-                    //   this.msg_business_id = '';
-                    //   console.log('Refetching inbox data...');
-                    //   return this.fetchInboxData();
-                    // }
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -2314,11 +2309,10 @@ var UserInboxPage = (function () {
         var _this = this;
         // Get real time message notification
         this.socketService.notify.subscribe(function (chatNotification) {
-            console.log('Notif from member');
-            _this.msg_business_id = chatNotification.business_id;
             _this._zone.run(function () {
                 _this.storage.get('user').then(function (user) {
                     if (chatNotification.business_id == user.shop_id[0]) {
+                        console.log('Notification from member');
                         _this.hasNotify = true;
                     }
                     if (_this.inInbox) {
@@ -2357,7 +2351,7 @@ var UserInboxPage = (function () {
 }());
 UserInboxPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-user-inbox',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-inbox\page-user-inbox.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <i class="fa fa-angle-left fa-lg" (click)="goBack()"></i>\n\n    <span class="page-title">Inbox</span>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content >\n\n  <!-- <span [ngClass]="[membersList ? \'hidden\' : \'visible\']"> Inbox is empty </span> -->\n\n\n\n    <h5 *ngIf="hasNoData"> Your inbox is empty </h5>\n\n\n\n    <ion-list id="inbox-list">\n\n\n\n      <ion-item *ngFor="let member of membersList;" tappable (click)="viewMessage(member.user_id[0],member.business_id[0])">\n\n\n\n        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === \'member\' ? \'new\' : \'\']" class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && member.user_id[0].first_name"> {{member.user_id[0].first_name}} {{member.user_id[0].last_name}}</span>\n\n\n\n        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === \'member\' ? \'new\' : \'\']" class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name && member.user_id[0].last_name == \' \'"> {{member.user_id[0].first_name}} </span>\n\n\n\n        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === \'member\' ? \'new\' : \'\']" class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && member.user_id[0].first_name == \' \'"> {{member.user_id[0].last_name}} </span>\n\n\n\n        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === \'member\' ? \'new\' : \'\']" class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name == \' \' && !member.user_id[0].last_name == \' \' "> {{ member.user_id[0].number }} </span>\n\n\n\n        <span class="name" *ngIf="member.user_id && member.user_id.length == 0"> No Member Data </span>\n\n\n\n        <p [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === \'member\' ? \'new\' : \'\']" class="message" *ngIf="member.last_chat.length != 0"> {{ member.last_chat[0].message  }}  </p>\n\n\n\n        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === \'member\' ? \'new\' : \'\']" class="date-time" *ngIf="member.last_chat.length != 0">  {{formatEpoch(member.last_chat[0].epoch)}} </span>\n\n\n\n      </ion-item>\n\n\n\n      <span class="fa fa-spinner fa-spin loader"></span>\n\n\n\n    </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-inbox\page-user-inbox.html"*/
+        selector: 'page-user-inbox',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-user-inbox\page-user-inbox.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <i class="fa fa-angle-left fa-lg" (click)="goBack()"></i>\n\n    <span class="page-title">Inbox</span>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content >\n\n  <!-- <span [ngClass]="[membersList ? \'hidden\' : \'visible\']"> Inbox is empty </span> -->\n\n\n\n    <h5 *ngIf="hasNoData"> Your inbox is empty </h5>\n\n\n\n    <ion-list id="inbox-list">\n\n\n\n      <ion-item *ngFor="let member of membersList " tappable (click)="viewMessage(member.user_id[0],member.business_id[0])">\n\n\n\n        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === \'member\' ? \'new\' : \'\']" class="name" *ngIf="member.user_id.length !=0 && member.user_id[0].first_name != \' \' || member.user_id.length !=0 && member.user_id[0].last_name != \' \'"> {{member.user_id[0].first_name}} {{member.user_id[0].last_name}}</span>\n\n\n\n        <!-- <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === \'member\' ? \'new\' : \'\']" class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name && !member.user_id[0].last_name"> {{member.user_id[0].first_name}}</span>\n\n\n\n        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === \'member\' ? \'new\' : \'\']" class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && !member.user_id[0].first_name"> {{member.user_id[0].last_name}}</span> -->\n\n\n\n        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === \'member\' ? \'new\' : \'\']" class="name" *ngIf="member.user_id.length !=0 && member.user_id[0].first_name === \' \' && member.user_id[0].last_name === \' \' "> {{ member.user_id[0].number }}</span>\n\n\n\n        <span class="name" *ngIf="member.user_id.length == 0"> No Member Data </span>\n\n\n\n        <p [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === \'member\' ? \'new\' : \'\']" class="message" *ngIf="member.last_chat.length != 0"> {{ member.last_chat[0].message  }}  </p>\n\n\n\n        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === \'member\' ? \'new\' : \'\']" class="date-time" *ngIf="member.last_chat.length != 0">  {{formatEpoch(member.last_chat[0].epoch)}} </span>\n\n\n\n      </ion-item>\n\n\n\n      <span class="fa fa-spinner fa-spin loader"></span>\n\n\n\n    </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-user-inbox\page-user-inbox.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
@@ -2367,32 +2361,6 @@ UserInboxPage = __decorate([
         __WEBPACK_IMPORTED_MODULE_8__providers__["c" /* SocketService */]])
 ], UserInboxPage);
 
-// FETCH DATA INBOX excess
-// console.log(room)
-// this.api.Message.members_room(room).then(members => {
-//   console.log(members)
-// }).catch((error) => {
-//     console.log(error);
-// });
-// members.forEach((member) => {
-//   var room_id = member.user_id[0]._id + member.business_id[0]._id;
-//
-//     this.api.Message.fetch_last_chat(room_id).then(last_msg => {
-//
-//       if(last_msg.length != 0){
-//         if(room_id == last_msg[0].room_id) {
-//           member.last_chat =last_msg[0]
-//         }
-//       }
-//     }).catch((error) => {
-//         console.log(error);
-//     });
-// })
-//   if(member_each.user_id[0]._id || member_each.business[0]._id) {
-//
-//   } else {
-//     console.log('Business owner Id '+ member_each._id + ' has no member/business data')
-//   }
 //# sourceMappingURL=page-user-inbox.js.map
 
 /***/ }),
@@ -2449,8 +2417,11 @@ var MyApp = (function () {
         this.storage = storage;
         platform.ready().then(function () {
             _this.screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
+            _this.statusBar.styleDefault();
+            setTimeout(function () {
+                _this.splashScreen.hide();
+            }, 100);
         });
-        this.initializeApp();
         this.storage.get("user").then(function (user) {
             if (user !== null) {
                 _this.rootPage = __WEBPACK_IMPORTED_MODULE_3__pages_page_dashboard_page_dashboard__["a" /* DashboardPage */];
@@ -2460,34 +2431,20 @@ var MyApp = (function () {
             }
         });
     }
-    MyApp.prototype.initializeApp = function () {
-        var _this = this;
-        this.platform.ready().then(function () {
-            // Okay, so the platform is ready and our plugins are available.
-            // Here you can do any higher level native things you might need.
-            _this.statusBar.styleDefault();
-            _this.splashScreen.hide();
-        });
-    };
     return MyApp;
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewChild */])('nav'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */])
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object)
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"E:\Projects\business-app\src\app\app.html"*/'<ion-nav #nav [root]="rootPage"></ion-nav>\n\n\n\n<!-- <ion-menu [content]="nav">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title>Pages</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{p.title}}\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu> -->\n\n'/*ion-inline-end:"E:\Projects\business-app\src\app\app.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_8__ionic_native_keyboard__["a" /* Keyboard */], __WEBPACK_IMPORTED_MODULE_9__providers_database_service__["a" /* DatabaseService */], __WEBPACK_IMPORTED_MODULE_10__providers_sql__["a" /* Sql */], __WEBPACK_IMPORTED_MODULE_11__providers_socket_service__["a" /* SocketService */]]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
-        __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__["a" /* SplashScreen */],
-        __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
-        __WEBPACK_IMPORTED_MODULE_8__ionic_native_keyboard__["a" /* Keyboard */],
-        __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["b" /* Storage */]])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__["a" /* ScreenOrientation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__["a" /* ScreenOrientation */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_8__ionic_native_keyboard__["a" /* Keyboard */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__ionic_native_keyboard__["a" /* Keyboard */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["b" /* Storage */]) === "function" && _h || Object])
 ], MyApp);
 
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -2924,10 +2881,14 @@ LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-login',template:/*ion-inline-start:"E:\Projects\business-app\src\pages\page-login\page-login.html"*/'<!-- <ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n\n\n    </button>\n\n    <ion-title>Login</ion-title>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n<ion-content padding>\n\n  <!-- <ion-card *ngIf="userData">\n\n    <ion-card-header>{{ userData.email }}</ion-card-header>\n\n  </ion-card> -->\n\n\n\n  <p class="title">\n\n    <img class="btn-nav to-right" src="assets/icon/icon-close.png" alt="" (click)="goSlider()">\n\n    Welcome Back\n\n  </p>\n\n  <!-- <button class="btn login-fb" (click)="fbConnect()"><span class="fa fa-facebook"></span> Continue with Facebook</button>\n\n  <button class="btn login-google" (click)="gpConnect()"><span class="fa fa-google"></span> Continue with Google</button>\n\n  <div class="divider">\n\n    <span>or</span>\n\n  </div> -->\n\n  <form class="form-login">\n\n    <label><input type="email" name="username" placeholder="Email or Mobile number" [(ngModel)]="posts.username" /><span class="text-validate">Email address is required.</span></label>\n\n    <label><input type="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" [(ngModel)]="posts.password" /><span class="btn-show">SHOW</span><span class="text-validate">Password is required.</span></label>\n\n    <button class="btn-green" type="submit" (click)="logMeIn()">Log In</button>\n\n  </form>\n\n  <a class="description forgot-pass" (click)="goReset()">Forgot your password?</a>\n\n  <!-- <hr class="hr" />\n\n  <p class="description">Don\'t have an account? <a href="#" (click)="goSignup()">Sign Up</a></p> -->\n\n</ion-content>\n\n'/*ion-inline-end:"E:\Projects\business-app\src\pages\page-login\page-login.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__["a" /* GooglePlus */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__["a" /* GooglePlus */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_10__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_9__service_api_service_component__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__service_api_service_component__["a" /* ApiService */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__["a" /* GooglePlus */],
+        __WEBPACK_IMPORTED_MODULE_10__ionic_storage__["b" /* Storage */],
+        __WEBPACK_IMPORTED_MODULE_9__service_api_service_component__["a" /* ApiService */]])
 ], LoginPage);
 
-var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=page-login.js.map
 
 /***/ }),

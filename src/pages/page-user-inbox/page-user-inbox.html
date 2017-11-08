@@ -12,17 +12,17 @@
 
     <ion-list id="inbox-list">
 
-      <ion-item *ngFor="let member of membersList;" tappable (click)="viewMessage(member.user_id[0],member.business_id[0])">
+      <ion-item *ngFor="let member of membersList " tappable (click)="viewMessage(member.user_id[0],member.business_id[0])">
 
-        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === 'member' ? 'new' : '']" class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && member.user_id[0].first_name"> {{member.user_id[0].first_name}} {{member.user_id[0].last_name}}</span>
+        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === 'member' ? 'new' : '']" class="name" *ngIf="member.user_id.length !=0 && member.user_id[0].first_name != ' ' || member.user_id.length !=0 && member.user_id[0].last_name != ' '"> {{member.user_id[0].first_name}} {{member.user_id[0].last_name}}</span>
 
-        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === 'member' ? 'new' : '']" class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name && member.user_id[0].last_name == ' '"> {{member.user_id[0].first_name}} </span>
+        <!-- <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === 'member' ? 'new' : '']" class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name && !member.user_id[0].last_name"> {{member.user_id[0].first_name}}</span>
 
-        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === 'member' ? 'new' : '']" class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && member.user_id[0].first_name == ' '"> {{member.user_id[0].last_name}} </span>
+        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === 'member' ? 'new' : '']" class="name" *ngIf="member.user_id[0] && member.user_id[0].last_name && !member.user_id[0].first_name"> {{member.user_id[0].last_name}}</span> -->
 
-        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === 'member' ? 'new' : '']" class="name" *ngIf="member.user_id[0] && member.user_id[0].first_name == ' ' && !member.user_id[0].last_name == ' ' "> {{ member.user_id[0].number }} </span>
+        <span [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === 'member' ? 'new' : '']" class="name" *ngIf="member.user_id.length !=0 && member.user_id[0].first_name === ' ' && member.user_id[0].last_name === ' ' "> {{ member.user_id[0].number }}</span>
 
-        <span class="name" *ngIf="member.user_id && member.user_id.length == 0"> No Member Data </span>
+        <span class="name" *ngIf="member.user_id.length == 0"> No Member Data </span>
 
         <p [ngClass]="[member.last_chat.length != 0 && member.last_chat[0].is_read == false && member.last_chat[0].message_by === 'member' ? 'new' : '']" class="message" *ngIf="member.last_chat.length != 0"> {{ member.last_chat[0].message  }}  </p>
 
@@ -33,5 +33,4 @@
       <span class="fa fa-spinner fa-spin loader"></span>
 
     </ion-list>
-
 </ion-content>

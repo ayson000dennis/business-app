@@ -79,7 +79,9 @@
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1033973851698-t1alddcc4grpjf7kgjhqf0v4vb9m5om8"
       },
-      "phonegap-plugin-barcodescanner": {}
+      "phonegap-plugin-barcodescanner": {
+        "CAMERA_USAGE_DESCRIPTION": "Scan QR-Codes"
+      }
     },
     "platforms": [
       "android",

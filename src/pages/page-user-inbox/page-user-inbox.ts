@@ -28,13 +28,8 @@ export class UserInboxPage {
   user: string[];
   hasNotify : boolean = false;
   hasNoData : boolean = false;
-  // hasNotify2 : boolean = false;
-  // hasNotifyDone : boolean = false;
   isRefetch : boolean = false;
   inInbox : boolean = true;
-  messages : string[];
-  room_id : string;
-  msg_business_id : string;
 
   constructor(
     public navCtrl: NavController,
@@ -51,16 +46,12 @@ export class UserInboxPage {
     this.fetchInboxData();
   }
 
-  ionViewDidLoad() {
-    
-  }
-
   ionViewWillLeave() {
     this.socketService.disconnect();
     this.inInbox = false;
   }
 
-fetchInboxData() {
+  fetchInboxData() {
     // Display all members
     this.storage.get('user').then(user =>{
       this.user = user;
@@ -109,28 +100,10 @@ fetchInboxData() {
 
               console.log('Inbox data loaded');
             }
-          } else
-          {
+          } else {
             this.hasNoData = true;
             $('body').find('.fa.loader').remove();
           }
-
-          // if(!this.hasNotify && this.hasNotify2 && !this.hasNotifyDone) {
-          //   this.hasNotify = true;
-          //   return this.fetchInboxData();
-          // }
-          //
-          // if(this.hasNotify && !this.hasNotify2) {
-          //   this.hasNotify = false;
-          //   this.hasNotify2 = true;
-          //   return this.fetchInboxData();
-          // }
-
-          // if(this.msg_business_id && !this.hasData && this.hasNotify) {
-          //   this.msg_business_id = '';
-          //   console.log('Refetching inbox data...');
-          //   return this.fetchInboxData();
-          // }
 
         }).catch((error) => {
             console.log(error);
@@ -146,14 +119,12 @@ fetchInboxData() {
   init() {
     // Get real time message notification
     this.socketService.notify.subscribe((chatNotification) => {
-      console.log('Notif from member');
-
-      this.msg_business_id = chatNotification.business_id;
 
       this._zone.run(() => {
         this.storage.get('user').then(user =>{
 
           if(chatNotification.business_id == user.shop_id[0]) {
+            console.log('Notification from member');
             this.hasNotify = true;
           }
 
@@ -190,41 +161,11 @@ fetchInboxData() {
     });
   }
 
-
-    goBack() {
-      this.navCtrl.setRoot(DashboardPage, {}, {
-        animate: true,
-        direction: 'back'
-      });
-    }
+  goBack() {
+    this.navCtrl.setRoot(DashboardPage, {}, {
+      animate: true,
+      direction: 'back'
+    });
+  }
 
 }
-
-// FETCH DATA INBOX excess
-// console.log(room)
-// this.api.Message.members_room(room).then(members => {
-//   console.log(members)
-// }).catch((error) => {
-//     console.log(error);
-// });
-
-// members.forEach((member) => {
-//   var room_id = member.user_id[0]._id + member.business_id[0]._id;
-//
-//     this.api.Message.fetch_last_chat(room_id).then(last_msg => {
-//
-//       if(last_msg.length != 0){
-//         if(room_id == last_msg[0].room_id) {
-//           member.last_chat =last_msg[0]
-//         }
-//       }
-//     }).catch((error) => {
-//         console.log(error);
-//     });
-// })
-
-//   if(member_each.user_id[0]._id || member_each.business[0]._id) {
-//
-//   } else {
-//     console.log('Business owner Id '+ member_each._id + ' has no member/business data')
-//   }

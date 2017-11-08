@@ -101,7 +101,7 @@ export class UserChatPage {
 
         this.isRefetch = true;
 
-        console.log('Refetching inbox data...');
+        console.log('Refetching chat data...');
 
         return this.fetchChats();
       } else {
@@ -114,7 +114,7 @@ export class UserChatPage {
 
         $('body').find('.fa.loader').remove();
 
-        console.log('Inbox data loaded');
+        console.log('Chat data loaded');
       }
 
     }).catch((error) => {

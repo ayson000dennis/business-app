@@ -1,5 +1,49 @@
 page-user-chat {
 
+  // Iphone 5 portrait
+  @media only screen
+  and (min-device-width : 320px)
+  and (max-device-width : 568px) {
+
+    ion-navbar {
+
+      .back-btn-new {
+        margin-left: -30px !important;
+      }
+
+      .title {
+        left: -10px !important;
+      }
+
+    }
+
+    ion-header + ion-content > div.scroll-content {
+      padding-bottom: 0px !important;
+    }
+  }
+
+  // Iphone 6 & + portrait
+  @media only screen
+  and (min-device-width : 375px)
+  and (max-device-width : 667px) {
+
+    ion-navbar {
+
+      .back-btn-new {
+        margin-left: -5px !important;
+      }
+
+      .title {
+        left: 10px !important;
+      }
+
+    }
+
+    ion-header + ion-content > div.scroll-content {
+      padding-bottom: 60px !important;
+    }
+  }
+
   ion-navbar {
     border-bottom: 1px solid transparent;
 
@@ -40,7 +84,7 @@ page-user-chat {
 
   ion-header + ion-content > div.scroll-content {
     background-color: transparent !important;
-    padding-bottom: 60px !important;
+    padding-bottom: 60px;
   }
 
   #messages {
