@@ -47,9 +47,10 @@ export class MyApp {
     platform.ready().then(() => {
       this.screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
       this.statusBar.styleDefault();
-      setTimeout(() => {
-        this.splashScreen.hide();
-      }, 100);
+      var self = this;
+      setTimeout(function() {
+        self.splashScreen.hide();
+      }, 100)
     });
 
     this.storage.get("user").then(user => {
