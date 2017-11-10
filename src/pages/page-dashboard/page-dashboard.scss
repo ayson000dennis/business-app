@@ -62,21 +62,9 @@ page-dashboard {
         }
 
         // Iphone 5 portrait
-        @media only screen
-        and (min-device-width : 320px)
-        and (max-device-width : 568px) {
-          .fa-stack.has-notif .fa-stack-1x {
-            margin-top: -4px !important;
-          }
-        }
-
-        // Iphone 6 & + portrait
-        @media only screen
-        and (min-device-width : 375px)
-        and (max-device-width : 667px) {
-
-          .fa-stack.has-notif .fa-stack-1x {
-            margin-top: 0px !important;
+        @media screen and (device-aspect-ratio: 40/71) and (-webkit-min-device-pixel-ratio: 2) {
+          .fa-stack.has-notif .fa-stack-1x, .fa-stack.no-notif .fa-stack-1x  {
+            margin-top: -4px;
           }
         }
 

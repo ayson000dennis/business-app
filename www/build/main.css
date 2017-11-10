@@ -25955,15 +25955,9 @@ page-dashboard ion-header ion-navbar .name .fa-stack.no-notif .fa-stack {
   color: #444;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-  page-dashboard ion-header ion-navbar .name .fa-stack.has-notif .fa-stack-1x {
-    margin-top: -4px !important;
-  }
-}
-
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
-  page-dashboard ion-header ion-navbar .name .fa-stack.has-notif .fa-stack-1x {
-    margin-top: 0px !important;
+@media screen and (device-aspect-ratio: 40 / 71) and (-webkit-min-device-pixel-ratio: 2) {
+  page-dashboard ion-header ion-navbar .name .fa-stack.has-notif .fa-stack-1x, page-dashboard ion-header ion-navbar .name .fa-stack.no-notif .fa-stack-1x {
+    margin-top: -4px;
   }
 }
 
@@ -26334,8 +26328,14 @@ page-slider ion-slides ion-slide .slide-nav.next {
 page-slider ion-slides ion-slide .main-image {
   margin-top: 5vh;
   margin-bottom: 40px;
-  max-width: 82%;
+  max-width: 80%;
   height: auto;
+}
+
+@media screen and (max-width: 350px) {
+  page-slider ion-slides ion-slide .main-image {
+    max-width: 67%;
+  }
 }
 
 page-slider ion-slides ion-slide:first-child .main-title:last-child {
@@ -26343,8 +26343,14 @@ page-slider ion-slides ion-slide:first-child .main-title:last-child {
 }
 
 page-slider ion-slides ion-slide:nth-child(2) .slider-img, page-slider ion-slides ion-slide:nth-child(3) .slider-img, page-slider ion-slides ion-slide:nth-child(4) .slider-img {
-  margin: 6vh 0 3.8vh;
-  height: 42.8vh;
+  margin: 4vh 0 2.8vh;
+  height: 45.8vh;
+}
+
+@media screen and (max-width: 340px) {
+  page-slider ion-slides ion-slide:nth-child(2) .slider-img, page-slider ion-slides ion-slide:nth-child(3) .slider-img, page-slider ion-slides ion-slide:nth-child(4) .slider-img {
+    height: 42.8vh;
+  }
 }
 
 page-slider .slider-img {
@@ -26385,27 +26391,12 @@ page-user-add-customer .title {
   text-align: left;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+@media screen and (device-aspect-ratio: 40 / 71) and (-webkit-min-device-pixel-ratio: 2) {
   page-user-chat ion-navbar .back-btn-new {
     margin-left: -30px !important;
   }
   page-user-chat ion-navbar .title {
     left: -10px !important;
-  }
-  page-user-chat ion-header + ion-content > div.scroll-content {
-    padding-bottom: 0px !important;
-  }
-}
-
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
-  page-user-chat ion-navbar .back-btn-new {
-    margin-left: -5px !important;
-  }
-  page-user-chat ion-navbar .title {
-    left: 10px !important;
-  }
-  page-user-chat ion-header + ion-content > div.scroll-content {
-    padding-bottom: 60px !important;
   }
 }
 
@@ -26449,7 +26440,7 @@ page-user-chat ion-navbar .back-btn-new {
 
 page-user-chat ion-header + ion-content > div.scroll-content {
   background-color: transparent !important;
-  padding-bottom: 60px;
+  padding-bottom: 60px !important;
 }
 
 page-user-chat #messages .message {

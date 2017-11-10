@@ -79,8 +79,6 @@ export class DashboardPage {
         });
       });
 
-      this.hasData = true;
-
       this.initInboxNotification();
     });
   }
@@ -103,7 +101,7 @@ export class DashboardPage {
             }
 
             this.notifCountTotal = withChats.length;
-            console.log(this.notifCountTotal);
+            this.hasData = true;
 
           }
 

@@ -3,10 +3,10 @@
     <img class="header-logo" src="assets/images/logo-min.png" alt="GoPage Logo">
     <img class="business-icon" src="assets/icon/for-business.png" alt="For Business">
     <span class="name">
-      <span class="fa-stack has-notif"  (click)="ToInbox()">
+      <span *ngIf="hasData" [ngClass]="[ notifCountTotal != 0 ? 'has-notif' : 'no-notif']" class="fa-stack" (click)="ToInbox()">
         <i class="fa fa-square fa-stack-2x"></i>
         <!-- <span class="fa fa-stack-1x" *ngIf="!hasNotify">0</span> -->
-        <span class="fa fa-stack-1x" >{{ notifCountTotal }}</span>
+        <span class="fa fa-stack-1x">{{ notifCountTotal }}</span>
       </span>
       Hi, {{firstname}}
     </span>

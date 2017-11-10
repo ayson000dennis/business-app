@@ -17,17 +17,18 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
-    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="loadUrlTimeoutValue" value="700000" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="SplashMaintainAspectRatio" value="true" />
-    <preference name="AutoHideSplashScreen" value="false" />
-    <preference name="SplashScreenDelay" value="30000" />
-    <preference name="FadeSplashScreenDuration" value="1000" />
-    <preference name="SplashScreen" value="screen" />
     <preference name="ShowSplashScreen" value="true" />
-    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="ShowSplashScreenSpinner" value="true" />
+    <preference name="SplashScreenDelay" value="30000" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="auto-hide-splash-screen" value="false" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
-    <preference name="FadeSplashScreen" value="false" />
+    <preference name="FadeSplashScreen" value="true" />
+    <preference name="FadeSplashScreenDuration" value="1000" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />

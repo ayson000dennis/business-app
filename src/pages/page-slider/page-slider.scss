@@ -85,8 +85,12 @@ page-slider {
       .main-image {
         margin-top: 5vh;
         margin-bottom: 40px;
-        max-width: 82%;
+        max-width: 80%;
         height: auto;
+
+        @media screen and (max-width: 350px) {
+          max-width: 67%;
+        }
       }
 
       &:first-child {
@@ -101,8 +105,14 @@ page-slider {
       &:nth-child(3),
       &:nth-child(4) {
         .slider-img {
-          margin: 6vh 0 3.8vh;
-          height: 42.8vh;
+          // margin: 6vh 0 3.8vh;
+          // height: 42.8vh;
+          margin: 4vh 0 2.8vh;
+          height: 45.8vh;
+
+          @media screen and (max-width: 340px) {
+            height: 42.8vh;
+          }
         }
       }
     }
