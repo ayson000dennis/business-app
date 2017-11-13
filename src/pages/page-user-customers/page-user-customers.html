@@ -8,7 +8,7 @@
 <ion-content padding class="page-user-customers">
   <p class="title">
     Customers
-    <a class="btn btn-green" href="#" (click)="goAddUser()">Add New</a>
+    <!-- <a class="btn btn-green" href="#" (click)="goAddUser()">Add New</a> -->
   </p>
   <p class="description">
     Show <input id="page_size" type="number" name="entry" [(ngModel)]="page_size"/> entries
@@ -21,7 +21,7 @@
       <span class="dropdown" (click)="showDropdown($event)">
         Actions <span class="fa fa-angle-down"></span>
         <ul class="dropdown-menu">
-          <li (click)="goEditUser()">Edit</li>
+          <!-- <li (click)="goEditUser()">Edit</li> -->
           <li (click)="updateModal('suspend')" *ngIf="customer.user_id[0].status !== '2'">Suspend</li>
           <li (click)="updateModal('delete')" *ngIf="customer.user_id[0].status !== '0'">Delete</li>
         </ul>
